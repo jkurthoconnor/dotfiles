@@ -2,7 +2,7 @@
 syntax enable
 autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown " allows .md files to be recognized as markdown; by default only .markdown are recognized 
 set background=dark
-colorscheme codedark
+colorscheme Tomorrow-Night-Eighties
 
 " Spaces and Tabs 
 set tabstop=2 " number of visual spaces per read <TAB> char 
@@ -16,3 +16,6 @@ set number " show line numbers
 set showcmd " show command in bottom bar
 set cursorline " highlight current line
 set showmatch " highlight matching parens
+
+" Key Remapping
+inoremap jj <ESC>
