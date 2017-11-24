@@ -22,6 +22,8 @@ set number " show line numbers
 set showcmd " show command in bottom bar
 set cursorline " highlight current line
 set showmatch " highlight matching parens
+set hlsearch " highlight all search matches
+set foldmethod=syntax
 
 " Key Remapping
 inoremap jj <ESC>
