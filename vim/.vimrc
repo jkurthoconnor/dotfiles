@@ -1,7 +1,7 @@
 " Colors 
 syntax enable
 autocmd BufNewFile,BufFilePre,BufReadPost *.md set filetype=markdown " enable recognition of .md as markdown
-let g:markdown_fenced_languages = ['html', 'css', 'ruby', 'bash=sh'] " enable fenced code block syntax highlighting in markdown files
+let g:markdown_fenced_languages = ['html', 'css', 'ruby', 'javascript', 'bash=sh'] " enable fenced code block syntax highlighting in markdown files
 set background=dark
 colorscheme Tomorrow-Night-Eighties
 
@@ -23,7 +23,7 @@ set showcmd " show command in bottom bar
 set cursorline " highlight current line
 set showmatch " highlight matching parens
 set hlsearch " highlight all search matches
-set foldmethod=syntax
+" set foldmethod=syntax
 
 " Key Remapping
 inoremap jj <ESC>
