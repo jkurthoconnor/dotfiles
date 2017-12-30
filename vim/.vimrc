@@ -18,12 +18,14 @@ set listchars=tab:>-,space:·,eol:¬ " set chars to be displayed for whitespace 
 set pastetoggle=<F2> "allow pasting via term. clipboard without adding indentations (normally can't distinguish pasted from typed text); to use: enter insert mode; toggle paste; paste using terminal; toggle off paste;
 
 " UI 
-set number " show line numbers
+set number relativenumber " show line realitive numbers except for absolute aumber on current line
 set showcmd " show command in bottom bar
 set cursorline " highlight current line
 set showmatch " highlight matching parens
 set hlsearch " highlight all search matches
+set incsearch " incremental highlight search matches
 " set foldmethod=syntax
 
 " Key Remapping
 inoremap jj <ESC>
+nnoremap <leader><SPACE> :nohl<CR>
