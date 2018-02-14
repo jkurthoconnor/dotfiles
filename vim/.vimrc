@@ -1,4 +1,8 @@
 " Colors 
+"Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
+if (has("termguicolors"))
+  set termguicolors
+endif
 syntax enable
 autocmd BufNewFile,BufFilePre,BufReadPost *.md set filetype=markdown " recognize i.md as markdown
 let g:markdown_fenced_languages = ['html', 'css', 'ruby', 'javascript', 'bash=sh'] " fenced code block syntax highlighting in markdown files
@@ -30,3 +34,4 @@ set incsearch " incremental highlight search matches
 " Key Remapping
 inoremap jj <ESC>
 nnoremap <leader><SPACE> :nohl<CR>
+
