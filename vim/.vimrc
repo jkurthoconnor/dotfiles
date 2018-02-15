@@ -3,8 +3,9 @@
 if (has("termguicolors"))
   set termguicolors
 endif
+
 syntax enable
-autocmd BufNewFile,BufFilePre,BufReadPost *.md set filetype=markdown " recognize i.md as markdown
+autocmd BufNewFile,BufFilePre,BufReadPost *.md set filetype=markdown " recognize .md as markdown
 let g:markdown_fenced_languages = ['html', 'css', 'ruby', 'javascript', 'bash=sh'] " fenced code block syntax highlighting in markdown files
 set background=dark
 colorscheme Tomorrow-Night-Eighties
@@ -27,6 +28,7 @@ set number relativenumber " show relative line except on current line
 set showcmd " show command in bottom bar
 set ruler " show current position in bottom bar
 set cursorline " highlight current line
+:autocmd InsertEnter,InsertLeave * set cursorline! " toggles cursorline off in Insert mode
 set showmatch " highlight matching parens
 set hlsearch " highlight all search matches
 set incsearch " incremental highlight search matches
