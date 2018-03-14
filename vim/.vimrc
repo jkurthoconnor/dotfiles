@@ -28,7 +28,7 @@ set number relativenumber " show relative line except on current line
 set showcmd " show command in bottom bar
 set ruler " show current position in bottom bar
 set cursorline " highlight current line
-:autocmd InsertEnter,InsertLeave * set cursorline! " toggles cursorline off in Insert mode
+autocmd InsertEnter,InsertLeave * set cursorline! " toggles cursorline off in Insert mode
 
 " Search
 set showmatch " highlight matching parens
