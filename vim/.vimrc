@@ -34,8 +34,11 @@ set cursorline " highlight current line
 set showmatch " highlight matching parens
 set hlsearch " highlight all search matches
 set incsearch " incremental highlight search matches
+
+" File Search
+set path+=** " search into subdirs
 set wildmenu
-set wildmode=longest:list,full
+set wildmode=longest:full,full
 
 " Key Remapping
 inoremap jj <ESC>
