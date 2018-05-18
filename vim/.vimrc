@@ -34,7 +34,8 @@ set showcmd                           " show command in bottom bar
 set ruler                             " show current position in bottom bar
 set cursorline                        " highlight current line
 autocmd InsertEnter,InsertLeave * set cursorline! " toggle cursorline
-let &colorcolumn=join(range(81,335),',')
+set colorcolumn=81
+" let &colorcolumn=join(range(81,335),',') " set range for colorcolumn
 
 " Text Search
 set showmatch                         " highlight matching parens
@@ -49,10 +50,17 @@ set wildmode=longest:full,full
 
 " Key Remapping
 inoremap jj <ESC>
-nnoremap <leader><SPACE> :nohl<CR>
+"
+" Leader Mappings
+let mapleader = "\<space>"
+nnoremap <leader><space> :nohl<cr>
+nnoremap <leader>ev :split $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
 
 " window navigation
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+
+
