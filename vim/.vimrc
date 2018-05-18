@@ -4,7 +4,12 @@ if (has("termguicolors"))
 endif
 
 syntax enable
-autocmd BufNewFile,BufFilePre,BufReadPost *.md set filetype=markdown
+
+augroup filetype_recongnition
+  autocmd!
+  autocmd BufNewFile,BufFilePre,BufReadPost *.md set filetype=markdown
+augroup END
+
 let g:markdown_fenced_languages = ['html', 'css', 'ruby', 'javascript', 'bash=sh']
 set background=dark
 colorscheme onedark
@@ -33,9 +38,13 @@ set relativenumber
 set showcmd                           " show command in bottom bar
 set ruler                             " show current position in bottom bar
 set cursorline                        " highlight current line
-autocmd InsertEnter,InsertLeave * set cursorline! " toggle cursorline
+
+augroup cursor_line_toggle
+  autocmd!
+  autocmd InsertEnter,InsertLeave * set cursorline!
+augroup END
+
 set colorcolumn=81
-" let &colorcolumn=join(range(81,335),',') " set range for colorcolumn
 
 " Text Search
 set showmatch                         " highlight matching parens
@@ -48,19 +57,29 @@ set path+=**                          " search into subdirs
 set wildmenu
 set wildmode=longest:full,full
 
-" Key Remapping
-inoremap jj <ESC>
-"
+" KEY REMAPPINGS
+inoremap jj <esc>
+
 " Leader Mappings
 let mapleader = "\<space>"
-nnoremap <leader><space> :nohl<cr>
+nnoremap <leader><space> :nohlsearch<cr>
 nnoremap <leader>ev :split $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
+
+" Local Leader Mappings
+let maplocalleader = "\<bs>"
+
+augroup file_type_mappings
+  autocmd!
+  autocmd FileType javascript nnoremap <buffer> <localleader>C I//<esc>
+  autocmd FileType javascript nnoremap <buffer> <localleader>DC 0f/diw
+  autocmd FileType javascript nnoremap <buffer> <localleader>c A//
+  autocmd FileType javascript nnoremap <buffer> <localleader>dc $?//<cr>:nohlsearch<cr>d$g_ld$
+augroup END
 
 " window navigation
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
-
 
