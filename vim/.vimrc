@@ -8,6 +8,7 @@ syntax enable
 augroup filetype_recongnition
   autocmd!
   autocmd BufNewFile,BufFilePre,BufReadPost *.md set filetype=markdown
+  autocmd BufNewFile,BufRead *.git{,modules/**/,worktrees/*/}{COMMIT_EDIT,TAG_EDIT,MERGE_,}MSG set filetype=gitcommit
 augroup END
 
 let g:markdown_fenced_languages = ['html', 'css', 'ruby', 'javascript', 'bash=sh']
@@ -28,6 +29,11 @@ set list                              " display invisible chars
 set listchars=tab:>-,space:·,eol:¬,trail:+ " whitespace chars
 set linebreak                         " visual wrap at breakat chars
 set showbreak=--
+
+augroup git_messages
+  autocmd!
+  autocmd FileType gitcommit setlocal textwidth=72
+augroup END
 
 " Paste
 set pastetoggle=<F2>                  " toggle pasting via terminal clipboard
