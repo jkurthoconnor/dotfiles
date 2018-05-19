@@ -93,3 +93,17 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+
+" ABBREVIATIONS
+
+augroup markdown_fencing
+  autocmd!
+  autocmd FileType markdown :iabbrev <buffer> jfn ```javascript
+        \<cr>```<esc><s-o>
+  autocmd FileType markdown :iabbrev <buffer> rfn ```ruby
+        \<cr>```<esc><s-o>
+  autocmd FileType markdown :iabbrev <buffer> cfn ```css
+        \<cr>```<esc><s-o>
+  autocmd FileType markdown :iabbrev <buffer> hfn ```html
+        \<cr>```<esc><s-o>
+augroup END
