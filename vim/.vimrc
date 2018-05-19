@@ -29,10 +29,12 @@ set list                              " display invisible chars
 set listchars=tab:>-,space:·,eol:¬,trail:+ " whitespace chars
 set linebreak                         " visual wrap at breakat chars
 set showbreak=--
+set colorcolumn=81
 
 augroup git_messages
   autocmd!
   autocmd FileType gitcommit setlocal textwidth=72
+  autocmd FileType gitcommit setlocal colorcolumn=72
 augroup END
 
 " Paste
@@ -41,8 +43,6 @@ set pastetoggle=<F2>                  " toggle pasting via terminal clipboard
 " UI
 set number
 set relativenumber
-set showcmd                           " show command in bottom bar
-set ruler                             " show current position in bottom bar
 set cursorline                        " highlight current line
 
 augroup cursor_line_toggle
@@ -50,7 +50,12 @@ augroup cursor_line_toggle
   autocmd InsertEnter,InsertLeave * set cursorline!
 augroup END
 
-set colorcolumn=81
+set showcmd                           " show command in bottom bar
+set statusline=%f                     " path
+set statusline+=%=                    " switch to right side
+set statusline+=%l                    " line
+set statusline+=/                     " separator
+set statusline+=%L                    " total lines
 
 " Text Search
 set showmatch                         " highlight matching parens
