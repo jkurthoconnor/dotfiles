@@ -1,8 +1,12 @@
+" SETTINGS / OPTIONS
+" ==================
+
 " Colors
 if (has("termguicolors"))
   set termguicolors                   " 24-bit (true-color) mode outside tmux
 endif
 
+filetype plugin indent on             " filetype detection, ft indent and plugins
 syntax enable
 
 augroup filetype_recongnition
@@ -24,7 +28,6 @@ set shiftwidth=2                      " spaces for autoindent, >>, <<, ==
 set softtabstop=2                     " spaces per <TAB>, <BS>
 set tabstop=2                         " spaces per read <TAB>
 set autoindent                        " new line copies previous line indent
-filetype plugin indent on             " indent by filetype
 set list                              " display invisible chars
 set listchars=tab:>-,space:·,eol:¬,trail:+ " whitespace chars
 set linebreak                         " visual wrap at breakat chars
@@ -68,14 +71,23 @@ set path+=**                          " search into subdirs
 set wildmenu
 set wildmode=longest:full,full
 
-" KEY REMAPPINGS
+" MAPPINGS
+" ========
+
 inoremap jj <esc>
+
+" window navigation
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 
 " Leader Mappings
 let mapleader = "\<space>"
 nnoremap <leader><space> :nohlsearch<cr>
 nnoremap <leader>ev :split $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
+nnoremap <leader>l :ls<cr>:b<space>
 
 " Local Leader Mappings
 let maplocalleader = "\<bs>"
@@ -88,13 +100,9 @@ augroup file_type_mappings
   autocmd FileType javascript nnoremap <buffer> <localleader>dc $?//<cr>:nohlsearch<cr>d$g_ld$
 augroup END
 
-" window navigation
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
 
 " ABBREVIATIONS
+" =============
 
 augroup markdown_fencing
   autocmd!
@@ -107,3 +115,10 @@ augroup markdown_fencing
   autocmd FileType markdown :iabbrev <buffer> hfn ```html
         \<cr>```<esc><s-o>
 augroup END
+
+" snippets leave extra space
+" augroup javascript_snippets
+"  autocmd!
+"  autocmd FileType javascript :iabbrev <buffer> func function() {}
+"  autocmd FileType javascript :iabbrev <buffer> iff if ()<left>
+"augroup END
