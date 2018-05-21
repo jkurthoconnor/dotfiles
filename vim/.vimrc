@@ -1,13 +1,7 @@
 " SETTINGS / OPTIONS
 " ==================
 
-" Colors
-if (has("termguicolors"))
-  set termguicolors                   " 24-bit (true-color) mode outside tmux
-endif
-
 filetype plugin indent on             " filetype detection, ft indent and plugins
-syntax enable
 
 augroup filetype_recongnition
   autocmd!
@@ -16,6 +10,13 @@ augroup filetype_recongnition
 augroup END
 
 let g:markdown_fenced_languages = ['html', 'css', 'ruby', 'javascript', 'bash=sh']
+
+" Colors
+if (has("termguicolors"))
+  set termguicolors                   " 24-bit (true-color) mode outside tmux
+endif
+
+syntax enable
 set background=dark
 colorscheme onedark
 
@@ -32,7 +33,7 @@ set list                              " display invisible chars
 set listchars=tab:>-,space:·,eol:¬,trail:+ " whitespace chars
 set linebreak                         " visual wrap at breakat chars
 set showbreak=--
-set colorcolumn=81
+set colorcolumn=80
 
 augroup git_messages
   autocmd!
@@ -94,9 +95,11 @@ let maplocalleader = "\<bs>"
 
 augroup file_type_mappings
   autocmd!
+  " commenting
   autocmd FileType javascript nnoremap <buffer> <localleader>C I//<esc>
-  autocmd FileType javascript nnoremap <buffer> <localleader>DC 0f/diw
   autocmd FileType javascript nnoremap <buffer> <localleader>c A//
+  " uncommenting
+  autocmd FileType javascript nnoremap <buffer> <localleader>dC 0f/diw
   autocmd FileType javascript nnoremap <buffer> <localleader>dc $?//<cr>:nohlsearch<cr>d$g_ld$
 augroup END
 
@@ -104,8 +107,9 @@ augroup END
 " ABBREVIATIONS
 " =============
 
-augroup markdown_fencing
+augroup markdown_snippets
   autocmd!
+  " code fencing
   autocmd FileType markdown :iabbrev <buffer> jfn ```javascript
         \<cr>```<esc><s-o>
   autocmd FileType markdown :iabbrev <buffer> rfn ```ruby
@@ -114,11 +118,15 @@ augroup markdown_fencing
         \<cr>```<esc><s-o>
   autocmd FileType markdown :iabbrev <buffer> hfn ```html
         \<cr>```<esc><s-o>
+  " p-set templates
+  autocmd FileType markdown :iabbrev <buffer> phdr # LS Exercises: []()<left><esc>
+  autocmd FileType markdown :iabbrev <buffer> pblm ## Problem:
+        \<cr>
+        \<cr>### Solution:<esc>
 augroup END
 
-" snippets leave extra space
-" augroup javascript_snippets
-"  autocmd!
-"  autocmd FileType javascript :iabbrev <buffer> func function() {}
-"  autocmd FileType javascript :iabbrev <buffer> iff if ()<left>
-"augroup END
+augroup javascript_snippets
+  autocmd!
+  autocmd FileType javascript :iabbrev <buffer> func function ()<left>
+  autocmd FileType javascript :iabbrev <buffer> iff if ()<left>
+augroup END
