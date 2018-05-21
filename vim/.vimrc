@@ -77,6 +77,14 @@ set wildmode=longest:full,full
 
 inoremap jj <esc>
 
+" pairs
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap { {}<left>
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap ` ``<left>
+
 " window navigation
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
@@ -119,14 +127,13 @@ augroup markdown_snippets
   autocmd FileType markdown :iabbrev <buffer> hfn ```html
         \<cr>```<esc><s-o>
   " p-set templates
-  autocmd FileType markdown :iabbrev <buffer> phdr # LS Exercises: []()<left><esc>
-  autocmd FileType markdown :iabbrev <buffer> pblm ## Problem:
-        \<cr>
-        \<cr>### Solution:<esc>
+  autocmd FileType markdown :iabbrev <buffer> ph1 # LS Exercises: []()<left><esc>
+  autocmd FileType markdown :iabbrev <buffer> ph2 ## Problem:<esc>
+  autocmd FileType markdown :iabbrev <buffer> ph2 ### Solution:<esc>
 augroup END
 
 augroup javascript_snippets
   autocmd!
   autocmd FileType javascript :iabbrev <buffer> func function ()<left>
-  autocmd FileType javascript :iabbrev <buffer> iff if ()<left>
+" autocmd FileType javascript :iabbrev <buffer> iff if ()<left>
 augroup END
