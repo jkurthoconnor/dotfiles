@@ -63,7 +63,7 @@ set statusline+=%L                    " total lines
 
 " Text Search
 set showmatch                         " highlight matching parens
-set hlsearch                          " highlight all search matches
+set hlsearch
 set incsearch                         " incremental highlight search matches
 
 " Files and Buffers
@@ -78,12 +78,12 @@ set wildmode=longest:full,full
 inoremap jj <esc>
 
 " pairs
-inoremap ( ()<left>
-inoremap [ []<left>
-inoremap { {}<left>
-inoremap " ""<left>
-inoremap ' ''<left>
-inoremap ` ``<left>
+" inoremap ( ()<left>
+" inoremap [ []<left>
+" inoremap { {}<left>
+" inoremap " ""<left>
+" inoremap ' ''<left>
+" inoremap ` ``<left>
 
 " window navigation
 nnoremap <C-h> <C-w>h
@@ -118,22 +118,22 @@ augroup END
 augroup markdown_snippets
   autocmd!
   " code fencing
-  autocmd FileType markdown :iabbrev <buffer> jfn ```javascript
+  autocmd FileType markdown :inoreabbrev <buffer> jfn ```javascript
         \<cr>```<esc><s-o>
-  autocmd FileType markdown :iabbrev <buffer> rfn ```ruby
+  autocmd FileType markdown :inoreabbrev <buffer> rfn ```ruby
         \<cr>```<esc><s-o>
-  autocmd FileType markdown :iabbrev <buffer> cfn ```css
+  autocmd FileType markdown :inoreabbrev <buffer> cfn ```css
         \<cr>```<esc><s-o>
-  autocmd FileType markdown :iabbrev <buffer> hfn ```html
+  autocmd FileType markdown :inoreabbrev <buffer> hfn ```html
         \<cr>```<esc><s-o>
   " p-set templates
-  autocmd FileType markdown :iabbrev <buffer> ph1 # LS Exercises: []()<left><esc>
+  autocmd FileType markdown :inoreabbrev <buffer> ph1 # LS Exercises: []()<left><esc>
   autocmd FileType markdown :iabbrev <buffer> ph2 ## Problem:<esc>
-  autocmd FileType markdown :iabbrev <buffer> ph2 ### Solution:<esc>
+  autocmd FileType markdown :iabbrev <buffer> ph3 ### Solution:<esc>
 augroup END
 
-augroup javascript_snippets
-  autocmd!
-  autocmd FileType javascript :iabbrev <buffer> func function ()<left>
-" autocmd FileType javascript :iabbrev <buffer> iff if ()<left>
-augroup END
+"augroup javascript_snippets
+"  autocmd!
+"  autocmd FileType javascript :inoreabbrev <buffer> func function ()<left>
+" autocmd FileType javascript :inoreabbrev <buffer> iff if ()<left>
+"augroup END
