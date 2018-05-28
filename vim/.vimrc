@@ -77,6 +77,10 @@ set wildmode=longest:full,full
 
 inoremap jj <esc>
 
+" movement: real lines if count, else visual lines
+noremap <expr> j (v:count ? 'j' : 'gj')
+noremap <expr> k (v:count ? 'k' : 'gk')
+
 " pairs
 " inoremap ( ()<left>
 " inoremap [ []<left>
@@ -96,6 +100,8 @@ let mapleader = "\<space>"
 nnoremap <leader><space> :nohlsearch<cr>
 nnoremap <leader>ev :split $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
+nnoremap <leader>ef :split /home/jko/Dropbox/notes/cdx_aafollowup.md<cr>
+nnoremap <leader>et :split /home/jko/Dropbox/notes/cdx_todo.md<cr>
 nnoremap <leader>l :ls<cr>:b<space>
 
 " Local Leader Mappings
