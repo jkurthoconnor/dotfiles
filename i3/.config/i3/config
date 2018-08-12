@@ -190,6 +190,7 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
 exec_always i3-sensible-terminal
 exec_always $HOME/.config/i3/scripts/i3_xrandr_screen_layout.sh
 exec_always feh --no-fehbg --bg-scale $background
-exec_always --no-startup-id /usr/bin/dropbox start -i
 # network manager
 exec_always --no-startup-id nm-applet
+exec_always --no-startup-id /usr/bin/dropbox start -i
+exec_always --no-startup-id pasystray
