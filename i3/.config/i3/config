@@ -2,7 +2,7 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
-set $background "/usr/share/backgrounds/System76-Robot-by_Kate_Hazen_of_System76.png"
+set $background "/usr/share/backgrounds/xgu472hf2_by_lariliikala.jpg"
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -77,25 +77,45 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
+# MONITOR VARIABLES: `xrandr --current` for current state
+set $monitorLeft DVI-D-0
+set $monitorRight DP-1 
+
 # WORKSPACE VARIABLES
-set $workspace1 "1. code"
-set $workspace2 "2. docs"
-set $workspace3 "3. notes"
-set $workspace4 "4. comm"
+set $workspace1 "1."
+set $workspace2 "2."
+set $workspace3 "3. termL"
+set $workspace4 "4. code"
 set $workspace5 "5. servers"
-set $workspace6 "6. term"
-set $workspace10 "10. music"
-#
+set $workspace6 "6. docs"
+set $workspace7 "7. notes"
+set $workspace8 "8. comm"
+set $workspace9 "9. termR"
+set $workspace10 "10."
+
+# bind workspaces to monitors
+workspace $workspace1 output $monitorLeft
+workspace $workspace2 output $monitorLeft
+workspace $workspace3 output $monitorLeft
+workspace $workspace4 output $monitorLeft
+workspace $workspace5 output $monitorLeft
+workspace $workspace6 output $monitorRight
+workspace $workspace7 output $monitorRight
+workspace $workspace8 output $monitorRight
+workspace $workspace9 output $monitorRight
+workspace $workspace10 output $monitorRight
+
 # switch to workspace
+
 bindsym $mod+1 workspace $workspace1
 bindsym $mod+2 workspace $workspace2
 bindsym $mod+3 workspace $workspace3
 bindsym $mod+4 workspace $workspace4
 bindsym $mod+5 workspace $workspace5
 bindsym $mod+6 workspace $workspace6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
+bindsym $mod+7 workspace $workspace7
+bindsym $mod+8 workspace $workspace8
+bindsym $mod+9 workspace $workspace9
 bindsym $mod+0 workspace $workspace10
 
 # move focused container to workspace
@@ -105,9 +125,9 @@ bindsym $mod+Shift+3 move container to workspace $workspace3
 bindsym $mod+Shift+4 move container to workspace $workspace4
 bindsym $mod+Shift+5 move container to workspace $workspace5
 bindsym $mod+Shift+6 move container to workspace $workspace6
-bindsym $mod+Shift+7 move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+7 move container to workspace $workspace7
+bindsym $mod+Shift+8 move container to workspace $workspace8
+bindsym $mod+Shift+9 move container to workspace $workspace9
 bindsym $mod+Shift+0 move container to workspace $workspace10
 
 # move focused workspace to next output / screen
@@ -192,10 +212,11 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle 
 # mute sound
 
-# always execute at login
-exec_always i3-sensible-terminal
-exec_always $HOME/.config/i3/scripts/i3_xrandr_screen_layout.sh
+# script for portrait orientation, right monitor:
+# exec_always $HOME/.config/i3/scripts/i3_xrandr_screen_layout.sh
+
 exec_always feh --no-fehbg --bg-scale $background
+
 # network manager
 exec_always --no-startup-id nm-applet
 exec_always --no-startup-id /usr/bin/dropbox start -i
