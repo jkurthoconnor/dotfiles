@@ -75,6 +75,8 @@ set wildmode=longest:full,full
 " MAPPINGS
 " ========
 
+map <C-n> :NERDTreeToggle<CR>
+
 inoremap jj <esc>
 
 " movement: real lines if count, else visual lines
