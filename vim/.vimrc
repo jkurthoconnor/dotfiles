@@ -9,7 +9,11 @@ augroup filetype_recongnition
   autocmd BufNewFile,BufRead *.git{,modules/**/,worktrees/*/}{COMMIT_EDIT,TAG_EDIT,MERGE_,}MSG set filetype=gitcommit
 augroup END
 
-let g:markdown_fenced_languages = ['html', 'css', 'ruby', 'javascript', 'bash=sh']
+let g:markdown_fenced_languages = ['html', 'css', 'ruby', 'javascript', 'bash=sh', 'sql']
+
+let NERDTreeQuitOnOpen=1
+let NERDTreeMinimalUI=1
+let NERDTreeDirArrows=1
 
 " Colors
 if (has("termguicolors"))
@@ -75,8 +79,6 @@ set wildmode=longest:full,full
 " MAPPINGS
 " ========
 
-map <C-n> :NERDTreeToggle<CR>
-
 inoremap jj <esc>
 
 " movement: real lines if count, else visual lines
@@ -99,6 +101,7 @@ nnoremap <C-l> <C-w>l
 
 " Leader Mappings
 let mapleader = "\<space>"
+map <leader>n :NERDTreeToggle<cr>
 nnoremap <leader><space> :nohlsearch<cr>
 nnoremap <leader>ev :split $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
@@ -108,17 +111,6 @@ nnoremap <leader>l :ls<cr>:b<space>
 
 " Local Leader Mappings
 let maplocalleader = "\<bs>"
-
-augroup file_type_mappings
-  autocmd!
-  " commenting
-  autocmd FileType javascript nnoremap <buffer> <localleader>C I//<esc>
-  autocmd FileType javascript nnoremap <buffer> <localleader>c A//
-  " uncommenting
-  autocmd FileType javascript nnoremap <buffer> <localleader>dC 0f/diw
-  autocmd FileType javascript nnoremap <buffer> <localleader>dc $?//<cr>:nohlsearch<cr>d$g_ld$
-augroup END
-
 
 " ABBREVIATIONS
 " =============
@@ -140,8 +132,3 @@ augroup markdown_snippets
   autocmd FileType markdown :iabbrev <buffer> ph3 ### Solution:<esc>
 augroup END
 
-"augroup javascript_snippets
-"  autocmd!
-"  autocmd FileType javascript :inoreabbrev <buffer> func function ()<left>
-" autocmd FileType javascript :inoreabbrev <buffer> iff if ()<left>
-"augroup END
