@@ -1,5 +1,7 @@
 " SETTINGS / OPTIONS
 " ==================
+" functionality assumes the following plugins:
+" airline; polyglot; vim-rails; vim-surround; vim-commentary; NERDTree
 
 filetype plugin indent on             " filetype detection, ft indent and plugins
 
@@ -9,7 +11,7 @@ augroup filetype_recongnition
   autocmd BufNewFile,BufRead *.git{,modules/**/,worktrees/*/}{COMMIT_EDIT,TAG_EDIT,MERGE_,}MSG set filetype=gitcommit
 augroup END
 
-let g:markdown_fenced_languages = ['html', 'css', 'ruby', 'javascript', 'bash=sh', 'sql']
+let g:markdown_fenced_languages = ['html', 'css', 'rb=ruby', 'ruby', 'javascript', 'js=javascript', 'bash=sh', 'sql']
 
 let NERDTreeQuitOnOpen=1
 let NERDTreeMinimalUI=1
@@ -58,12 +60,20 @@ augroup cursor_line_toggle
   autocmd InsertEnter,InsertLeave * set cursorline!
 augroup END
 
-set showcmd                           " show command in bottom bar
-set statusline=%f                     " path
-set statusline+=%=                    " switch to right side
-set statusline+=%l                    " line
-set statusline+=/                     " separator
-set statusline+=%L                    " total lines
+"AIRLINE OPTIONS
+set noshowmode                        " removes automatic MODE display
+let g:airline_extensions=[]           " airline extensions enabled by default
+let g:airline_section_y = 'BN: %{bufnr("%")}' "display buffer number
+
+" CUSTOM STATUS LINE; use when airline is not installed
+"
+" set showcmd                           " show command in bottom bar
+" set statusline=%f                     " path
+" set statusline+=%=                    " switch to right side
+" set statusline+=%l                    " line
+" set statusline+=/                     " separator
+" set statusline+=%L                    " total lines
+
 
 " Text Search
 set showmatch                         " highlight matching parens
@@ -84,14 +94,6 @@ inoremap jj <esc>
 " movement: real lines if count, else visual lines
 noremap <expr> j (v:count ? 'j' : 'gj')
 noremap <expr> k (v:count ? 'k' : 'gk')
-
-" pairs
-" inoremap ( ()<left>
-" inoremap [ []<left>
-" inoremap { {}<left>
-" inoremap " ""<left>
-" inoremap ' ''<left>
-" inoremap ` ``<left>
 
 " window navigation
 nnoremap <C-h> <C-w>h
