@@ -62,8 +62,18 @@ augroup END
 
 "AIRLINE OPTIONS
 set noshowmode                        " removes automatic MODE display
+
 let g:airline_extensions=[]           " airline extensions enabled by default
-let g:airline_section_y = 'BN: %{bufnr("%")}' "display buffer number
+let g:airline_theme='onedark'
+
+if !exists('g:airline_symbols')
+  let g:airline_symbols={}
+endif
+
+let g:airline_left_sep=''
+let g:airline_right_sep=''
+let g:airline_symbols.linenr = 'L:'
+let g:airline_symbols.maxlinenr = ' C'
 
 " CUSTOM STATUS LINE; use when airline is not installed
 "
