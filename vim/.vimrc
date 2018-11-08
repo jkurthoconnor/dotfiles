@@ -5,13 +5,15 @@
 
 filetype plugin indent on             " filetype detection, ft indent and plugins
 
+set directory^=$HOME/.vim/tmp//       " prepends .vim/tmp/ to list of swp file locations
+
 augroup filetype_recongnition
   autocmd!
-  autocmd BufNewFile,BufFilePre,BufReadPost *.md set filetype=markdown
+  autocmd BufNewFile,BufFilePre,BufReadPost *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=markdown
   autocmd BufNewFile,BufRead *.git{,modules/**/,worktrees/*/}{COMMIT_EDIT,TAG_EDIT,MERGE_,}MSG set filetype=gitcommit
 augroup END
 
-let g:markdown_fenced_languages = ['html', 'css', 'rb=ruby', 'ruby', 'javascript', 'js=javascript', 'bash=sh', 'sql']
+let g:vim_markdown_fenced_languages = ['html', 'css', 'ruby=rb', 'ruby', 'javascript', 'javascript=js', 'bash=sh', 'sql']
 
 let NERDTreeQuitOnOpen=1
 let NERDTreeMinimalUI=1
