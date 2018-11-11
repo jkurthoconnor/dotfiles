@@ -8,16 +8,18 @@ case $- in
       *) return;;
 esac
 
-# don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options
-HISTCONTROL=ignoreboth
+# don't put lines starting with space in the history.
+HISTCONTROL=ignorespace
+
+# history ignores `history` commands
+HISTIGNORE="history"
 
 # append to the history file, don't overwrite it
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=50000
-HISTFILESIZE=50000
+HISTSIZE=100000
+HISTFILESIZE=100000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -29,6 +31,7 @@ shopt -s checkwinsize
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
 
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
@@ -56,13 +59,36 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+
+# default PS1 assignments commented out; replaced by local var to enable use of
+# PROMPT_COMMAND, which is necessary for using git prompt script with color;
+# see ~/.git-prompt.sh comments
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    # PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    ps1_prompt_base='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]'
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    ps1_prompt_base='${debian_chroot:+($debian_chroot)}\u@\h:\w'
+    #PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 unset color_prompt force_color_prompt
 
+# if git prompt script exists, prepare prompt showing git status
+# else create PS1 from value of prompt base local var
+if [ -f ~/.git-prompt.sh ]; then
+    source ~/.git-prompt.sh
+    # __git_ps1 function provided by ~/.git-prompt.sh takes 2 string args
+    # <pre> and <post> git status
+    PROMPT_COMMAND='__git_ps1 "$ps1_prompt_base" "\\\$ "'
+    GIT_PS1_SHOWDIRTYSTATE=true
+    GIT_PS1_SHOWSTASHSTATE=true
+    GIT_PS1_SHOWUNTRACKEDFILES=true
+    GIT_PS1_SHOWCOLORHINTS=true
+    GIT_PS1_HIDE_IF_PWD_IGNORED=true
+else
+    PS1="${ps1_prompt_base}\$ "
+fi
+
+# xterm case must be modified to work with git status
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
 xterm*|rxvt*)
@@ -122,4 +148,4 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
 # runs neofetch with each new terminal
-neofetch
+# neofetch
