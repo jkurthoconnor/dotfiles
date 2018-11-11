@@ -1,0 +1,10 @@
+[user]
+	name = jkurthoconnor
+	email = jkurthoconnor@gmail.com
+[push]
+	default = simple
+[core]
+	editor = vim
+	excludesfile = /home/jko/.gitignore_global
+[commit]
+	template = /home/jko/.gitmessage
