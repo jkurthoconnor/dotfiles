@@ -72,7 +72,8 @@ else
 fi
 unset color_prompt force_color_prompt
 
-# if git prompt script exists, prepare prompt showing git status
+# if git prompt script exists, prepare prompt showing git status;
+# (used w/ PROMPT_COMMAND this way, .git-shell.sh sets PS1;) 
 # else create PS1 from value of prompt base local var
 if [ -f ~/.git-prompt.sh ]; then
     source ~/.git-prompt.sh
