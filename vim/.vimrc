@@ -5,7 +5,8 @@
 
 filetype plugin indent on             " filetype detection, ft indent and plugins
 
-set directory^=$HOME/.vim/tmp//       " prepends .vim/tmp/ to list of swp file locations
+set directory^=$HOME/.vim/tmp//       " prepends .vim/tmp/ to list of swp file
+                                      " locations; prevents cluttering working dir
 
 augroup filetype_recongnition
   autocmd!
@@ -107,9 +108,9 @@ set wildmode=longest:full,full
 " MAPPINGS
 " ========
 
-inoremap jj <esc>
+inoremap jk <esc>
 
-" movement: real lines if count, else visual lines
+" movement: real lines if count is given, else visual lines
 noremap <expr> j (v:count ? 'j' : 'gj')
 noremap <expr> k (v:count ? 'k' : 'gk')
 
@@ -125,8 +126,8 @@ map <leader>n :NERDTreeToggle<cr>
 nnoremap <leader><space> :nohlsearch<cr>
 nnoremap <leader>ev :split $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
-nnoremap <leader>ef :split /home/jko/Dropbox/notes/cdx_aafollowup.md<cr>
-nnoremap <leader>et :split /home/jko/Dropbox/notes/cdx_todo.md<cr>
+nnoremap <leader>ef :split /home/jko/coding/notes/aaFollowup.md<cr>
+nnoremap <leader>et :split /home/jko/coding/notes/aaTodo.md<cr>
 nnoremap <leader>l :ls<cr>:b<space>
 
 " Local Leader Mappings
@@ -151,4 +152,3 @@ augroup markdown_snippets
   autocmd FileType markdown :iabbrev <buffer> ph2 ## Problem:<esc>
   autocmd FileType markdown :iabbrev <buffer> ph3 ### Solution:<esc>
 augroup END
-
