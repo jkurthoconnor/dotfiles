@@ -60,7 +60,7 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 
-# default PS1 assignments commented out; replaced by local var to enable use of
+# default PS1 assignments commented out; replaced by var to enable use of
 # PROMPT_COMMAND, which is necessary for using git prompt script with color;
 # see ~/.git-prompt.sh comments
 if [ "$color_prompt" = yes ]; then
@@ -89,7 +89,6 @@ else
     PS1="${ps1_prompt_base}\$ "
 fi
 
-# xterm case must be modified to work with git status
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
 xterm*|rxvt*)
