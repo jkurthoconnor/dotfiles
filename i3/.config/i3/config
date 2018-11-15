@@ -1,31 +1,66 @@
-# i3 config file (v4)
-# Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
+##############################################################################
+#                           I3 CONFIG FILE (V4)                              #
+#              reference: https://i3wm.org/docs/userguide.html               #
+##############################################################################
+
+
+
+
+#                           LAUNCHING and META                               #
+##############################################################################
+
+# set the modifier key
 set $mod Mod4
-set $background "/usr/share/backgrounds/xgu472hf2_by_lariliikala.jpg"
-
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
-# font pango:monospace 12
-
-# This font is widely installed, provides lots of unicode glyphs, right-to-left
-# text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:DejaVu Sans Mono 12
-
-# Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
 
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
+# start dmenu (a program launcher)
+bindsym $mod+Shift+Return exec dmenu_run -l 5
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# lock screen
+bindsym $mod+shift+x exec i3lock --color "$drk-bg-color"
+
+# exit i3 (and log out of X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+
+
+#                           WINDOW and WORKSPACE MANAGEMENT                  #
+##############################################################################
+
+# WINDOW SETTINGS and NAVIGATION
+
+# toggle fullscreen mode for the focused window
+bindsym $mod+f fullscreen toggle
+
+# toggle tiling / floating mode for focused window
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# Use Mouse+$mod to drag floating windows
+floating_modifier $mod
+
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run -l 7
-
 # prevent focus from following mouse
 focus_follows_mouse no
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
 
 # change focus
 bindsym $mod+h focus left
@@ -51,100 +86,20 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-# split in horizontal orientation
+# make future splits horizontal
 bindsym $mod+t split h
 
-# split in vertical orientation
+# make future splits vertical
 bindsym $mod+v split v
-
-# enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
-# toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
-
-# change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
-
-# focus the parent container
-bindsym $mod+a focus parent
-
-# focus the child container
-#bindsym $mod+d focus child
-
-# MONITOR VARIABLES: `xrandr --current` for current state
-set $monitorLeft DVI-D-0
-set $monitorRight DP-1 
-
-# WORKSPACE VARIABLES
-set $workspace1 "1."
-set $workspace2 "2."
-set $workspace3 "3. termL"
-set $workspace4 "4. code"
-set $workspace5 "5. servers"
-set $workspace6 "6. docs"
-set $workspace7 "7. notes"
-set $workspace8 "8. comm"
-set $workspace9 "9. termR"
-set $workspace10 "10."
-
-# bind workspaces to monitors
-workspace $workspace1 output $monitorLeft
-workspace $workspace2 output $monitorLeft
-workspace $workspace3 output $monitorLeft
-workspace $workspace4 output $monitorLeft
-workspace $workspace5 output $monitorLeft
-workspace $workspace6 output $monitorRight
-workspace $workspace7 output $monitorRight
-workspace $workspace8 output $monitorRight
-workspace $workspace9 output $monitorRight
-workspace $workspace10 output $monitorRight
-
-# switch to workspace
-
-bindsym $mod+1 workspace $workspace1
-bindsym $mod+2 workspace $workspace2
-bindsym $mod+3 workspace $workspace3
-bindsym $mod+4 workspace $workspace4
-bindsym $mod+5 workspace $workspace5
-bindsym $mod+6 workspace $workspace6
-bindsym $mod+7 workspace $workspace7
-bindsym $mod+8 workspace $workspace8
-bindsym $mod+9 workspace $workspace9
-bindsym $mod+0 workspace $workspace10
-
-# move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace $workspace1
-bindsym $mod+Shift+2 move container to workspace $workspace2
-bindsym $mod+Shift+3 move container to workspace $workspace3
-bindsym $mod+Shift+4 move container to workspace $workspace4
-bindsym $mod+Shift+5 move container to workspace $workspace5
-bindsym $mod+Shift+6 move container to workspace $workspace6
-bindsym $mod+Shift+7 move container to workspace $workspace7
-bindsym $mod+Shift+8 move container to workspace $workspace8
-bindsym $mod+Shift+9 move container to workspace $workspace9
-bindsym $mod+Shift+0 move container to workspace $workspace10
-
-# move focused workspace to next output / screen
-bindsym $mod+Shift+n move workspace to output right
-
-# reload the configuration file
-bindsym $mod+Shift+c reload
-
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
-
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-
 # resize window (you can also use the mouse for that)
+# These bindings trigger as soon as you enter the resize mode
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
 
         bindsym h resize shrink width 10 px or 10 ppt
         bindsym j resize grow height 10 px or 10 ppt
@@ -164,26 +119,103 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# COLOR VARIABLES
+
+# MONITORS / WORKSPACES SETTINGS and NAVIGATION
+
+# set workspace variables
+# `xrandr --current` for current state; see `man xrandr`
+set $monitorLeft DVI-D-0
+set $monitorRight DP-1
+# set $toshibaScreen eDP-1
+
+# set workspace variables
+set $workspace1 "1."
+set $workspace2 "2."
+set $workspace3 "3. termL"
+set $workspace4 "4. code"
+set $workspace5 "5. servers"
+set $workspace6 "6. docs"
+set $workspace7 "7. notes"
+set $workspace8 "8. comm"
+set $workspace9 "9. termR"
+set $workspace0 "0."
+
+# bind workspaces to monitors
+# since 4.16, allows identification of multiple monitors
+# in space separated list; first available used
+workspace $workspace1 output $monitorLeft
+workspace $workspace2 output $monitorLeft
+workspace $workspace3 output $monitorLeft
+workspace $workspace4 output $monitorLeft
+workspace $workspace5 output $monitorLeft
+workspace $workspace6 output $monitorRight
+workspace $workspace7 output $monitorRight
+workspace $workspace8 output $monitorRight
+workspace $workspace9 output $monitorRight
+workspace $workspace0 output $monitorRight
+
+# switch to workspace
+bindsym $mod+1 workspace $workspace1
+bindsym $mod+2 workspace $workspace2
+bindsym $mod+3 workspace $workspace3
+bindsym $mod+4 workspace $workspace4
+bindsym $mod+5 workspace $workspace5
+bindsym $mod+6 workspace $workspace6
+bindsym $mod+7 workspace $workspace7
+bindsym $mod+8 workspace $workspace8
+bindsym $mod+9 workspace $workspace9
+bindsym $mod+0 workspace $workspace0
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $workspace1
+bindsym $mod+Shift+2 move container to workspace $workspace2
+bindsym $mod+Shift+3 move container to workspace $workspace3
+bindsym $mod+Shift+4 move container to workspace $workspace4
+bindsym $mod+Shift+5 move container to workspace $workspace5
+bindsym $mod+Shift+6 move container to workspace $workspace6
+bindsym $mod+Shift+7 move container to workspace $workspace7
+bindsym $mod+Shift+8 move container to workspace $workspace8
+bindsym $mod+Shift+9 move container to workspace $workspace9
+bindsym $mod+Shift+0 move container to workspace $workspace0
+
+# move focused workspace to next output / screen
+bindsym $mod+Shift+n move workspace to output right
+
+
+#                           AESTHETICS                                       #
+##############################################################################
+
+set $background "/usr/share/backgrounds/xgu472hf2_by_lariliikala.jpg"
+
+# Font for window titles; also the bar unless bar block {} specifies alt font
+font pango:DejaVu Sans Mono 12
+
+# set color variables
 # medium brown
 set $lt-bg-color #58504C
+
 # dark brown
 set $drk-bg-color #2A2725
 set $drk-txt-color #2A2725
+
 # light brown
 set $lt-txt-color #BBB8B6
+
 # orange
 set $urgent-bg-color #CD8828
+
 # teal
 set $indicator #23505C
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
+# Configure, Style & Start i3bar(s)
 bar {
+        id bar-0
+        output primary
+        tray_output primary
         separator_symbol "  |  "
         status_command i3status
-        tray_output primary
         tray_padding 2
+
         colors {
 #                                border           bkgrnd           text
               focused_workspace  $indicator       $indicator       $lt-txt-color
@@ -193,6 +225,20 @@ bar {
         }
 }
 
+bar {
+        id bar-1
+        output DP-1
+        status_command i3status --config ~/.i3status_small.conf
+        tray_output none
+
+        colors {
+#                                border           bkgrnd           text
+              focused_workspace  $indicator       $indicator       $lt-txt-color
+              active_workspace   $urgent-bg-color $drk-bg-color    $lt-txt-color
+              inactive_workspace $drk-bg-color    $drk-bg-color    $lt-txt-color
+              urgent_workspace   $urgent-bg-color $urgent-bg-color $drk-txt-color
+        }
+}
 
 # Widow Bar Colors
 #                       border            background       txt            indicator
@@ -202,22 +248,25 @@ client.unfocused        $drk-bg-color     $drk-bg-color    $lt-txt-color  $indic
 client.urgent           $urgent-bg-color  $urgent-bg-color $lt-txt-color  $indicator
 client.placeholder      $lt-bg-color      $lt-bg-color     $lt-bg-color   $lt-bg-color
 
-bindsym $mod+shift+x exec i3lock --color "$drk-bg-color"
 
-# Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
-#increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
-#decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle 
-# mute sound
 
-# script for portrait orientation, right monitor:
+#                           STARTUP CALLS                                    #
+##############################################################################
+
+# portrait orientation script for right monitor:
 # exec_always $HOME/.config/i3/scripts/i3_xrandr_screen_layout.sh
 
+# `feh` image viewer sets bkgrnd; see `man feh`
 exec_always feh --no-fehbg --bg-scale $background
 
-# network manager
+# network manager with icon in tray
 exec_always --no-startup-id nm-applet
+
+# start dropbox with icon in tray
 exec_always --no-startup-id /usr/bin/dropbox start -i
-exec_always --no-startup-id pasystray
+
+# pulse audio controls in tray
+exec --no-startup-id pasystray
+
+# bluetooth manager
+# exec_always --no-startup-id blueman-applet
