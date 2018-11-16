@@ -1,0 +1,107 @@
+#                           TERMITE TERMINAL CONFIG.
+#                    default template: /etc/termite/config
+#                          `man termite.config`
+
+[options]
+font = Hack 13
+
+allow_bold = true
+bold_is_bright = true
+
+browser = google-chrome-stable
+clickable_url = true
+hyperlinks = false
+
+search_wrap = true
+filter_unmatched_urls = true
+
+dynamic_title = true
+icon_name = termite
+
+mouse_autohide = false
+cursor_blink = system
+cursor_shape = block
+
+scrollbar = off
+scroll_on_output = true
+scroll_on_keystroke = true
+scrollback_lines = 10000
+
+audible_bell = false
+urgent_on_bell = true
+
+# Emit escape sequences for extra modified keys
+modify_other_keys = false
+
+size_hints = false
+fullscreen = false
+
+[colors]
+# Base16 OneDarkTerminal
+# Author: Kurth O'Connor
+# Adapted from Base16 OneDark by Lalit Magant (http://github.com/tilal6991)
+
+# 16 color space
+
+# mapping:
+# color# => Text Color Code => file type in custom `.dircolors`
+
+# Black, Gray, Silver, White
+# 0 => background
+color0  = #1a1a1a
+color8  = #545862
+color15 = #c8ccd4
+
+# Red
+color1  = #e06c75
+# 9 => TCC red 31 => designated extensions
+color9  = #e06c75
+
+# Green
+# 2 => TCC green 32 => files, permissions
+color2  = #88ee6a
+# 7 => TCC green 32 => normal txt (stdout, in)
+color7  = #88ee6a
+# 10 => prompt
+color10 = #88ee6a
+
+# Yellow
+# 3 => TCC yellow 33 => executables
+color3  = #e5c07b
+color11 = #e5c07b
+
+# Blue
+color4  = #49a5f0
+# 12 => TCC blue 34 => directories
+color12 = #49a5f0
+
+# Purple 
+# TCC magenta 35
+color5  = #c678dd
+color13 = #c678dd
+
+# Teal
+color6  = #56b6c2
+# 14 => TCC cyan 36 => symlink
+color14 = #66eef3
+
+# Extra colors
+color16 = #d19a66
+color17 = #be5046
+color18 = #353b45
+color19 = #3e4451
+color20 = #565c64
+color21 = #b6bdca
+
+[hints]
+#font = Monospace 12
+#foreground = #dcdccc
+#background = #3f3f3f
+#active_foreground = #e68080
+#active_background = #3f3f3f
+#padding = 2
+#border = #3f3f3f
+#border_width = 0.5
+#roundness = 2.0
+
+# vim: ft=dosini cms=#%s

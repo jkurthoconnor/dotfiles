@@ -13,6 +13,9 @@
 # set the modifier key
 set $mod Mod4
 
+# `i3-sensible-terminal` checks $TERMINAL value, which is not yet set
+set $TERMINAL "/usr/local/bin/termite"
+
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
