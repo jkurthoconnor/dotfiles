@@ -144,10 +144,11 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# to suppress accessibility bus warnings (some apps try to connect even with
+# accessibility options off):
+# 'WARNING **: Couldn't connect to accessibility bus: Failed to connect to socket /tmp/dbus-aQ32zc0s4C: Connection refused'
+export NO_AT_BRIDGE=1
 
 # prepends path to rbenv to PATH
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
-
-# runs neofetch with each new terminal
-# neofetch
