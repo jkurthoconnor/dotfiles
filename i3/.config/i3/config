@@ -301,6 +301,6 @@ exec --no-startup-id keepassxc
 # open clients initially assigned to pre-defined layouts
 exec termite
 exec termite
-exec termite --name=cmus_container --title=cmus_music -e cmus
+exec termite --name=cmus_container --title=cmus -e cmus
 exec termite
 exec termite
