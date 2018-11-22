@@ -1,12 +1,37 @@
-" SETTINGS / OPTIONS
+" PACKAGE MANAGEMENT
+" ================
+" `:call minpac#update()` to update || install packages registered below
+" `:call minpac#clean()` to uninstall && remove minpac-managed plugins no
+" longer registered below
+packadd minpac
+call minpac#init()
+call minpac#add('k-takata/minpac', { 'type': 'opt' })
+call minpac#add('tpope/vim-commentary')
+call minpac#add('tpope/vim-surround')
+call minpac#add('tpope/vim-rails')
+call minpac#add('junegunn/fzf')
+call minpac#add('vim-airline/vim-airline')
+call minpac#add('vim-airline/vim-airline-themes')
+call minpac#add('rakr/vim-one', { 'type': 'opt'})
+call minpac#add('morhetz/gruvbox', { 'type': 'opt'})
+packadd gruvbox " opt plugins must be explicitly loaded with `packadd`
+
+" SETTINGS & OPTIONS
 " ==================
-" functionality assumes the following plugins:
-" airline; polyglot; vim-rails; vim-surround; vim-commentary; NERDTree
-
 filetype plugin indent on             " filetype detection, ft indent and plugins
-
 set directory^=$HOME/.vim/tmp//       " prepends .vim/tmp/ to list of swp file
                                       " locations; prevents cluttering working dir
+" COLORS & SYNTAX
+if (has("termguicolors"))
+  set termguicolors                   " 24-bit (true-color) mode outside tmux
+endif
+
+syntax enable
+colorscheme gruvbox
+set background=dark
+
+let g:gruvbox_italic=1
+let g:gruvbox_italicize_comments=1
 
 augroup filetype_recongnition
   autocmd!
@@ -14,22 +39,9 @@ augroup filetype_recongnition
   autocmd BufNewFile,BufRead *.git{,modules/**/,worktrees/*/}{COMMIT_EDIT,TAG_EDIT,MERGE_,}MSG set filetype=gitcommit
 augroup END
 
-let g:vim_markdown_fenced_languages = ['html', 'css', 'ruby=rb', 'ruby', 'javascript', 'javascript=js', 'bash=sh', 'sql']
+let g:markdown_fenced_languages = ['html', 'css', 'rb=ruby', 'ruby', 'erb=eruby', 'javascript', 'js=javascript', 'bash=sh', 'sql']
 
-let NERDTreeQuitOnOpen=1
-let NERDTreeMinimalUI=1
-let NERDTreeDirArrows=1
-
-" Colors
-if (has("termguicolors"))
-  set termguicolors                   " 24-bit (true-color) mode outside tmux
-endif
-
-syntax enable
-set background=dark
-colorscheme onedark
-
-" Spaces, Tabs, Screen Text Formatting
+" SPACES, TABS, SCREEN TEXT FORMATTING
 set wrap                              " allow visual line wrapping
 set textwidth=0                       " disable auto new line
 set wrapmargin=0                      " disable EOL at wrap
@@ -56,7 +68,7 @@ augroup markdown_options
   autocmd FileType markdown setlocal spell
 augroup END
 
-" Paste
+" PASTE
 set pastetoggle=<F2>                  " toggle pasting via terminal clipboard
 
 " UI
@@ -73,33 +85,34 @@ augroup END
 set noshowmode                        " removes automatic MODE display
 
 let g:airline_extensions=[]           " airline extensions enabled by default
-let g:airline_theme='onedark'
+let g:airline_theme='gruvbox'
 
 if !exists('g:airline_symbols')
   let g:airline_symbols={}
 endif
 
-let g:airline_left_sep=''
-let g:airline_right_sep=''
+" let g:airline_left_sep=''          " only for patched fonts / colorschemes
+" let g:airline_right_sep=''         " only for patched fonts / colorschemes
+let g:airline_left_sep='>>'
+let g:airline_right_sep='<<'
 let g:airline_symbols.linenr = 'L:'
 let g:airline_symbols.maxlinenr = ' C'
 
-" CUSTOM STATUS LINE; use when airline is not installed
-"
-" set showcmd                           " show command in bottom bar
-" set statusline=%f                     " path
-" set statusline+=%=                    " switch to right side
-" set statusline+=%l                    " line
-" set statusline+=/                     " separator
-" set statusline+=%L                    " total lines
+" CUSTOM STATUS LINE                  " use when airline is not installed
+" set showcmd                         " show command in bottom bar
+" set statusline=%f                   " path
+" set statusline+=%=                  " switch to right side
+" set statusline+=%l                  " line
+" set statusline+=/                   " separator
+" set statusline+=%L                  " total lines
 
 
-" Text Search
+" TEXT SEARCH
 set showmatch                         " highlight matching parens
 set hlsearch
 set incsearch                         " incremental highlight search matches
 
-" Files and Buffers
+" FILES AND BUFFERS
 set hidden                            " prevent unloading abandoned buffers
 set path+=**                          " search into subdirs
 set wildmenu
@@ -107,22 +120,23 @@ set wildmode=longest:full,full
 
 " MAPPINGS
 " ========
-
 inoremap jk <esc>
 
-" movement: real lines if count is given, else visual lines
+" FZF
+nnoremap <C-p> :FZF<CR>
+
+" MOVEMENT  (real lines if count is given, else visual lines)
 noremap <expr> j (v:count ? 'j' : 'gj')
 noremap <expr> k (v:count ? 'k' : 'gk')
 
-" window navigation
+" WINDOW NAVIGATION
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-" Leader Mappings
+" LEADER MAPPINGS
 let mapleader = "\<space>"
-map <leader>n :NERDTreeToggle<cr>
 nnoremap <leader><space> :nohlsearch<cr>
 nnoremap <leader>ev :split $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
@@ -130,12 +144,11 @@ nnoremap <leader>ef :split /home/jko/coding/notes/aaFollowup.md<cr>
 nnoremap <leader>et :split /home/jko/coding/notes/aaTodo.md<cr>
 nnoremap <leader>l :ls<cr>:b<space>
 
-" Local Leader Mappings
+" LOCAL LEADER MAPPINGS
 let maplocalleader = "\<bs>"
 
 " ABBREVIATIONS
 " =============
-
 augroup markdown_snippets
   autocmd!
   " code fencing
