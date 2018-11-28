@@ -4,17 +4,27 @@
 " `:call minpac#clean()` to uninstall && remove minpac-managed plugins no
 " longer registered below
 packadd minpac
+
 call minpac#init()
 call minpac#add('k-takata/minpac', { 'type': 'opt' })
 call minpac#add('tpope/vim-commentary')
 call minpac#add('tpope/vim-surround')
 call minpac#add('tpope/vim-rails')
 call minpac#add('junegunn/fzf')
-call minpac#add('vim-airline/vim-airline')
-call minpac#add('vim-airline/vim-airline-themes')
+
+" syntax
+call minpac#add('pangloss/vim-javascript')
+call minpac#add('mxw/vim-jsx')
+call minpac#add('PotatoesMaster/i3-vim-syntax')
+
+" aesthetics
 call minpac#add('rakr/vim-one', { 'type': 'opt'})
 call minpac#add('morhetz/gruvbox', { 'type': 'opt'})
-packadd gruvbox " opt plugins must be explicitly loaded with `packadd`
+call minpac#add('vim-airline/vim-airline')
+call minpac#add('vim-airline/vim-airline-themes')
+
+" load desired `opt` plugins
+packadd gruvbox
 
 " SETTINGS & OPTIONS
 " ==================
