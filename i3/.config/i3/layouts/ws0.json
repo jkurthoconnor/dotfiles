@@ -1,27 +1,6 @@
 // vim:ts=4:sw=4:et
 {
-    "border": "normal",
-    "current_border_width": 2,
-    "floating": "auto_off",
-    "geometry": {
-       "height": 482,
-       "width": 814,
-       "x": 0,
-       "y": 0
-    },
-    "name": "termite",
-    "percent": 0.5,
-    "swallows": [
-       {
-        "class": "^Termite$",
-        "title": "^termite$"
-       }
-    ],
-    "type": "con"
-}
-
-{
-    "layout": "splitv",
+    "layout": "split",
     "percent": 0.5,
     "type": "con",
     "nodes": [
@@ -67,4 +46,24 @@
             "type": "con"
         }
     ]
+}
+{
+    "border": "normal",
+    "current_border_width": 2,
+    "floating": "auto_off",
+    "geometry": {
+       "height": 482,
+       "width": 814,
+       "x": 0,
+       "y": 0
+    },
+    "name": "termite",
+    "percent": 0.5,
+    "swallows": [
+       {
+        "class": "^Termite$",
+        "title": "^termite$"
+       }
+    ],
+    "type": "con"
 }

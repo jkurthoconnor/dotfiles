@@ -13,7 +13,7 @@
 # set the modifier key
 set $mod Mod4
 
-# `i3-sensible-terminal` checks $TERMINAL value, which is not yet set
+# `i3-sensible-terminal` checks $TERMINAL value
 set $TERMINAL "/usr/local/bin/termite"
 
 # start a terminal
@@ -118,7 +118,7 @@ mode "resize" {
         bindsym Up resize shrink height 10 px or 10 ppt
         bindsym Right resize grow width 10 px or 10 ppt
 
-        # back to normal: Enter or Escape
+        # exit resize mode
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
@@ -129,20 +129,20 @@ bindsym $mod+r mode "resize"
 
 # set workspace variables
 # `xrandr --current` for current state; see `man xrandr`
-set $monitorLeft DVI-D-0
-set $monitorRight DP-1
+set $monitorLeft HDMI-0
+set $monitorRight DP-0
 # set $toshibaScreen eDP-1
 
 # set workspace variables
-set $workspace1 "1."
-set $workspace2 "2."
-set $workspace3 "3. termL"
+set $workspace1 "1.     "
+set $workspace2 "2.     "
+set $workspace3 "3. term"
 set $workspace4 "4. code"
 set $workspace5 "5. servers"
 set $workspace6 "6. docs"
 set $workspace7 "7. notes"
 set $workspace8 "8. comm"
-set $workspace9 "9. termR"
+set $workspace9 "9. term"
 set $workspace0 "10. misc"
 
 # bind workspaces to monitors
@@ -247,7 +247,7 @@ bar {
 
 bar {
         id bar-1
-        output DP-1
+        output DP-0
         status_command i3status --config ~/.config/i3status/small_config
         tray_output none
 
@@ -262,7 +262,7 @@ bar {
 
 # Widow Bar Colors
 #                       border            background       txt            indicator
-client.focused          $lt-bg-color      $lt-bg-color     $lt-txt-color  $indicator 
+client.focused          $lt-bg-color      $lt-bg-color     $lt-txt-color  $indicator
 client.focused_inactive $drk-bg-color     $drk-bg-color    $lt-txt-color  $indicator
 client.unfocused        $drk-bg-color     $drk-bg-color    $lt-txt-color  $indicator
 client.urgent           $urgent-bg-color  $urgent-bg-color $lt-txt-color  $indicator
@@ -273,8 +273,8 @@ client.placeholder      $lt-bg-color      $lt-bg-color     $lt-bg-color   $lt-bg
 #                           STARTUP CALLS                                    #
 ##############################################################################
 
-# portrait orientation script for right monitor:
-# exec_always $HOME/.config/i3/scripts/i3_xrandr_screen_layout.sh
+# layout script for portrait right monitor
+exec_always $HOME/.config/i3/scripts/i3_xrandr_screen_layout.sh
 
 # `feh` image viewer sets bkgrnd; see `man feh`
 exec_always feh --no-fehbg --bg-scale $background
@@ -290,10 +290,11 @@ exec --no-startup-id pasystray
 
 # load pre-defined layouts
 exec --no-startup-id "i3-msg 'workspace 4. code; append_layout /home/jko/.config/i3/layouts/ws4.json'"
+
 exec --no-startup-id "i3-msg 'workspace 10. misc; append_layout /home/jko/.config/i3/layouts/ws0.json'"
 
 # open client instance assigned to workspace
-exec --no-startup-id "i3-msg 'workspace 8. comm; exec google-chrome-stable https://mail.google.com'"
+exec --no-startup-id "i3-msg 'workspace 8. comm; exec firefox https://mail.google.com'"
 
 # open client assigned to scratchpad
 exec --no-startup-id keepassxc
@@ -304,3 +305,5 @@ exec termite
 exec termite --name=cmus_container --title=cmus -e cmus
 exec termite
 exec termite
+
+# vim:filetype=i3
