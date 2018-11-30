@@ -1,0 +1,19 @@
+set recolor true
+# set recolor-keephue true
+set recolor-darkcolor "#1d2021"
+set recolor-lightcolor "#928374"
+set default-bg "#3c3836"
+set highlight-color "#689d6a"
+set highlight-active-color "#8ec07c"
+
+set window-title-basename true
+set selection-clipboard clipboard
+set statusbar-home-tilde true
+set advance-pages-per-row true
+set pages-per-row 1
+
+set zoom-step 5
+set zoom-max 500
+set zoom-min 50
+
+#vim:filetype=i3
