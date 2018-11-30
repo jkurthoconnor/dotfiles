@@ -20,7 +20,7 @@ set $TERMINAL "/usr/local/bin/termite"
 bindsym $mod+Return exec i3-sensible-terminal
 
 # start dmenu (a program launcher)
-bindsym $mod+Shift+Return exec dmenu_run -l 5
+bindsym $mod+Shift+Return exec "dmenu_run -l 10 -nf '#fbf1c7' -sb '#076678' -sf '#fbf1c7'"
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -74,7 +74,6 @@ bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 
-# alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
@@ -86,7 +85,6 @@ bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
-# alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
@@ -98,21 +96,19 @@ bindsym $mod+t split h
 # make future splits vertical
 bindsym $mod+v split v
 
-# change container layout (stacked, tabbed, toggle split)
+# change container layout
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
-# resize window (you can also use the mouse for that)
-# These bindings trigger as soon as you enter the resize mode
+bindsym $mod+r mode "resize"
 mode "resize" {
-
+        # bindings trigger with resize mode
         bindsym h resize shrink width 10 px or 10 ppt
         bindsym j resize grow height 10 px or 10 ppt
         bindsym k resize shrink height 10 px or 10 ppt
         bindsym l resize grow width 10 px or 10 ppt
 
-        # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
         bindsym Down resize grow height 10 px or 10 ppt
         bindsym Up resize shrink height 10 px or 10 ppt
@@ -123,7 +119,6 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
-bindsym $mod+r mode "resize"
 
 # MONITORS / WORKSPACES SETTINGS and NAVIGATION
 
@@ -210,22 +205,27 @@ set $background "/usr/share/backgrounds/xgu472hf2_by_lariliikala.jpg"
 # Font for window titles; also the bar unless bar block {} specifies alt font
 font pango:DejaVu Sans Mono 12
 
-# set color variables
+# set color variables: gruvboxesque
 # medium brown
-set $lt-bg-color #58504C
+set $lt-bg-color #504945
 
-# dark brown
-set $drk-bg-color #2A2725
-set $drk-txt-color #2A2725
+# dark brown-black
+set $blk-bg-color #1d2021
+set $drk-bg-color #3c3836
+set $drk-txt-color #1d2021
 
-# light brown
-set $lt-txt-color #BBB8B6
+# cream
+set $lt-txt-color #fbf1c7
 
 # orange
-set $urgent-bg-color #CD8828
+set $urgent-bg-color #fe8019
+set $status #fe8019
+
+# purple
+# #d3869b
 
 # teal
-set $indicator #23505C
+set $indicator #076678
 
 # Configure, Style & Start i3bar(s)
 bar {
@@ -237,11 +237,15 @@ bar {
         tray_padding 2
 
         colors {
-#                                border           bkgrnd           text
-              focused_workspace  $indicator       $indicator       $lt-txt-color
-              active_workspace   $urgent-bg-color $drk-bg-color    $lt-txt-color
-              inactive_workspace $drk-bg-color    $drk-bg-color    $lt-txt-color
-              urgent_workspace   $urgent-bg-color $urgent-bg-color $drk-txt-color
+              background         $blk-bg-color
+              statusline         $status
+              separator          $status
+
+#                                border        bkgrnd           text
+              focused_workspace  $status       $blk-bg-color    $status
+              active_workspace   $drk-bg-color $blk-bg-color    $status
+              inactive_workspace $drk-bg-color $blk-bg-color    $status
+              urgent_workspace   $drk-bg-color $urgent-bg-color $drk-txt-color
         }
 }
 
@@ -252,11 +256,15 @@ bar {
         tray_output none
 
         colors {
-#                                border           bkgrnd           text
-              focused_workspace  $indicator       $indicator       $lt-txt-color
-              active_workspace   $urgent-bg-color $drk-bg-color    $lt-txt-color
-              inactive_workspace $drk-bg-color    $drk-bg-color    $lt-txt-color
-              urgent_workspace   $urgent-bg-color $urgent-bg-color $drk-txt-color
+              background         $blk-bg-color
+              statusline         $status
+              separator          $status
+
+#                                border        bkgrnd           text
+              focused_workspace  $status       $blk-bg-color    $status
+              active_workspace   $drk-bg-color $blk-bg-color    $status
+              inactive_workspace $drk-bg-color $blk-bg-color    $status
+              urgent_workspace   $drk-bg-color $urgent-bg-color $drk-txt-color
         }
 }
 

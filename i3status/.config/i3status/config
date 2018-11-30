@@ -4,17 +4,19 @@
 # It is important that this file is edited as UTF-8.
 # The following line should contain a sharp s:
 # ß
-# If the above line is not correctly displayed, fix your editor first!
 
 general {
         output_format = "i3bar"
         colors = true
+        color_good = "#b8bb26"
+        color_degraded = "#fabd2f"
+        color_bad = "#fb4934"
         interval = 5
 }
 
 
 # order += "ipv6"
-order += "disk /"
+# order += "disk /"
 order += "load"
 order += "cpu_usage"
 order += "cpu_temperature 0"
@@ -58,3 +60,5 @@ disk "/" {
 cpu_temperature "0" {
         format = "%degreesC"
 }
+
+#vim:filetype=i3
