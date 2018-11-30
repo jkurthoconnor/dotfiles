@@ -110,15 +110,18 @@ color12 = #83a598
 color5  = #d3869b
 color13 = #d3869b
 
-# Teal
+# Cyan
 color6  = #8ec07c
 color14 = #8ec07c
 
 # Extra colors
+#orange
 color16 = #fe8019
 color17 = #d65d0e
+#grey
 color18 = #3c3836
 color19 = #504945
+#cream
 color20 = #bdae93
 color21 = #ebdbb2
 
@@ -133,4 +136,4 @@ color21 = #ebdbb2
 #border_width = 0.5
 #roundness = 2.0
 
-# vim: ft=dosini cms=#%s
+# vim: filetype=dosini cms=#%s
