@@ -149,6 +149,10 @@ fi
 # 'WARNING **: Couldn't connect to accessibility bus: Failed to connect to socket /tmp/dbus-aQ32zc0s4C: Connection refused'
 export NO_AT_BRIDGE=1
 
+
+# remove <ctl + s> XOFF control sequence
+stty -ixon
+
 # prepends path to rbenv to PATH
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"

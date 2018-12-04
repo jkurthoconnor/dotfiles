@@ -10,6 +10,7 @@ call minpac#add('k-takata/minpac', { 'type': 'opt' })
 call minpac#add('tpope/vim-commentary')
 call minpac#add('tpope/vim-surround')
 call minpac#add('tpope/vim-rails')
+call minpac#add('mattn/emmet-vim')
 call minpac#add('junegunn/fzf')
 
 " syntax
@@ -42,6 +43,13 @@ set background=dark
 
 let g:gruvbox_italic=1
 let g:gruvbox_italicize_comments=1
+
+let g:user_emmet_install_global=0
+
+augroup emmet_filetypes               " install emmet only for named filetypes
+  autocmd!
+  autocmd FileType html,eruby EmmetInstall
+augroup END
 
 augroup filetype_recongnition
   autocmd!
@@ -132,8 +140,8 @@ set wildmode=longest:full,full
 " ========
 inoremap jk <esc>
 
-" FZF
-nnoremap <C-p> :FZF<CR>
+" FZF file search
+nnoremap <C-f> :FZF<CR>
 
 " MOVEMENT  (real lines if count is given, else visual lines)
 noremap <expr> j (v:count ? 'j' : 'gj')
