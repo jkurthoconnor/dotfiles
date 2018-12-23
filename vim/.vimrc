@@ -16,6 +16,8 @@ call minpac#add('junegunn/fzf')
 " syntax
 call minpac#add('pangloss/vim-javascript')
 call minpac#add('mxw/vim-jsx')
+call minpac#add('hail2u/vim-css3-syntax')
+call minpac#add('cakebaker/scss-syntax.vim')
 call minpac#add('PotatoesMaster/i3-vim-syntax')
 
 " aesthetics
@@ -27,8 +29,48 @@ call minpac#add('vim-airline/vim-airline-themes')
 " load desired `opt` plugins
 packadd gruvbox
 
-" SETTINGS & OPTIONS
-" ==================
+" PLUGIN-SPECIFIC SETTINGS
+" gruvbox
+let g:gruvbox_italic=1
+let g:gruvbox_italicize_comments=1
+
+" emmet
+let g:user_emmet_install_global=0
+let g:user_emmet_leader_key='<C-E>'
+
+augroup emmet_filetypes               " install emmet only for named filetypes
+  autocmd!
+  autocmd FileType html,eruby EmmetInstall
+augroup END
+
+" css plugins
+augroup help_css_property_highlighting
+  autocmd!
+  autocmd FileType css setlocal iskeyword+=-
+augroup END
+
+" airline
+set noshowmode                        " removes automatic MODE display
+
+let g:airline_extensions=[]           " airline extensions enabled by default
+let g:airline_theme='gruvbox'
+
+if !exists('g:airline_symbols')
+  let g:airline_symbols={}
+endif
+
+" let g:airline_left_sep=''          " only for patched fonts / colorschemes
+" let g:airline_right_sep=''         " only for patched fonts / colorschemes
+let g:airline_left_sep='>>'
+let g:airline_right_sep='<<'
+let g:airline_symbols.linenr = 'L:'
+let g:airline_symbols.maxlinenr = ' C'
+
+
+" ==========================
+" GENERAL SETTINGS & OPTIONS
+" ==========================
+
 filetype plugin indent on             " filetype detection, ft indent and plugins
 set directory^=$HOME/.vim/tmp//       " prepends .vim/tmp/ to list of swp file
                                       " locations; prevents cluttering working dir
@@ -40,16 +82,6 @@ endif
 syntax enable
 colorscheme gruvbox
 set background=dark
-
-let g:gruvbox_italic=1
-let g:gruvbox_italicize_comments=1
-
-let g:user_emmet_install_global=0
-
-augroup emmet_filetypes               " install emmet only for named filetypes
-  autocmd!
-  autocmd FileType html,eruby EmmetInstall
-augroup END
 
 augroup filetype_recongnition
   autocmd!
@@ -99,22 +131,6 @@ augroup cursor_line_toggle
   autocmd InsertEnter,InsertLeave * set cursorline!
 augroup END
 
-"AIRLINE OPTIONS
-set noshowmode                        " removes automatic MODE display
-
-let g:airline_extensions=[]           " airline extensions enabled by default
-let g:airline_theme='gruvbox'
-
-if !exists('g:airline_symbols')
-  let g:airline_symbols={}
-endif
-
-" let g:airline_left_sep=''          " only for patched fonts / colorschemes
-" let g:airline_right_sep=''         " only for patched fonts / colorschemes
-let g:airline_left_sep='>>'
-let g:airline_right_sep='<<'
-let g:airline_symbols.linenr = 'L:'
-let g:airline_symbols.maxlinenr = ' C'
 
 " CUSTOM STATUS LINE                  " use when airline is not installed
 " set showcmd                         " show command in bottom bar
