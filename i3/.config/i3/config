@@ -22,17 +22,53 @@ bindsym $mod+Return exec i3-sensible-terminal
 # start dmenu (a program launcher)
 bindsym $mod+Shift+Return exec "dmenu_run -l 10 -nf '#fbf1c7' -sb '#076678' -sf '#fbf1c7'"
 
-# reload the configuration file
-bindsym $mod+Shift+c reload
+# MODE DEFINITIONS AND BINDINGS
+bindsym $mod+i mode "i3-meta"
+mode "i3-meta" {
 
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
+    # reload the configuration file
+    bindsym c reload, mode "default"
+    # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+    bindsym r restart, mode "default"
+    # lock screen
+    bindsym l exec i3lock --color "$drk-bg-color", mode "default"
+    # exit i3 (and log out of X session)
+    bindsym e exec "i3-nagbar -t warning -m 'Really? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'", mode "default"
 
-# lock screen
-bindsym $mod+shift+x exec i3lock --color "$drk-bg-color"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
 
-# exit i3 (and log out of X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Really? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Escape mode "system"
+mode "system" {
+    bindsym r exec systemctl reboot, mode "default"
+    bindsym e exec systemctl poweroff, mode "default"
+
+    # switches gpus on Oryx Pro laptop
+    # bindsym i exec sudo system76-power graphics intel, mode "default"
+    # bindsym n exec sudo system76-power graphics nvidia, mode "default"
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+mode "resize" {
+        # bindings trigger with resize mode
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
+
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # exit resize mode
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
 
 
 
@@ -91,6 +127,8 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # make future splits horizontal
+# i.e.: new vertical division
+# so splits arranged side-by-side
 bindsym $mod+t split h
 
 # make future splits vertical
@@ -100,24 +138,6 @@ bindsym $mod+v split v
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
-
-bindsym $mod+r mode "resize"
-mode "resize" {
-        # bindings trigger with resize mode
-        bindsym h resize shrink width 10 px or 10 ppt
-        bindsym j resize grow height 10 px or 10 ppt
-        bindsym k resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
-
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
-
-        # exit resize mode
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
 
 
 # MONITORS / WORKSPACES SETTINGS and NAVIGATION
