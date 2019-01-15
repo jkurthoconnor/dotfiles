@@ -40,7 +40,7 @@ let g:user_emmet_leader_key='<C-E>'
 
 augroup emmet_filetypes               " install emmet only for named filetypes
   autocmd!
-  autocmd FileType html,eruby EmmetInstall
+  autocmd FileType html,eruby,javascript.jsx EmmetInstall
 augroup END
 
 " css plugins
