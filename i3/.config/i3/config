@@ -312,15 +312,13 @@ exec_always feh --no-fehbg --bg-scale $background
 # pulse audio controls in tray
 exec --no-startup-id pasystray
 
-
-# load pre-defined workspaces by hostname
-exec $HOME/.config/i3/scripts/i3_predefined_workspace_layouts.sh
-
 # set xrandr settings by hostname
 exec_always $HOME/.config/i3/scripts/i3_xrandr_screen_layout.sh
 
 # load networking services by hostname
-# network manager with icon in tray
-exec_always --no-startup-id nm-applet
+exec $HOME/.config/i3/scripts/i3_networking.sh
+
+# load pre-defined workspaces by hostname
+exec $HOME/.config/i3/scripts/i3_predefined_workspace_layouts.sh
 
 # # vim:filetype=i3
