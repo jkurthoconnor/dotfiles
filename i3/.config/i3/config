@@ -7,7 +7,7 @@
 
 
 
-#                           LAUNCHING and META                               #
+#                           LAUNCHING and MODES                               #
 ##############################################################################
 
 # set the modifier key
@@ -23,8 +23,9 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+Return exec "dmenu_run -l 10 -nf '#fbf1c7' -sb '#076678' -sf '#fbf1c7'"
 
 # MODE DEFINITIONS AND BINDINGS
-bindsym $mod+i mode "i3-meta"
-mode "i3-meta" {
+set $i3-meta i3 Meta: [c]reload [r]estart [l]ock [e]xit
+bindsym $mod+i mode "$i3-meta"
+mode "$i3-meta" {
 
     # reload the configuration file
     bindsym c reload, mode "default"
@@ -39,22 +40,23 @@ mode "i3-meta" {
     bindsym Escape mode "default"
 }
 
-bindsym $mod+Escape mode "system"
-mode "system" {
+set $system System Controls: [r]eboot [e]xit [i]ntel driver [n]vidia driver
+bindsym $mod+Escape mode "$system"
+mode "$system" {
     bindsym r exec systemctl reboot, mode "default"
     bindsym e exec systemctl poweroff, mode "default"
 
-    # switches gpus on Oryx Pro laptop
-    # bindsym i exec sudo system76-power graphics intel, mode "default"
-    # bindsym n exec sudo system76-power graphics nvidia, mode "default"
+    # switches GPUs on Oryx Pro laptop
+    bindsym i exec sudo system76-power graphics intel, mode "default"
+    bindsym n exec sudo system76-power graphics nvidia, mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
 
-bindsym $mod+r mode "resize"
-mode "resize" {
-        # bindings trigger with resize mode
+set $resize Resize Workspace
+bindsym $mod+r mode "$resize"
+mode "$resize" {
         bindsym h resize shrink width 10 px or 10 ppt
         bindsym j resize grow height 10 px or 10 ppt
         bindsym k resize shrink height 10 px or 10 ppt
@@ -65,7 +67,6 @@ mode "resize" {
         bindsym Up resize shrink height 10 px or 10 ppt
         bindsym Right resize grow width 10 px or 10 ppt
 
-        # exit resize mode
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
@@ -146,7 +147,7 @@ bindsym $mod+e layout toggle split
 # `xrandr --current` for current state; see `man xrandr`
 set $monitorLeft HDMI-0
 set $monitorRight DP-0
-# set $toshibaScreen eDP-1
+set $laptopScreen eDP-1
 
 # set workspace variables
 set $workspace1 "1.     "
@@ -160,17 +161,17 @@ set $workspace8 "8. comm"
 set $workspace9 "9. term"
 set $workspace0 "10. misc"
 
-# bind workspaces to monitors
-workspace $workspace1 output $monitorLeft
-workspace $workspace2 output $monitorLeft
-workspace $workspace3 output $monitorLeft
-workspace $workspace4 output $monitorLeft
-workspace $workspace5 output $monitorLeft
-workspace $workspace6 output $monitorRight
-workspace $workspace7 output $monitorRight
-workspace $workspace8 output $monitorRight
-workspace $workspace9 output $monitorRight
-workspace $workspace0 output $monitorRight
+# bind workspaces to monitors (1st output found receives binding)
+workspace $workspace1 output $monitorLeft $laptopScreen
+workspace $workspace2 output $monitorLeft $laptopScreen
+workspace $workspace3 output $monitorLeft $laptopScreen
+workspace $workspace4 output $monitorLeft $laptopScreen
+workspace $workspace5 output $monitorLeft $laptopScreen
+workspace $workspace6 output $monitorRight $laptopScreen
+workspace $workspace7 output $monitorRight $laptopScreen
+workspace $workspace8 output $monitorRight $laptopScreen
+workspace $workspace9 output $monitorRight $laptopScreen
+workspace $workspace0 output $monitorRight $laptopScreen
 
 # assign clients to workspaces when app maps the window
 # i.e. not executed whenever window properties change to criterion
@@ -180,6 +181,7 @@ assign [class="^Slack$"] $workspace8
 for_window [class="^keepassxc$"] move scratchpad
 
 # assign certain client instances to float by default
+for_window [instance="wicd-client.py"] floating enable resize set 400 600 move position center
 for_window [instance="^arandr"] floating enable
 for_window [instance="^etcher-electron"] floating enable move position center
 for_window [instance="^lxappearance"] floating enable
@@ -301,20 +303,24 @@ client.placeholder      $lt-bg-color      $lt-bg-color     $lt-bg-color   $lt-bg
 #                           STARTUP CALLS                                    #
 ##############################################################################
 
-# layout script for portrait right monitor
-exec_always $HOME/.config/i3/scripts/i3_xrandr_screen_layout.sh
+# start dropbox with icon in tray
+exec_always --no-startup-id /usr/bin/dropbox start -i
 
 # `feh` image viewer sets bkgrnd; see `man feh`
 exec_always feh --no-fehbg --bg-scale $background
 
-# network manager with icon in tray
-exec_always --no-startup-id nm-applet
-
-# start dropbox with icon in tray
-exec_always --no-startup-id /usr/bin/dropbox start -i
-
 # pulse audio controls in tray
 exec --no-startup-id pasystray
+
+
+# pre-defined workspace script
+
+
+# layout script for portrait right monitor
+exec_always $HOME/.config/i3/scripts/i3_xrandr_screen_layout.sh
+
+# network manager with icon in tray
+exec_always --no-startup-id nm-applet
 
 # load pre-defined layouts
 exec --no-startup-id "i3-msg 'workspace 4. code; append_layout /home/jko/.config/i3/layouts/ws4.json'"
