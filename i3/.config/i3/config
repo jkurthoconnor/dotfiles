@@ -314,6 +314,7 @@ exec --no-startup-id pasystray
 
 
 # pre-defined workspace script
+exec $HOME/.config/i3/scripts/i3_predefined_workspace_layouts.sh
 
 
 # layout script for portrait right monitor
@@ -322,22 +323,22 @@ exec_always $HOME/.config/i3/scripts/i3_xrandr_screen_layout.sh
 # network manager with icon in tray
 exec_always --no-startup-id nm-applet
 
-# load pre-defined layouts
-exec --no-startup-id "i3-msg 'workspace 4. code; append_layout /home/jko/.config/i3/layouts/ws4.json'"
+# # load pre-defined layouts
+# exec --no-startup-id "i3-msg 'workspace 4. code; append_layout /home/jko/.config/i3/layouts/ws4.json'"
 
-exec --no-startup-id "i3-msg 'workspace 10. misc; append_layout /home/jko/.config/i3/layouts/ws0.json'"
+# exec --no-startup-id "i3-msg 'workspace 10. misc; append_layout /home/jko/.config/i3/layouts/ws0.json'"
 
-# open client instance assigned to workspace
-exec --no-startup-id "i3-msg 'workspace 8. comm; exec firefox https://mail.google.com'"
+# # open client instance assigned to workspace
+# exec --no-startup-id "i3-msg 'workspace 8. comm; exec firefox https://mail.google.com'"
 
-# open client assigned to scratchpad
-exec --no-startup-id keepassxc
+# # open client assigned to scratchpad
+# exec --no-startup-id keepassxc
 
-# open clients initially assigned to pre-defined layouts
-exec termite
-exec termite
-exec termite --name=cmus_container --title=cmus -e cmus
-exec termite
-exec termite
+# # open clients initially assigned to pre-defined layouts
+# exec termite
+# exec termite
+# exec termite --name=cmus_container --title=cmus -e cmus
+# exec termite
+# exec termite
 
-# vim:filetype=i3
+# # vim:filetype=i3
