@@ -307,7 +307,7 @@ client.placeholder      $lt-bg-color      $lt-bg-color     $lt-bg-color   $lt-bg
 exec_always --no-startup-id /usr/bin/dropbox start -i
 
 # `feh` image viewer sets bkgrnd; see `man feh`
-exec_always feh --no-fehbg --bg-scale $background
+# exec_always feh --no-fehbg --bg-scale $background
 
 # pulse audio controls in tray
 exec --no-startup-id pasystray
