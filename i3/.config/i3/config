@@ -19,28 +19,26 @@ set $TERMINAL "/usr/local/bin/termite"
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
-# start dmenu (a program launcher)
+# start dmenu program launcher
 bindsym $mod+Shift+Return exec "dmenu_run -l 10 -nf '#fbf1c7' -sb '#076678' -sf '#fbf1c7'"
 
 # MODE DEFINITIONS AND BINDINGS
-set $i3-meta i3 Meta: [c]reload [r]estart [l]ock [e]xit
+set $i3-meta i3 Meta: reload [c]onfig [r]estart [l]ock [e]xit
 bindsym $mod+i mode "$i3-meta"
 mode "$i3-meta" {
 
     # reload the configuration file
     bindsym c reload, mode "default"
-    # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+    # restart i3 in-place (preserves layout/session)
     bindsym r restart, mode "default"
-    # lock screen
     bindsym l exec i3lock --color "$drk-bg-color", mode "default"
-    # exit i3 (and log out of X session)
     bindsym e exec "i3-nagbar -t warning -m 'Really? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'", mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
 
-set $system System Controls: [r]eboot [e]xit [i]ntel driver [n]vidia driver
+set $system System: [r]eboot [s]hutdown  ||  GPU: [i]ntel [n]vidia
 bindsym $mod+Escape mode "$system"
 mode "$system" {
     bindsym r exec systemctl reboot, mode "default"
@@ -127,18 +125,16 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-# make future splits horizontal
-# i.e.: new vertical division
-# so splits arranged side-by-side
-bindsym $mod+t split h
+# make future splits horizontal (splits side-by-side)
+bindsym $mod+s split h
 
 # make future splits vertical
 bindsym $mod+v split v
 
 # change container layout
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+bindsym $mod+t layout toggle split
+bindsym $mod+w layout stacking
+bindsym $mod+e layout tabbed
 
 
 # MONITORS / WORKSPACES SETTINGS and NAVIGATION
@@ -239,12 +235,27 @@ set $drk-txt-color #1d2021
 # cream
 set $lt-txt-color #fbf1c7
 
+# red
+# #fb4934 
+
+# green
+# #b8bb26
+
+# yellow
+# fabd2f
+
 # orange
-set $urgent-bg-color #fe8019
-set $status #fe8019
+# #fe8019
+set $status #d65d0e
+
+# blue
+set $urgent-bg-color #83a598
 
 # purple
 # #d3869b
+
+# cyan
+# set #8ec07c
 
 # teal
 set $indicator #076678
@@ -256,7 +267,7 @@ bar {
         tray_output primary
         separator_symbol "  |  "
         status_command i3status
-        tray_padding 2
+        tray_padding 3
 
         colors {
               background         $blk-bg-color
