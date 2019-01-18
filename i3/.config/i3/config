@@ -38,11 +38,11 @@ mode "$i3-meta" {
     bindsym Escape mode "default"
 }
 
-set $system System: [r]eboot [s]hutdown  ||  GPU: [i]ntel [n]vidia
+set $system System: [r]eboot [p]oweroff  ||  GPU: [i]ntel [n]vidia
 bindsym $mod+Escape mode "$system"
 mode "$system" {
     bindsym r exec systemctl reboot, mode "default"
-    bindsym e exec systemctl poweroff, mode "default"
+    bindsym p exec systemctl poweroff, mode "default"
 
     # switches GPUs on Oryx Pro laptop
     bindsym i exec sudo system76-power graphics intel, mode "default"
@@ -125,13 +125,14 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
+# set container type to be created at next 
+# split to hold current window & its sibling
 # make future splits horizontal (splits side-by-side)
 bindsym $mod+s split h
-
 # make future splits vertical
 bindsym $mod+v split v
 
-# change container layout
+# change existing container layout
 bindsym $mod+t layout toggle split
 bindsym $mod+w layout stacking
 bindsym $mod+e layout tabbed
