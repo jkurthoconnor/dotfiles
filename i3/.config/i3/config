@@ -312,7 +312,7 @@ client.placeholder      $lt-bg-color      $lt-bg-color     $lt-bg-color   $lt-bg
 
 
 
-#                           STARTUP CALLS                                    #
+#                          STARTUP CALLS                                    #
 ##############################################################################
 
 # start dropbox with icon in tray
