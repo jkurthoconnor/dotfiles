@@ -7,7 +7,7 @@
 
 
 
-#                           LAUNCHING and MODES                               #
+#                   LAUNCHING, MODES & FUNCTION KEYS                         #
 ##############################################################################
 
 # set the modifier key
@@ -70,6 +70,9 @@ mode "$resize" {
 }
 
 
+# FUNCTION KEY BINDINGS
+bindsym  XF86MonBrightnessUp exec sudo /home/jko/.config/i3/scripts/intel-screen-brightness.sh -inc
+bindsym  XF86MonBrightnessDown exec sudo /home/jko/.config/i3/scripts/intel-screen-brightness.sh -dec
 
 #                           WINDOW and WORKSPACE MANAGEMENT                  #
 ##############################################################################
@@ -318,6 +321,9 @@ client.placeholder      $lt-bg-color      $lt-bg-color     $lt-bg-color   $lt-bg
 
 #                           STARTUP CALLS                                    #
 ##############################################################################
+
+
+
 
 # start dropbox with icon in tray
 exec_always --no-startup-id /usr/bin/dropbox start -i
