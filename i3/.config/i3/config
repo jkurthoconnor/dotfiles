@@ -10,13 +10,12 @@
 #                   LAUNCHING, MODES & FUNCTION KEYS                         #
 ##############################################################################
 
-# set the modifier key
+# set modifier key to OS key
 set $mod Mod4
 
-# `i3-sensible-terminal` checks $TERMINAL value
 set $TERMINAL "/usr/local/bin/termite"
 
-# start a terminal
+# open terminal: `i3-sensible-terminal` checks $TERMINAL value
 bindsym $mod+Return exec i3-sensible-terminal
 
 # start dmenu program launcher
@@ -27,7 +26,7 @@ set $i3-meta i3 Meta: reload [c]onfig [r]estart [l]ock [e]xit
 bindsym $mod+i mode "$i3-meta"
 mode "$i3-meta" {
 
-    # reload the configuration file
+    # reload i3 configuration
     bindsym c reload, mode "default"
     # restart i3 in-place (preserves layout/session)
     bindsym r restart, mode "default"
@@ -59,11 +58,6 @@ mode "$resize" {
         bindsym j resize grow height 10 px or 10 ppt
         bindsym k resize shrink height 10 px or 10 ppt
         bindsym l resize grow width 10 px or 10 ppt
-
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
 
         bindsym Return mode "default"
         bindsym Escape mode "default"
@@ -112,24 +106,15 @@ bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
-
 # move focused window
 bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
-
 # set container type to be created at next 
 # split to hold current window & its sibling
+
 # make future splits horizontal (splits side-by-side)
 bindsym $mod+s split h
 # make future splits vertical
@@ -139,7 +124,6 @@ bindsym $mod+v split v
 bindsym $mod+t layout toggle split
 bindsym $mod+w layout stacking
 bindsym $mod+e layout tabbed
-
 
 # MONITORS / WORKSPACES SETTINGS and NAVIGATION
 
@@ -172,7 +156,6 @@ workspace $workspace7 output $monitorRight $laptopScreen
 workspace $workspace8 output $monitorRight $laptopScreen
 workspace $workspace9 output $monitorRight $laptopScreen
 workspace $workspace0 output $monitorRight $laptopScreen
-
 
 # Identifying x windows:
 # `xprop` to get window properties: `WM_CLASS(STRING) = "<instance>", "Class"`
@@ -326,8 +309,6 @@ client.placeholder      $lt-bg-color      $lt-bg-color     $lt-bg-color   $lt-bg
 ##############################################################################
 
 
-
-
 # start dropbox with icon in tray
 exec_always --no-startup-id /usr/bin/dropbox start -i
 
@@ -337,10 +318,10 @@ exec_always --no-startup-id /usr/bin/dropbox start -i
 # pulse audio controls in tray
 exec --no-startup-id pasystray
 
-# set xrandr settings by hostname
+# set xrandr settings by hostname TODO: move functionality to `.xinitrc`?
 exec_always $HOME/.config/i3/scripts/i3_xrandr_screen_layout.sh
 
-# load networking services by hostname
+# load networking services by hostname TODO: move functionality to `.xinitrc`?
 exec $HOME/.config/i3/scripts/i3_networking.sh
 
 # load pre-defined workspaces by hostname
