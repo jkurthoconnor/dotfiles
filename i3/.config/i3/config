@@ -173,8 +173,11 @@ workspace $workspace8 output $monitorRight $laptopScreen
 workspace $workspace9 output $monitorRight $laptopScreen
 workspace $workspace0 output $monitorRight $laptopScreen
 
+
+# Identifying x windows:
+# `xprop` to get window properties: `WM_CLASS(STRING) = "<instance>", "Class"`
+
 # assign clients to workspaces when app maps the window
-# i.e. not executed whenever window properties change to criterion
 assign [class="^Slack$"] $workspace8
 
 # assign client to scratchpad
