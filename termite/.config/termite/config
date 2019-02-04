@@ -3,7 +3,7 @@
 #                          `man termite.config`
 
 [options]
-font = SourceCodePro 14
+font = SourceCodePro 13
 # font = InputMono 14
 # font = Hack 14
 
