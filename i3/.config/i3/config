@@ -134,16 +134,16 @@ set $monitorRight DP-0
 set $laptopScreen eDP-1
 
 # set workspace variables
-set $workspace1 "1.     "
-set $workspace2 "2.     "
-set $workspace3 "3. term"
-set $workspace4 "4. code"
-set $workspace5 "5. servers"
-set $workspace6 "6. docs"
-set $workspace7 "7. notes"
-set $workspace8 "8. comm"
-set $workspace9 "9. term"
-set $workspace0 "10. misc"
+set $workspace1 "1 trm"
+set $workspace2 "2 trm"
+set $workspace3 "3 trm"
+set $workspace4 "4 cde"
+set $workspace5 "5 srv"
+set $workspace6 "6 dcs"
+set $workspace7 "7 nts"
+set $workspace8 "8 com"
+set $workspace9 "9 trm"
+set $workspace0 "0 etc"
 
 # bind workspaces to monitors (1st output found receives binding)
 workspace $workspace1 output $monitorLeft $laptopScreen
@@ -214,8 +214,9 @@ bindsym $mod+Shift+n move workspace to output right
 
 set $background "/usr/share/backgrounds/xgu472hf2_by_lariliikala.jpg"
 
-# Font for window titles; also the bar unless bar block {} specifies alt font
-font pango:DejaVu Sans Mono 12
+# Font for window titles & bar unless specified in bar block
+font pango: Source Code Pro 12
+# font pango:DejaVu Sans Mono 12
 
 # set color variables: gruvboxesque
 # medium brown
@@ -259,8 +260,9 @@ bar {
         id bar-0
         output primary
         tray_output primary
-        separator_symbol "  |  "
+        separator_symbol " "
         status_command i3status
+
         tray_padding 3
 
         colors {
