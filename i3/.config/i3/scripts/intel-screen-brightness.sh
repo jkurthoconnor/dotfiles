@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
-# chown root for this script
-# run script with `sudo` to write brightness setting
-# may need to modify sudoers (`sudo visudo`) & include arguments in script call
+# chown root for this script;
+# run script with `sudo` to write brightness setting;
+# modify sudoers (`sudo visudo`) & include arguments in script call
+# or add file to `sudoers.d/` to bypass password
 
 SETTINGS=/sys/class/backlight/intel_backlight/brightness
 MAX=$(cat /sys/class/backlight/intel_backlight/max_brightness)
