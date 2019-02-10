@@ -21,6 +21,9 @@ if [ $device = $desktop ]; then
 elif [ $device = $laptop ]; then
   # open client instance assigned to workspace
   i3-msg "workspace 8 com; exec firefox https://mail.google.com"
+  # load pre-defined layout
+  i3-msg "workspace 4 cde; append_layout /home/jko/.config/i3/layouts/ws4.json"
+  # open clients initially assigned to pre-defined layout
   i3-msg "exec termite"
   i3-msg "exec termite"
 fi
