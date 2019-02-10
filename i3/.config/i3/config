@@ -65,6 +65,7 @@ mode "$resize" {
 
 
 # FUNCTION KEY BINDINGS
+# requires local sudoers type file in `sudoers.d` to bypass password
 bindsym  XF86MonBrightnessUp exec sudo /home/jko/.config/i3/scripts/intel-screen-brightness.sh -inc
 bindsym  XF86MonBrightnessDown exec sudo /home/jko/.config/i3/scripts/intel-screen-brightness.sh -dec
 
