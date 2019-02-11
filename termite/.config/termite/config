@@ -3,9 +3,10 @@
 #                          `man termite.config`
 
 [options]
+# desktop font
 font = SourceCodePro 13
-# font = InputMono 14
-# font = Hack 14
+# laptop font
+# font = SourceCodePro 14
 
 allow_bold = true
 bold_is_bright = false
@@ -39,42 +40,9 @@ size_hints = false
 fullscreen = false
 
 [colors]
-# color mapping (identified via experimentation):
-# scheme color# => Text Color Code => default type in `.dircolors` => termite use
-
-# Black, Gray, Silver, White
-# color0 => TCC black 0;30 => n/a => background
-# color8 => TCC bold black 1;30 => n/a => comments
-# color15 => TCC bold white 1;37 => n/a => ??
-
-# Red
-# color1 => TCC red 0;31 => n/a => ??
-# color9 => TCC red 1;31 => designated extensions => designated extenstions
-
-# Green
-# color2 => TCC green 0;32 => commented out => ??
-# color7 => ?? => n/a => normal txt (stdout/in, '$' on prompt), files, permissions
-# color10 => bold green 1;32 => executables => prompt, executables
-
-# Yellow
-# color3 => TCC yellow 0;33 => n/a => ??
-# color11 => TCC bold yellow 1;33 => n/a => ??
-
-# Blue
-# color4 => TCC blue 0;34 =>  n/a => ??
-# color12 => TCC bold blue 1;34 => directories => directories
-
-# Purple 
-# color5 => TCC magenta 0;35 => n/a => ??
-# color13 => TCC bold magenta 1;35 => sockets / doors => sockets / doors
-
-# Teal
-# color6 => TCC cyan 0;36 => audio extensions => audio extensions
-# color14 => TCC bold cyan 1;36 => symlink => symlink
-
-
 # Base16 GruvBox Dark Hard
-# Author: Dawid Kurek (dawikur@gmail.com), morhetz (https://github.com/morhetz/gruvbox)
+# Authors: Dawid Kurek (dawikur@gmail.com),
+#          morhetz (https://github.com/morhetz/gruvbox)
 
 foreground          = #d5c4a1
 foreground_bold     = #ebdbb2
