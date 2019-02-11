@@ -4,22 +4,12 @@
     # Which monitor should the notifications be displayed on.
     monitor = 0
 
-    # Display notification on focused monitor.  Possible modes are:
-    #   mouse: follow mouse pointer
-    #   keyboard: follow window with keyboard focus
-    #   none: don't follow anything
-    #
-    # "keyboard" needs a window manager that exports the
-    # _NET_ACTIVE_WINDOW property.
-    # This should be the case for almost all modern window managers.
-    #
-    # If this option is set to mouse or keyboard, the monitor option
-    # will be ignored.
+    # Display notification on focused monitor.
+    # If set to mouse or keyboard, the monitor option will be ignored.
     follow = none
 
     # The geometry of the window:
     #   [{width}]x{height}[+/-{x}+/-{y}]
-    # The geometry of the message window.
     # The height is measured in number of notifications everything else
     # in pixels.  If the width is omitted but the height is given
     # ("-geometry x2"), the message window expands over the whole screen
@@ -29,18 +19,16 @@
     # the top and down respectively.
     # The width can be negative.  In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
-    geometry = "300x5-2+26"
+    geometry = "300x5-26+26"
 
     # Show how many messages are currently hidden (because of geometry).
     indicate_hidden = yes
 
-    # Shrink window if it's smaller than the width.  Will be ignored if
-    # width is 0.
+    # Shrink window if smaller than the width.
     shrink = no
 
     # The transparency of the window.  Range: [0; 100].
-    # This option will only work if a compositing window manager is
-    # present (e.g. xcompmgr, compiz, etc.).
+    # only with a compositing window manager
     transparency = 0
 
     # The height of the entire notification.  If the height is smaller
@@ -51,27 +39,17 @@
     # Draw a line of "separator_height" pixel height between two
     # notifications.
     # Set to 0 to disable.
-    separator_height = 2
+    separator_height = 1
 
     # Padding between text and separator.
-    padding = 8
+    padding = 15
 
     # Horizontal padding.
-    horizontal_padding = 8
+    horizontal_padding = 15
 
-    # Defines width in pixels of frame around the notification window.
-    # Set to 0 to disable.
     frame_width = 2
-
-    # Defines color of the frame around the notification window.
-    frame_color = "#504945"
-
-    # Define a color for the separator.
-    # possible values are:
-    #  * auto: dunst tries to find a color fitting to the background;
-    #  * foreground: use the same color as the foreground;
-    #  * frame: use the same color as the frame;
-    #  * anything else will be interpreted as a X color.
+    # c18
+    frame_color = "#3c3836"
     separator_color = frame
 
     # Sort messages by urgency.
@@ -85,7 +63,7 @@
 
     ### Text ###
 
-    font = Source Code Pro 10
+    font = Source Code Pro 12
 
     # The spacing between lines.  If the height is smaller than the
     # font height, it will get raised to the font height.
@@ -125,7 +103,7 @@
     #   %n  progress value if set without any extra characters
     #   %%  Literal %
     # Markup is allowed
-    format = "<b>%s</b>\n%b"
+    format = "<i>%s</i>\n%b"
 
     # Alignment of message text.
     # Possible values are "left", "center" and "right".
@@ -199,25 +177,10 @@
     startup_notification = true
 
     ### Legacy
-
-    # Use the Xinerama extension instead of RandR for multi-monitor support.
-    # This setting is provided for compatibility with older nVidia drivers that
-    # do not support RandR and using it on systems that support RandR is highly
-    # discouraged.
-    #
-    # By enabling this setting dunst will not be able to detect when a monitor
-    # is connected or disconnected which might break follow mode if the screen
-    # layout changes.
     force_xinerama = false
 
-# Experimental features that may or may not work correctly. Do not expect them
-# to have a consistent behaviour across releases.
 [experimental]
     # Calculate the dpi to use on a per-monitor basis.
-    # If this setting is enabled the Xft.dpi value will be ignored and instead
-    # dunst will attempt to calculate an appropriate dpi value for each monitor
-    # using the resolution and physical size. This might be useful in setups
-    # where there are multiple screens with very different dpi values.
     per_monitor_dpi = false
 
 [shortcuts]
@@ -234,39 +197,35 @@
     close_all = ctrl+shift+space
 
     # Redisplay last message(s).
-    # On the US keyboard layout "grave" is normally above TAB and left
-    # of "1". Make sure this key actually exists on your keyboard layout,
-    # e.g. check output of 'xmodmap -pke'
     history = ctrl+grave
 
     # Context menu.
     context = ctrl+shift+period
 
 [urgency_low]
-    # IMPORTANT: colors have to be defined in quotation marks.
-    # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#222222"
-    foreground = "#888888"
+    # c20
+    foreground = "#bdae93"
+    # c18
+    background = "#3c3836"
     timeout = 10
-    # Icon for notifications with low urgency, uncomment to enable
     #icon = /path/to/icon
 
 [urgency_normal]
-    background = "#285577"
-    foreground = "#ffffff"
+    # c20
+    foreground = "#bdae93"
+    # c19
+    background = "#504954"
     timeout = 10
-    # Icon for notifications with normal urgency, uncomment to enable
     #icon = /path/to/icon
 
 [urgency_critical]
-    background = "#900000"
-    foreground = "#ffffff"
-    frame_color = "#ff0000"
+    # c18
+    foreground = "#3c3836"
+    background = "#e0ba62"
     timeout = 0
-    # Icon for notifications with critical urgency, uncomment to enable
     #icon = /path/to/icon
-
-# Every section that isn't one of the above is interpreted as a rules to
+#
+# # Every section that isn't one of the above is interpreted as a rules to
 # override settings for certain messages.
 # Messages can be matched by "appname", "summary", "body", "icon", "category",
 # "msg_urgency" and you can override the "timeout", "urgency", "foreground",
