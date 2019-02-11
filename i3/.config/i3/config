@@ -219,42 +219,15 @@ set $background "/usr/share/backgrounds/xgu472hf2_by_lariliikala.jpg"
 font pango: Source Code Pro 12
 # font pango:DejaVu Sans Mono 12
 
-# set color variables: gruvboxesque
-# medium brown
-set $lt-bg-color #504945
-
-# dark brown-black
-set $blk-bg-color #1d2021
-set $drk-bg-color #3c3836
-set $drk-txt-color #1d2021
-
-# cream
-set $lt-txt-color #fbf1c7
-
-# red
-# #fb4934 
-
-# green
-# #b8bb26
-
-# yellow
-# fabd2f
-
-# orange
-# #fe8019
-set $status #d65d0e
-
-# blue
-# #83a598
-
-# purple
-set $indicator #d3869b
-
-# cyan
-set $urgent-bg-color #8ec07c
-
-# teal
-# #076678
+# set color variables from `~/.Xresources`
+set_from_resource $lt-bg-color i3wm.color19
+set_from_resource $blk-bg-color i3wm.color0
+set_from_resource $drk-txt-color i3wm.color0
+set_from_resource $drk-bg-color i3wm.color18
+set_from_resource $lt-txt-color i3wm.color15
+set_from_resource $status i3wm.color17
+set_from_resource $indicator i3wm.color5
+set_from_resource $urgent-bg-color i3wm.color6
 
 # Configure, Style & Start i3bar(s)
 bar {
@@ -263,7 +236,6 @@ bar {
         tray_output primary
         separator_symbol " "
         status_command i3status
-
         tray_padding 3
 
         colors {

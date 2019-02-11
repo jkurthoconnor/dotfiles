@@ -1,0 +1,87 @@
+
+! gruvboxesque
+
+! # dark brown-black
+#define gbcolor0 #1d2021
+
+! red
+#define gbcolor1 #fb4934 
+#define gbcolor9 #fb4934 
+
+! green
+#define gbcolor2 #b8bb26
+#define gbcolor10 #b8bb26
+
+! yellow
+#define gbcolor3 #fabd2f
+#define gbcolor11 #fabd2f
+
+!blue
+#define gbcolor4 #83a598
+#define gbcolor12 #83a598
+
+!purple
+#define gbcolor5 #d3869b
+#define gbcolor13 #d3869b
+
+! cyan
+#define gbcolor6 #8ec07c
+#define gbcolor14 #8ec07c
+
+! orange
+#define gbcolor16 #fe8019
+#define gbcolor17 #d65d0e
+
+! grey
+#define gbcolor18 #3c3836
+#define gbcolor19 #504945
+
+! cream
+#define gbcolor20 #bdae93
+#define gbcolor21 #ebdbb2
+#define gbcolor15 #fbf1c7
+
+! # teal
+! # #076678
+!
+!
+!
+! # dark brown-black
+*color0: gbcolor0
+
+! red
+*color1: gbcolor1
+*color9: gbcolor9
+
+! green
+*color2: gbcolor2
+*color10: gbcolor10
+
+! yellow
+*color3: gbcolor3
+*color11: gbcolor11
+
+!blue
+*color4: gbcolor4
+*color12: gbcolor12
+
+!purple
+*color5: gbcolor5
+*color13: gbcolor13
+
+! cyan
+*color6: gbcolor6
+*color14: gbcolor14
+
+! orange
+*color16: gbcolor16
+*color17: gbcolor17
+
+! grey
+*color18: gbcolor18
+*color19: gbcolor19
+
+! cream
+*color20: gbcolor20
+*color21: gbcolor21
+*color15: gbcolor15
