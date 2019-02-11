@@ -1,6 +1,7 @@
-
-! gruvboxesque
-
+! i3 draws colors from this file; termite, dunst, vim, zathura, cmus require
+! scripts to generate new configs and rc from `xrdb -query` output
+!
+! gruvboxesque color scheme
 ! # dark brown-black
 #define gbcolor0 #1d2021
 
@@ -43,9 +44,9 @@
 
 ! # teal
 ! # #076678
-!
-!
-!
+
+
+
 ! # dark brown-black
 *color0: gbcolor0
 
@@ -85,3 +86,5 @@
 *color20: gbcolor20
 *color21: gbcolor21
 *color15: gbcolor15
+
+! vim: cms=!%s

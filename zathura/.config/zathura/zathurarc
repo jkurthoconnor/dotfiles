@@ -16,4 +16,4 @@ set zoom-step 5
 set zoom-max 500
 set zoom-min 50
 
-#vim:filetype=i3
+# vim:filetype=dosini cms=#%s
