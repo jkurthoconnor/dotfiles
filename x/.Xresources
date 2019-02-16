@@ -1,7 +1,10 @@
 ! i3 draws colors from this file; termite, dunst, vim, zathura, cmus require
 ! scripts to generate new configs and rc from `xrdb -query` output
-!
-! gruvboxesque color scheme
+
+!  Base16 GruvBox Dark Hard, adapted from 
+!   Dawid Kurek (dawikur@gmail.com),
+!   morhetz (https://github.com/morhetz/gruvbox)
+
 ! # dark brown-black
 #define gbcolor0 #1d2021
 
@@ -45,8 +48,21 @@
 ! # teal
 ! # #076678
 
+! termite named colors
+#define gbforeground #d5c4a1
+#define gbforegroundbold gbcolor21
+#define gbbackground gbcolor0
+#define gbcursor gbcolor21
+#define gbcursorforeground gbcolor0
 
 
+! termite named colors
+*foreground: gbforeground
+*foregroundbold: gbforegroundbold
+*background: gbbackground
+*cursor: gbcursor
+*cursorforeground: gbcursorforeground
+!
 ! # dark brown-black
 *color0: gbcolor0
 
