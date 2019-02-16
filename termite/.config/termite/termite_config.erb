@@ -1,0 +1,108 @@
+# TERMITE TERMINAL CONFIG. ( see `man termite.config`)
+#
+# Generated From: `<%= params[:files][:template] %>`
+# By: `<%= params[:files][:script] %>`
+# On: <%= Time.now %>
+#
+# ############################################################################
+
+[options]
+<% if params[:hostname].eql?("sullilly") %>
+font = SourceCodePro 13
+<% elsif params[:hostname].eql?("kell") %>
+font = SourceCodePro 14
+<% end %>
+allow_bold = true
+bold_is_bright = false
+
+browser = firefox
+clickable_url = true
+hyperlinks = false
+
+search_wrap = true
+filter_unmatched_urls = true
+
+dynamic_title = true
+icon_name = termite
+
+mouse_autohide = false
+cursor_blink = system
+cursor_shape = block
+
+scrollbar = off
+scroll_on_output = true
+scroll_on_keystroke = true
+scrollback_lines = 10000
+
+audible_bell = false
+urgent_on_bell = true
+
+# Emit escape sequences for extra modified keys
+modify_other_keys = false
+
+size_hints = false
+fullscreen = false
+
+[colors]
+# see `~/.Xresources` for any attribution
+foreground          = <%= params[:colors][:foreground] %>
+foreground_bold     = <%= params[:colors][:foregroundbold] %>
+cursor              = <%= params[:colors][:cursor] %>
+cursor_foreground   = <%= params[:colors][:cursorforeground] %>
+background          = <%= params[:colors][:background] %>
+
+# 16 color space
+
+# Black, Gray, Silver, White
+color0  = <%= params[:colors][:color0] %>
+color8  = <%= params[:colors][:color8] %>
+color7  = <%= params[:colors][:color7] %>
+color15 = <%= params[:colors][:color15] %>
+
+# Red
+color1  = <%= params[:colors][:color1] %>
+color9  = <%= params[:colors][:color9] %>
+
+# Green
+color2  = <%= params[:colors][:color2] %>
+color10 = <%= params[:colors][:color10] %>
+
+# Yellow
+color3  = <%= params[:colors][:color3] %>
+color11 = <%= params[:colors][:color11] %>
+
+# Blue
+color4  = <%= params[:colors][:color4] %>
+color12 = <%= params[:colors][:color12] %>
+
+# Purple
+color5  = <%= params[:colors][:color5] %>
+color13 = <%= params[:colors][:color13] %>
+
+# Cyan
+color6  = <%= params[:colors][:color6] %>
+color14 = <%= params[:colors][:color14] %>
+
+# Extra colors
+#orange
+color16 = <%= params[:colors][:color16] %>
+color17 = <%= params[:colors][:color17] %>
+#grey
+color18 = <%= params[:colors][:color18] %>
+color19 = <%= params[:colors][:color19] %>
+#cream
+color20 = <%= params[:colors][:color20] %>
+color21 = <%= params[:colors][:color21] %>
+
+[hints]
+#font = Monospace 12
+#foreground = <%= params[:colors][:foreground] %>
+#background = <%= params[:colors][:background] %>
+#active_foreground = #e68080
+#active_background = #3f3f3f
+#border = #3f3f3f
+#padding = 2
+#border_width = 0.5
+#roundness = 2.0
+
+<%= params[:vimmeta] %>

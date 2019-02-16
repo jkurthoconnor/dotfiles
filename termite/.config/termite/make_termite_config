@@ -1,0 +1,85 @@
+#!/usr/bin/env ruby
+
+require 'erb'
+require 'open3'
+
+class TermiteConfig
+  attr_reader :params, :template
+
+  def initialize
+    @template = File.read('termite_config.erb')
+    @params = set_params
+  end
+
+  def render_config
+    renderer = ERB.new(template)
+    renderer.result(binding)
+  end
+
+  private
+  def set_params
+    { colors: xresources,
+      hostname: host,
+      files: sources,
+      vimmeta: "# vim: filetype=dosini cms=#%s" }
+  end
+
+  def xresources
+    Open3.capture3("xrdb -query").first
+         .gsub(/[*\t]/, '')
+         .split
+         .map { |color| color.split(/:/) }
+         .map { |pair| [pair[0].to_sym, pair[1]] }
+         .to_h
+  end
+
+  def host
+    Open3.capture3("hostname").first.chomp
+  end
+
+  def sources
+    erb = File.expand_path("./termite_config.erb")
+    rb = File.expand_path(__FILE__)
+    { template: erb, script: rb }
+  end
+end
+
+
+class FileManager
+  attr_reader :config_path
+
+  def initialize(rendered_template)
+    @rendered_template = rendered_template
+    @home = Open3.capture2("echo $HOME").first.chomp
+    @config_path = File.join(@home, ".config/termite/config")
+  end
+
+  def install_config
+    create_config_old
+    write_config
+  end
+
+  private
+  def create_config_old
+    time = Time.now.strftime("%Y%m%dT%H%M")
+
+    if File.exist?(config_path)
+      Open3.capture2("cp #{config_path} #{@home}/.config/previous-configs/termite-config-prev-#{time}")
+    end
+  end
+
+  def write_config
+    File.open(config_path, "w+", 0644) do |f|
+      f.write(@rendered_template) # ensure using block auto closes
+    end
+  end
+end
+
+
+config = TermiteConfig.new
+file_data = config.render_config
+
+manager = FileManager.new(file_data)
+manager.install_config
+
+# TODO: 
