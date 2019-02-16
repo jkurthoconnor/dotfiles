@@ -25,7 +25,7 @@ class TermiteConfig
   end
 
   def xresources
-    Open3.capture3("xrdb -query").first
+    Open3.capture2("xrdb -query").first
          .gsub(/[*\t]/, '')
          .split
          .map { |color| color.split(/:/) }
@@ -34,7 +34,7 @@ class TermiteConfig
   end
 
   def host
-    Open3.capture3("hostname").first.chomp
+    Open3.capture2("hostname").first.chomp
   end
 
   def sources
@@ -50,7 +50,7 @@ class FileManager
 
   def initialize(rendered_template)
     @rendered_template = rendered_template
-    @home = Open3.capture2("echo $HOME").first.chomp
+    @home = Dir.home
     @path_suffix = ".config/termite/config"
     @dots_prefix = ".dotfiles/termite"
     @config_path = File.join(@home, @path_suffix)
@@ -67,7 +67,7 @@ class FileManager
     config_archive = File.join(@home, ".config/previous-configs")
 
     if File.exist?(config_path)
-      Open3.capture2("mkdir #{config_archive}") unless File.directory?(config_archive)
+      Dir.mkdir("#{config_archive}") unless Dir.exist?(config_archive)
       Open3.capture2("cp #{config_path} #{config_archive}/termite-config-prev-#{time}")
     end
   end
