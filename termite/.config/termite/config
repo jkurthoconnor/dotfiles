@@ -1,12 +1,14 @@
-#                           TERMITE TERMINAL CONFIG.
-#                    default template: /etc/termite/config
-#                          `man termite.config`
+# TERMITE TERMINAL CONFIG. ( see `man termite.config`)
+#
+# Generated From: `/home/jko/.dotfiles/termite/.config/termite/termite_config.erb`
+# By: `/home/jko/.dotfiles/termite/.config/termite/make_termite_config`
+# On: 2019-02-16 02:30:40 -0700
+#
+# ############################################################################
 
 [options]
-# desktop font
-font = SourceCodePro 13
-# laptop font
-# font = SourceCodePro 14
+
+font = SourceCodePro 14
 
 allow_bold = true
 bold_is_bright = false
@@ -40,22 +42,19 @@ size_hints = false
 fullscreen = false
 
 [colors]
-# Base16 GruvBox Dark Hard
-# Authors: Dawid Kurek (dawikur@gmail.com),
-#          morhetz (https://github.com/morhetz/gruvbox)
-
+# see `~/.Xresources` for any attribution
 foreground          = #d5c4a1
 foreground_bold     = #ebdbb2
 cursor              = #ebdbb2
 cursor_foreground   = #1d2021
-background          = rgba(29, 32, 33)
+background          = #1d2021
 
 # 16 color space
 
 # Black, Gray, Silver, White
 color0  = #1d2021
-color8  = #665c54
-color7  = #d5c4a1
+color8  = 
+color7  = 
 color15 = #fbf1c7
 
 # Red
@@ -95,12 +94,12 @@ color21 = #ebdbb2
 
 [hints]
 #font = Monospace 12
-#foreground = #dcdccc
-#background = #3f3f3f
+#foreground = #d5c4a1
+#background = #1d2021
 #active_foreground = #e68080
 #active_background = #3f3f3f
-#padding = 2
 #border = #3f3f3f
+#padding = 2
 #border_width = 0.5
 #roundness = 2.0
 
