@@ -2,6 +2,7 @@
 
 require 'erb'
 require 'open3'
+require 'fileutils'
 
 class TermiteConfig
   attr_reader :params, :template
@@ -67,8 +68,8 @@ class FileManager
     config_archive = File.join(@home, ".config/previous-configs")
 
     if File.exist?(config_path)
-      Dir.mkdir("#{config_archive}") unless Dir.exist?(config_archive)
-      Open3.capture2("cp #{config_path} #{config_archive}/termite-config-prev-#{time}")
+      FileUtils.mkdir("#{config_archive}") unless Dir.exist?(config_archive)
+      FileUtils.cp("#{config_path}", "#{config_archive}/termite-config-prev-#{time}")
     end
   end
 
