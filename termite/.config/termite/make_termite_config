@@ -51,7 +51,9 @@ class FileManager
   def initialize(rendered_template)
     @rendered_template = rendered_template
     @home = Open3.capture2("echo $HOME").first.chomp
-    @config_path = File.join(@home, ".config/termite/config")
+    @path_suffix = ".config/termite/config"
+    @dots_prefix = ".dotfiles/termite"
+    @config_path = File.join(@home, @path_suffix)
   end
 
   def install_config
@@ -62,14 +64,23 @@ class FileManager
   private
   def create_config_old
     time = Time.now.strftime("%Y%m%dT%H%M")
+    config_archive = File.join(@home, ".config/previous-configs")
 
     if File.exist?(config_path)
-      Open3.capture2("cp #{config_path} #{@home}/.config/previous-configs/termite-config-prev-#{time}")
+      Open3.capture2("mkdir #{config_archive}") unless File.directory?(config_archive)
+      Open3.capture2("cp #{config_path} #{config_archive}/termite-config-prev-#{time}")
     end
   end
 
   def write_config
-    File.open(config_path, "w+", 0644) do |f|
+    if File.exist?(config_path)
+      destination = config_path
+    else
+      # `.dotfiles` destination to allow use when 'unstowed'
+      destination = File.join(@home, @dots_prefix, @path_suffix)
+    end
+
+    File.open(destination, "w+", 0644) do |f|
       f.write(@rendered_template) # ensure using block auto closes
     end
   end
@@ -81,5 +92,3 @@ file_data = config.render_config
 
 manager = FileManager.new(file_data)
 manager.install_config
-
-# TODO: 
