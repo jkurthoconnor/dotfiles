@@ -9,6 +9,7 @@ SETTINGS=/sys/class/backlight/intel_backlight/brightness
 MAX=$(cat /sys/class/backlight/intel_backlight/max_brightness)
 MIN=1000
 
+urgency=normal
 current=$(cat "$SETTINGS")
 new="$current"
 
@@ -20,7 +21,15 @@ else
   exit 1
 fi
 
-if [ "$new" -le "$MAX" ] && [ "$new" -ge "$MIN" ]; then
+if [ "$new" -lt "$MAX" ] && [ "$new" -ge "$MIN" ]; then
   echo "$new" > "$SETTINGS"
-  exit 0
 fi
+
+percent=$(echo "scale=2; $new / $MAX * 100" | bc)
+
+if [  $(echo "$percent > 85" | bc) -eq 1 ]; then
+  urgency=critical
+fi
+
+notify-send -u "$urgency" -t 350 "Screen Brightness: $percent %"
+exit 0
