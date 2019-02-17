@@ -40,8 +40,8 @@ class TermiteConfig
   end
 
   def sources
-    erb = File.expand_path("./termite_config.erb")
-    rb = File.expand_path(__FILE__)
+    erb = "./termite_config.erb"
+    rb = File.basename(__FILE__)
     { template: erb, script: rb }
   end
 end
