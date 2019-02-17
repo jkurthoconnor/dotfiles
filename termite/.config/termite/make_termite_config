@@ -1,5 +1,10 @@
 #!/usr/bin/env ruby
 
+# Script generates a termite config file from `.Xresources` color data,
+# options set in `termite_config.erb`, and a cli option
+#
+# Use: provide '-l' option at invocation to set hosttype to 'laptop'
+
 require 'erb'
 require 'open3'
 require 'fileutils'
@@ -40,7 +45,7 @@ class TermiteConfig
   end
 
   def sources
-    erb = "./termite_config.erb"
+    erb = "termite_config.erb"
     rb = File.basename(__FILE__)
     { template: erb, script: rb }
   end
@@ -83,7 +88,7 @@ class FileManager
     end
 
     File.open(destination, "w+", 0644) do |f|
-      f.write(@rendered_template) # ensure using block auto closes
+      f.write(@rendered_template)
     end
   end
 end
