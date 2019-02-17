@@ -5,10 +5,11 @@ require 'open3'
 require 'fileutils'
 
 class TermiteConfig
-  attr_reader :params, :template
+  attr_reader :params, :template, :option
 
-  def initialize
+  def initialize(cli_args)
     @template = File.read('termite_config.erb')
+    @option = cli_args[0]
     @params = set_params
   end
 
@@ -20,7 +21,7 @@ class TermiteConfig
   private
   def set_params
     { colors: xresources,
-      hostname: host,
+      hosttype: host,
       files: sources,
       vimmeta: "# vim: filetype=dosini cms=#%s" }
   end
@@ -35,7 +36,7 @@ class TermiteConfig
   end
 
   def host
-    Open3.capture2("hostname").first.chomp
+    option.eql?("-l") ? "laptop" : "desktop"
   end
 
   def sources
@@ -88,8 +89,7 @@ class FileManager
 end
 
 
-config = TermiteConfig.new
+config = TermiteConfig.new(ARGV)
 file_data = config.render_config
-
 manager = FileManager.new(file_data)
 manager.install_config

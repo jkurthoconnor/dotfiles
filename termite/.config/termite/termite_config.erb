@@ -7,10 +7,10 @@
 # ############################################################################
 
 [options]
-<% if params[:hostname].eql?("sullilly") %>
-font = SourceCodePro 13
-<% elsif params[:hostname].eql?("kell") %>
+<% if params[:hosttype].eql?("laptop") %>
 font = SourceCodePro 14
+<% elsif params[:hosttype].eql?("desktop") %>
+font = SourceCodePro 13
 <% end %>
 allow_bold = true
 bold_is_bright = false
