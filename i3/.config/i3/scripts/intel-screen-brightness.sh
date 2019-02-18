@@ -31,5 +31,5 @@ if [  $(echo "$percent > 85" | bc) -eq 1 ]; then
   urgency=critical
 fi
 
-notify-send -u "$urgency" -t 350 "Screen Brightness: $percent %"
+notify-send -u "$urgency" -t 250 "Screen Brightness: $percent %"
 exit 0

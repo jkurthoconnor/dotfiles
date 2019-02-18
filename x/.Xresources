@@ -5,31 +5,40 @@
 !   Dawid Kurek (dawikur@gmail.com),
 !   morhetz (https://github.com/morhetz/gruvbox)
 
-! # dark brown-black
+! # black, grey, silver, white
 #define gbcolor0 #1d2021
+#define gbcolor8 #665c54
+#define gbcolor7 #d5c4a1
+#define gbcolor15 #fbf1c7
 
 ! red
-#define gbcolor1 #fb4934 
+! #define gbcolor1 #fb4934 
+#define gbcolor1 #cc241d 
 #define gbcolor9 #fb4934 
 
 ! green
-#define gbcolor2 #b8bb26
+! #define gbcolor2 #b8bb26
+#define gbcolor2 #98971a
 #define gbcolor10 #b8bb26
 
 ! yellow
-#define gbcolor3 #fabd2f
+! #define gbcolor3 #fabd2f
+#define gbcolor3 #d79921
 #define gbcolor11 #fabd2f
 
 !blue
-#define gbcolor4 #83a598
+! #define gbcolor4 #83a598
+#define gbcolor4 #458588
 #define gbcolor12 #83a598
 
 !purple
-#define gbcolor5 #d3869b
+! #define gbcolor5 #d3869b
+#define gbcolor5 #b16286
 #define gbcolor13 #d3869b
 
-! cyan
-#define gbcolor6 #8ec07c
+! cyan / teal
+! #define gbcolor6 #8ec07c
+#define gbcolor6 #689d6a
 #define gbcolor14 #8ec07c
 
 ! orange
@@ -43,13 +52,9 @@
 ! cream
 #define gbcolor20 #bdae93
 #define gbcolor21 #ebdbb2
-#define gbcolor15 #fbf1c7
-
-! # teal
-! # #076678
 
 ! termite named colors
-#define gbforeground #d5c4a1
+#define gbforeground gbcolor7
 #define gbforegroundbold gbcolor21
 #define gbbackground gbcolor0
 #define gbcursor gbcolor21
@@ -63,8 +68,11 @@
 *cursor: gbcursor
 *cursorforeground: gbcursorforeground
 !
-! # dark brown-black
+! # black, grey, silver, white
 *color0: gbcolor0
+*color8: gbcolor8
+*color7: gbcolor7
+*color15: gbcolor15
 
 ! red
 *color1: gbcolor1
@@ -101,6 +109,5 @@
 ! cream
 *color20: gbcolor20
 *color21: gbcolor21
-*color15: gbcolor15
 
 ! vim: cms=!%s
