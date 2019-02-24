@@ -21,7 +21,8 @@ HISTFILESIZE=100000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
-shopt -s checkwinsize
+# NB: already called in `/etc/bash.bashrc`
+# shopt -s checkwinsize
 
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
@@ -136,13 +137,16 @@ stty -ixon
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 export GPG_TTY=$(tty)
 
 TASKTIMEWARRIORDIR="$HOME/.twarriors"
 export TIMEWARRIORDB="$TASKTIMEWARRIORDIR/.timewarrior"
 export TASKRC="$TASKTIMEWARRIORDIR/.taskrc"
 export TASKDATA="$TASKTIMEWARRIORDIR/.task"
+
+# NVM adds ~400ms to sourcing .bashrc; functions sources only as needed
+function nvm-init {
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+}
