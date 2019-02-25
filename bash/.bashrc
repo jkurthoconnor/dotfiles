@@ -150,3 +150,17 @@ function nvm-init {
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
   [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 }
+
+if [ "$TERM" = "linux" ]; then
+  function set-tty-colors {
+    gruvbox=(
+      "\e]P01d2021" "\e]P8665c54" "\e]P1cc241d" "\e]P9fb4934" "\e]P298971a" \
+      "\e]PAb8bb26" "\e]P3d79921" "\e]PBfabd2f" "\e]P4458588" "\e]PC83a598" \
+      "\e]P5b16286" "\e]PDd3869b" "\e]P6689d6a" "\e]PE8ec07c" "\e]P7d5c4a1" \
+      "\e]PFfbf1c7" 
+    )
+
+      echo -en ${gruvbox[*]}
+      clear ; unset gruvbox
+    }
+fi
