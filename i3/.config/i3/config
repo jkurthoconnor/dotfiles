@@ -28,7 +28,7 @@ mode "$i3-meta" {
     bindsym c reload, mode "default"
     # restart i3 in-place (preserves layout/session)
     bindsym r restart, mode "default"
-    bindsym l exec i3lock --color "$drk-bg-color", mode "default"
+    bindsym l exec i3lock --color "$drk-bg", mode "default"
     bindsym e exec "i3-nagbar -t warning -m 'Really? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'", mode "default"
 
     bindsym Return mode "default"
@@ -110,6 +110,7 @@ bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
+# landscape outputs default to horizontal split; portrait to vertical
 default_orientation auto
 # make future splits horizontal (side-by-side)
 bindsym $mod+s split h
@@ -222,18 +223,18 @@ font pango:DejaVu Sans Mono 12
 title_align center
 hide_edge_borders smart
 force_display_urgency_hint 750 ms
-# setting pixel border removes title bars
-default_border pixel 5
+# NOTE: setting pixel border removes title bars
+default_border pixel 1
 
 # set color variables from `~/.Xresources`
-set_from_resource $lt-bg-color i3wm.color19
-set_from_resource $blk-bg-color i3wm.color0
-set_from_resource $drk-txt-color i3wm.color0
-set_from_resource $drk-bg-color i3wm.color18
-set_from_resource $lt-txt-color i3wm.color15
-set_from_resource $status i3wm.color17
+set_from_resource $lt-bg     i3wm.color19
+set_from_resource $blk-bg    i3wm.color0
+set_from_resource $drk-bg    i3wm.color18
+set_from_resource $lt-txt    i3wm.color15
+set_from_resource $drk-txt   i3wm.color0
+set_from_resource $status    i3wm.color17
 set_from_resource $indicator i3wm.color5
-set_from_resource $urgent-bg-color i3wm.color6
+set_from_resource $urgent i3wm.color6
 
 # Configure, Style & Start i3bar(s)
 bar {
@@ -245,15 +246,15 @@ bar {
         tray_padding 3
 
         colors {
-              background         $blk-bg-color
-              statusline         $status
-              separator          $status
+              background          $blk-bg
+              statusline          $status
+              separator           $status
 
-#                                border        bkgrnd           text
-              focused_workspace  $status       $blk-bg-color    $status
-              active_workspace   $drk-bg-color $blk-bg-color    $status
-              inactive_workspace $drk-bg-color $blk-bg-color    $status
-              urgent_workspace   $drk-bg-color $urgent-bg-color $drk-txt-color
+#                                 border   bkgrnd   text
+              focused_workspace   $status  $blk-bg  $status
+              active_workspace    $drk-bg  $blk-bg  $status
+              inactive_workspace  $drk-bg  $blk-bg  $status
+              urgent_workspace    $drk-bg  $urgent  $drk-txt
         }
 }
 
@@ -264,25 +265,25 @@ bar {
         tray_output none
 
         colors {
-              background         $blk-bg-color
-              statusline         $status
-              separator          $status
+              background          $blk-bg
+              statusline          $status
+              separator           $status
 
-#                                border        bkgrnd           text
-              focused_workspace  $status       $blk-bg-color    $status
-              active_workspace   $drk-bg-color $blk-bg-color    $status
-              inactive_workspace $drk-bg-color $blk-bg-color    $status
-              urgent_workspace   $drk-bg-color $urgent-bg-color $drk-txt-color
+#                                 border   bkgrnd   text
+              focused_workspace   $status  $blk-bg  $status
+              active_workspace    $drk-bg  $blk-bg  $status
+              inactive_workspace  $drk-bg  $blk-bg  $status
+              urgent_workspace    $drk-bg  $urgent  $drk-txt
         }
 }
 
 # Widow Bar Colors
-#                       border            background       txt            indicator
-client.focused          $lt-bg-color      $lt-bg-color     $lt-txt-color  $indicator
-client.focused_inactive $drk-bg-color     $drk-bg-color    $lt-txt-color  $indicator
-client.unfocused        $drk-bg-color     $drk-bg-color    $lt-txt-color  $indicator
-client.urgent           $urgent-bg-color  $urgent-bg-color $lt-txt-color  $indicator
-client.placeholder      $lt-bg-color      $lt-bg-color     $lt-bg-color   $lt-bg-color
+#                        border   bkgrnd   txt      indicator   child_border
+client.focused           $lt-bg   $lt-bg   $lt-txt  $indicator  $status
+client.focused_inactive  $drk-bg  $drk-bg  $lt-txt  $indicator  $lt-bg
+client.unfocused         $drk-bg  $drk-bg  $lt-txt  $indicator  $lt-bg 
+client.urgent            $urgent  $urgent  $lt-txt  $indicator  $lt-bg
+client.placeholder       $lt-bg   $lt-bg   $lt-bg   $lt-bg      $lt-bg
 
 
 
