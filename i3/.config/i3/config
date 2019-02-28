@@ -1,9 +1,7 @@
-
 ##############################################################################
 #                           I3 CONFIG FILE (V4)                              #
 #              reference: https://i3wm.org/docs/userguide.html               #
 ##############################################################################
-
 
 
 
@@ -69,10 +67,9 @@ mode "$resize" {
 bindsym  XF86MonBrightnessUp exec sudo /home/jko/.config/i3/scripts/intel-screen-brightness.sh -inc
 bindsym  XF86MonBrightnessDown exec sudo /home/jko/.config/i3/scripts/intel-screen-brightness.sh -dec
 
-#                           WINDOW and WORKSPACE MANAGEMENT                  #
-##############################################################################
 
-# WINDOW SETTINGS and NAVIGATION
+#                           WINDOW NAVIGATION and BEHAVIOR                  #
+##############################################################################
 
 # toggle fullscreen mode for the focused window
 bindsym $mod+f fullscreen toggle
@@ -113,20 +110,44 @@ bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
-# set container type to be created at next 
-# split to hold current window & its sibling
-
-# make future splits horizontal (splits side-by-side)
+default_orientation auto
+# make future splits horizontal (side-by-side)
 bindsym $mod+s split h
-# make future splits vertical
+# make future splits vertical (over-under)
 bindsym $mod+v split v
 
+workspace_layout default
 # change existing container layout
 bindsym $mod+t layout toggle split
 bindsym $mod+w layout stacking
 bindsym $mod+e layout tabbed
 
-# MONITORS / WORKSPACES SETTINGS and NAVIGATION
+# use `xprop` to get window props: `WM_CLASS(STRING) = "<instance>", "Class"`
+
+# assign clients to workspaces when app maps the window
+assign [class="^Slack$"] $workspace8
+
+# assign client to scratchpad
+for_window [class="^keepassxc$"] move scratchpad
+
+# float popups & dialogues
+for_window [window_role="pop_up"] floating enable
+for_window [window_role="task_dialog"] floating enable
+
+# float certain client instances
+for_window [instance="wicd-client.py"] floating enable resize set 400 600 move position center
+for_window [instance="^arandr"] floating enable
+for_window [instance="^etcher-electron"] floating enable move position center
+for_window [instance="^lxappearance"] floating enable
+for_window [instance="^pa(man)|(vumeter)|(vucontrol)"] floating enable
+for_window [instance="pavucontrol"] resize set 400 600 move position center
+for_window [instance="^pcmanfm"] floating enable
+for_window [instance="^qtconfig-qt4"] floating enable
+for_window [instance="^teensy"] floating enable resize set 400 600 move position center
+
+
+#               OUTPUT / WORKSPACE NAVIGATION and BEHAVIOR                  #
+#############################################################################
 
 # set workspace variables
 # `xrandr --current` for current state; see `man xrandr`
@@ -158,30 +179,6 @@ workspace $workspace8 output $monitorRight $laptopScreen
 workspace $workspace9 output $monitorRight $laptopScreen
 workspace $workspace0 output $monitorRight $laptopScreen
 
-# Identifying x windows:
-# `xprop` to get window properties: `WM_CLASS(STRING) = "<instance>", "Class"`
-
-# assign clients to workspaces when app maps the window
-assign [class="^Slack$"] $workspace8
-
-# assign client to scratchpad
-for_window [class="^keepassxc$"] move scratchpad
-
-# float popups & dialogues
-for_window [window_role="pop_up"] floating enable
-for_window [window_role="task_dialog"] floating enable
-
-# float certain client instances
-for_window [instance="wicd-client.py"] floating enable resize set 400 600 move position center
-for_window [instance="^arandr"] floating enable
-for_window [instance="^etcher-electron"] floating enable move position center
-for_window [instance="^lxappearance"] floating enable
-for_window [instance="^pa(man)|(vumeter)|(vucontrol)"] floating enable
-for_window [instance="pavucontrol"] resize set 400 600 move position center
-for_window [instance="^pcmanfm"] floating enable
-for_window [instance="^qtconfig-qt4"] floating enable
-for_window [instance="^teensy"] floating enable resize set 400 600 move position center
-
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
 bindsym $mod+2 workspace $workspace2
@@ -193,6 +190,12 @@ bindsym $mod+7 workspace $workspace7
 bindsym $mod+8 workspace $workspace8
 bindsym $mod+9 workspace $workspace9
 bindsym $mod+0 workspace $workspace0
+
+# switch to previous workspace with mod+current-workspace-number
+workspace_auto_back_and_forth yes
+
+# move focused workspace to next output / screen
+bindsym $mod+Shift+n move workspace to output right
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $workspace1
@@ -206,9 +209,6 @@ bindsym $mod+Shift+8 move container to workspace $workspace8
 bindsym $mod+Shift+9 move container to workspace $workspace9
 bindsym $mod+Shift+0 move container to workspace $workspace0
 
-# move focused workspace to next output / screen
-bindsym $mod+Shift+n move workspace to output right
-
 
 #                           AESTHETICS                                       #
 ##############################################################################
@@ -216,8 +216,14 @@ bindsym $mod+Shift+n move workspace to output right
 set $background "/usr/share/backgrounds/xgu472hf2_by_lariliikala.jpg"
 
 # Font for window titles & bar unless specified in bar block
-font pango: Source Code Pro 12
-# font pango:DejaVu Sans Mono 12
+# font pango: Source Code Pro 12
+font pango:DejaVu Sans Mono 12
+
+title_align center
+hide_edge_borders smart
+force_display_urgency_hint 750 ms
+# setting pixel border removes title bars
+default_border pixel 5
 
 # set color variables from `~/.Xresources`
 set_from_resource $lt-bg-color i3wm.color19
