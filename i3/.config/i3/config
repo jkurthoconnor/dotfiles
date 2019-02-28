@@ -17,19 +17,21 @@ set $TERMINAL "/usr/local/bin/termite"
 bindsym $mod+Return exec i3-sensible-terminal
 
 # start dmenu program launcher
-bindsym $mod+Shift+Return exec "dmenu_run -l 10 -nf '#fbf1c7' -sb '#076678' -sf '#fbf1c7'"
+bindsym $mod+Shift+Return exec "dmenu_run -b -i \
+                                -nb '#504945' -nf '#d5c4a1' \
+                                -sb '#689d6a' -sf '#1d2021'"
 
 # MODE DEFINITIONS AND BINDINGS
 set $i3-meta i3 Meta: reload [c]onfig [r]estart [l]ock [e]xit
 bindsym $mod+i mode "$i3-meta"
 mode "$i3-meta" {
-
     # reload i3 configuration
     bindsym c reload, mode "default"
     # restart i3 in-place (preserves layout/session)
     bindsym r restart, mode "default"
-    bindsym l exec i3lock --color "$drk-bg", mode "default"
-    bindsym e exec "i3-nagbar -t warning -m 'Really? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'", mode "default"
+    bindsym l exec i3lock -e --color "$blk-bg", mode "default"
+    bindsym e exec "i3-nagbar -t warning -m 'This will end your X session.' \
+                    -b 'Yes, exit i3' 'i3-msg exit'", mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -233,8 +235,9 @@ set_from_resource $drk-bg    i3wm.color18
 set_from_resource $lt-txt    i3wm.color15
 set_from_resource $drk-txt   i3wm.color0
 set_from_resource $status    i3wm.color17
+set_from_resource $lt-status i3wm.color16
 set_from_resource $indicator i3wm.color5
-set_from_resource $urgent i3wm.color6
+set_from_resource $urgent    i3wm.color6
 
 # Configure, Style & Start i3bar(s)
 bar {
@@ -251,10 +254,10 @@ bar {
               separator           $status
 
 #                                 border   bkgrnd   text
-              focused_workspace   $status  $blk-bg  $status
-              active_workspace    $drk-bg  $blk-bg  $status
-              inactive_workspace  $drk-bg  $blk-bg  $status
-              urgent_workspace    $drk-bg  $urgent  $drk-txt
+              focused_workspace   $blk-bg  $blk-bg  $lt-status
+              active_workspace    $blk-bg  $blk-bg  $status
+              inactive_workspace  $blk-bg  $blk-bg  $status
+              urgent_workspace    $blk-bg  $urgent  $drk-txt
         }
 }
 
@@ -270,17 +273,17 @@ bar {
               separator           $status
 
 #                                 border   bkgrnd   text
-              focused_workspace   $status  $blk-bg  $status
-              active_workspace    $drk-bg  $blk-bg  $status
-              inactive_workspace  $drk-bg  $blk-bg  $status
-              urgent_workspace    $drk-bg  $urgent  $drk-txt
+              focused_workspace   $blk-bg  $blk-bg  $lt-status
+              active_workspace    $blk-bg  $blk-bg  $status
+              inactive_workspace  $blk-bg  $blk-bg  $status
+              urgent_workspace    $blk-bg  $urgent  $drk-txt
         }
 }
 
 # Widow Bar Colors
 #                        border   bkgrnd   txt      indicator   child_border
-client.focused           $lt-bg   $lt-bg   $lt-txt  $indicator  $status
-client.focused_inactive  $drk-bg  $drk-bg  $lt-txt  $indicator  $lt-bg
+client.focused           $lt-bg   $lt-bg   $lt-txt  $urgent     $status
+client.focused_inactive  $drk-bg  $drk-bg  $lt-txt  $urgent     $lt-bg
 client.unfocused         $drk-bg  $drk-bg  $lt-txt  $indicator  $lt-bg 
 client.urgent            $urgent  $urgent  $lt-txt  $indicator  $lt-bg
 client.placeholder       $lt-bg   $lt-bg   $lt-bg   $lt-bg      $lt-bg
