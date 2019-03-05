@@ -222,7 +222,7 @@
     # c18
     foreground = "#3c3836"
     background = "#e0ba62"
-    timeout = 0
+    timeout = 20
     #icon = /path/to/icon
 #
 # # Every section that isn't one of the above is interpreted as a rules to
@@ -281,5 +281,11 @@
 #    appname = Pidgin
 #    summary = *twitter.com*
 #    urgency = normal
-#
-# vim: ft=cfg
+
+[timer_alert_sound]
+      msg_urgency = critical
+      summary = *Timer*
+      script = /home/jko/bin/alert.sh
+
+
+# vim: ft=cfg cms=#%s
