@@ -1,6 +1,6 @@
-// vim:ts=4:sw=4:et
+// vim:ts=4:sw=4:et:cms=//%s
 {
-    "border": "pixel"
+    "border": "pixel",
     "current_border_width": 1,
     "floating": "auto_off",
     "geometry": {
@@ -21,7 +21,7 @@
 }
 
 {
-    "border": "pixel"
+    "border": "pixel",
     "current_border_width": 1,
     "floating": "auto_off",
     "geometry": {
