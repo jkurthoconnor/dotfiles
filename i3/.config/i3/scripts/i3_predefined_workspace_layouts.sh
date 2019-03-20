@@ -21,7 +21,6 @@ if [ $device = $desktop ]; then
 elif [ $device = $laptop ]; then
   # open clients assigned to workspace
   i3-msg "workspace 0 etc; exec termite --name=cmus_container --title=cmus -e cmus"
-  i3-msg "workspace 0 etc; exec termite"
   # load pre-defined layouts
   i3-msg "workspace 4 cde; append_layout /home/jko/.config/i3/layouts/ws4.json"
   # open clients initially assigned to pre-defined layout
