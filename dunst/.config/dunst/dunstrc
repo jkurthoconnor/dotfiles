@@ -174,7 +174,7 @@
     # Print a notification on startup.
     # This is mainly for error detection, since dbus (re-)starts dunst
     # automatically after a crash.
-    startup_notification = true
+    startup_notification = false
 
     ### Legacy
     force_xinerama = false
@@ -283,9 +283,9 @@
 #    urgency = normal
 
 [timer_alert_sound]
-      msg_urgency = critical
-      summary = *Timer*
-      script = /home/jko/bin/alert.sh
+    msg_urgency = critical
+    summary = *Timer*
+    script = /home/jko/bin/alert.sh
 
 
 # vim: ft=cfg cms=#%s
