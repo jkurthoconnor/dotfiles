@@ -37,10 +37,11 @@ mode "$i3-meta" {
     bindsym Escape mode "default"
 }
 
-set $system System: [r]eboot [p]oweroff  ||  GPU: [i]ntel [n]vidia
+set $system System: [r]eboot [s]uspend [p]oweroff  ||  GPU: [i]ntel [n]vidia
 bindsym $mod+Escape mode "$system"
 mode "$system" {
     bindsym r exec systemctl reboot, mode "default"
+    bindsym s exec systemctl suspend, mode "default"
     bindsym p exec systemctl poweroff, mode "default"
 
     # switches GPUs on Oryx Pro laptop
