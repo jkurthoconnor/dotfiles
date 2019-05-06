@@ -305,10 +305,10 @@ exec_always --no-startup-id /usr/bin/dropbox start -i
 exec --no-startup-id pasystray
 
 # TODO: move functionality to `.xinitrc`?
-exec_always xsetroot -solid "#0f0f0f"
+# exec_always xsetroot -solid "#0f0f0f"
 
 # set xrandr settings by hostname TODO: move functionality to `.xinitrc`?
-exec_always $HOME/.config/i3/scripts/i3_xrandr_screen_layout.sh
+# exec_always $HOME/.config/i3/scripts/i3_xrandr_screen_layout.sh
 
 # load networking services by hostname TODO: move functionality to `.xinitrc`?
 exec $HOME/.config/i3/scripts/i3_networking.sh
