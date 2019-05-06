@@ -1,6 +1,5 @@
 ! `.Xmodmap` will be applied automatically when Xserver is started by a
-! display manager; 
-! ** so comment out this file to prevent applying settings on sullilly
+! display manager; otherwise is it called (or not) in `.xinitrc`
 !
 ! custom mapping of keycodes for kell laptop keyboard to mimic 
 !  i3 modifier and ctl placement on ergodox;

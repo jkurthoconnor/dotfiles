@@ -304,13 +304,11 @@ exec_always --no-startup-id /usr/bin/dropbox start -i
 # pulse audio controls in tray
 exec --no-startup-id pasystray
 
-# TODO: move functionality to `.xinitrc`?
-# exec_always xsetroot -solid "#0f0f0f"
+# NB: xrandr settings, `xsetroot` color, and network services by hostname script calls moved to `~/.xinitrc`
 
-# set xrandr settings by hostname TODO: move functionality to `.xinitrc`?
-# exec_always $HOME/.config/i3/scripts/i3_xrandr_screen_layout.sh
-
-# load networking services by hostname TODO: move functionality to `.xinitrc`?
+# load networking services by hostname 
+# TODO: move functionality to `.xinitrc` once display manager is removed from
+# sullilly
 exec $HOME/.config/i3/scripts/i3_networking.sh
 
 # load pre-defined workspaces by hostname
