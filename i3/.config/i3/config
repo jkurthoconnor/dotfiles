@@ -66,8 +66,8 @@ mode "$resize" {
 
 # FUNCTION KEY BINDINGS
 # requires local sudoers type file in `sudoers.d` to bypass password
-bindsym  XF86MonBrightnessUp exec sudo /home/jko/.config/i3/scripts/intel-screen-brightness.sh -inc
-bindsym  XF86MonBrightnessDown exec sudo /home/jko/.config/i3/scripts/intel-screen-brightness.sh -dec
+bindsym  XF86MonBrightnessUp exec sudo /home/jko/.config/i3/scripts/i3_bindings_intel_screen_brightness.sh -inc
+bindsym  XF86MonBrightnessDown exec sudo /home/jko/.config/i3/scripts/i3_bindings_intel_screen_brightness.sh -dec
 
 
 #                           WINDOW NAVIGATION and BEHAVIOR                  #
@@ -304,11 +304,9 @@ exec_always --no-startup-id /usr/bin/dropbox start -i
 # pulse audio controls in tray
 exec --no-startup-id pasystray
 
-# NB: xrandr settings, `xsetroot` color, and network services by hostname script calls moved to `~/.xinitrc`
+# NB: xrandr settings  & `xsetroot` color script calls moved to `~/.xinitrc`
 
 # load networking services by hostname 
-# TODO: move functionality to `.xinitrc` once display manager is removed from
-# sullilly
 exec $HOME/.config/i3/scripts/i3_networking.sh
 
 # load pre-defined workspaces by hostname
