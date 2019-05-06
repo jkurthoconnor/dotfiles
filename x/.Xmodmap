@@ -1,5 +1,9 @@
+! `.Xmodmap` will be applied automatically when Xserver is started by a
+! display manager; 
+! ** so comment out this file to prevent applying settings on sullilly
+!
 ! custom mapping of keycodes for kell laptop keyboard to mimic 
-!  i3 modifier and ctl fingerings on ergodox;
+!  i3 modifier and ctl placement on ergodox;
 !
 ! to have symmetrical i3 modifiers (set to mod4 in i3's config)
 ! keycode 135 (code for menu key) now set to super_r; menu with shift
