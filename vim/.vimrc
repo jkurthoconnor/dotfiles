@@ -37,6 +37,7 @@ let g:gruvbox_italicize_comments=1
 " emmet
 let g:user_emmet_install_global=0
 let g:user_emmet_leader_key='<C-E>'
+let g:user_emmet_settings={'javascript.jsx' : { 'extends' : 'jsx' }}
 
 augroup emmet_filetypes               " install emmet only for named filetypes
   autocmd!
@@ -61,8 +62,8 @@ endif
 
 " let g:airline_left_sep=''          " only for patched fonts / colorschemes
 " let g:airline_right_sep=''         " only for patched fonts / colorschemes
-let g:airline_left_sep='>>'
-let g:airline_right_sep='<<'
+" let g:airline_left_sep='>>'
+" let g:airline_right_sep='<<'
 let g:airline_symbols.linenr = 'L:'
 let g:airline_symbols.maxlinenr = ' C'
 
