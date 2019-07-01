@@ -19,6 +19,7 @@ call minpac#add('mxw/vim-jsx')
 call minpac#add('hail2u/vim-css3-syntax')
 call minpac#add('cakebaker/scss-syntax.vim')
 call minpac#add('PotatoesMaster/i3-vim-syntax')
+call minpac#add('prettier/vim-prettier')
 
 " aesthetics
 call minpac#add('rakr/vim-one', { 'type': 'opt'})
@@ -43,6 +44,18 @@ augroup emmet_filetypes               " install emmet only for named filetypes
   autocmd!
   autocmd FileType html,eruby,javascript.jsx EmmetInstall
 augroup END
+
+" prettier
+let g:prettier#config#print_width = 80
+let g:prettier#config#tab_width = 2
+let g:prettier#config#jsx_bracket_same_line = 'false'
+let g:prettier#autoformat = 0
+
+augroup set_prettier_behavior
+  autocmd!
+  autocmd BufWritePre *.js,*.jsx,*.json,*.md,*.yaml,*.html PrettierAsync
+augroup END
+
 
 " css plugins
 augroup help_css_property_highlighting
