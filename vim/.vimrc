@@ -47,9 +47,11 @@ augroup END
 
 " prettier
 let g:prettier#config#print_width = 80
-let g:prettier#config#tab_width = 2
+let g:prettier#config#tab_width = 2     " spaces per indentation level
+let g:prettier#config#use_tabs = 'false'
 let g:prettier#config#jsx_bracket_same_line = 'false'
 let g:prettier#autoformat = 0
+let g:prettier#quickfix_auto_focus = 0
 
 augroup set_prettier_behavior
   autocmd!
@@ -73,10 +75,6 @@ if !exists('g:airline_symbols')
   let g:airline_symbols={}
 endif
 
-" let g:airline_left_sep=''          " only for patched fonts / colorschemes
-" let g:airline_right_sep=''         " only for patched fonts / colorschemes
-" let g:airline_left_sep='>>'
-" let g:airline_right_sep='<<'
 let g:airline_symbols.linenr = 'L:'
 let g:airline_symbols.maxlinenr = ' C'
 
