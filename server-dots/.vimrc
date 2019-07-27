@@ -12,6 +12,7 @@ if (has("termguicolors"))
 endif
 
 syntax enable
+colorscheme slate
 set background=dark
 
 " SPACES, TABS, SCREEN TEXT FORMATTING
@@ -42,16 +43,6 @@ augroup cursor_line_toggle
   autocmd!
   autocmd InsertEnter,InsertLeave * set cursorline!
 augroup END
-
-
-CUSTOM STATUS LINE                  " use when airline is not installed
-set showcmd                         " show command in bottom bar
-set statusline=%f                   " path
-set statusline+=%=                  " switch to right side
-set statusline+=%l                  " line
-set statusline+=/                   " separator
-set statusline+=%L                  " total lines
-
 
 " TEXT SEARCH
 set showmatch                         " highlight matching parens
