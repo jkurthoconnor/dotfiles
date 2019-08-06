@@ -8,8 +8,9 @@ system76-power graphics | grep -q 'nvidia'
 
 if [ $? -eq 0 ]; then
   xrandr --setprovideroutputsource modesetting NVIDIA-0
-   xrandr --auto
-   xrandr --dpi 96
+  xrandr --output eDP-1-1 --primary
+  xrandr --auto
+  xrandr --dpi 96
 fi
 
 $HOME/.xrandr_screen_layout.sh
