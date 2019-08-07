@@ -158,6 +158,8 @@ for_window [instance="^zoom"] floating enable move position center
 set $monitorLeft HDMI-0
 set $monitorRight DP-0
 set $laptopScreen eDP-1
+set $nvidiaLaptopScreen eDP-1-1
+set $zenScreen DVI-I-2-1
 
 # set workspace variables
 set $workspace1 "1 trm"
@@ -172,16 +174,16 @@ set $workspace9 "9 trm"
 set $workspace0 "0 etc"
 
 # bind workspaces to monitors (1st output found receives binding)
-workspace $workspace1 output $monitorLeft $laptopScreen
-workspace $workspace2 output $monitorLeft $laptopScreen
-workspace $workspace3 output $monitorLeft $laptopScreen
-workspace $workspace4 output $monitorLeft $laptopScreen
-workspace $workspace5 output $monitorLeft $laptopScreen
-workspace $workspace6 output $monitorRight $laptopScreen
-workspace $workspace7 output $monitorRight $laptopScreen
-workspace $workspace8 output $monitorRight $laptopScreen
-workspace $workspace9 output $monitorRight $laptopScreen
-workspace $workspace0 output $monitorRight $laptopScreen
+workspace $workspace1 output $monitorLeft $laptopScreen $nvidiaLaptopScreen
+workspace $workspace2 output $monitorLeft $laptopScreen $nvidiaLaptopScreen
+workspace $workspace3 output $monitorLeft $laptopScreen $nvidiaLaptopScreen
+workspace $workspace4 output $monitorLeft $laptopScreen $nvidiaLaptopScreen
+workspace $workspace5 output $monitorLeft $laptopScreen $nvidiaLaptopScreen
+workspace $workspace6 output $monitorRight $laptopScreen $zenScreen
+workspace $workspace7 output $monitorRight $laptopScreen $zenScreen
+workspace $workspace8 output $monitorRight $laptopScreen $zenScreen
+workspace $workspace9 output $monitorRight $laptopScreen $zenScreen
+workspace $workspace0 output $monitorRight $laptopScreen $zenScreen
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
