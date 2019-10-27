@@ -57,7 +57,7 @@ set wildmode=longest:full,full
 
 " MAPPINGS
 " ========
-inoremap jk <esc>
+inoremap jj <esc>
 
 " MOVEMENT  (real lines if count is given, else visual lines)
 noremap <expr> j (v:count ? 'j' : 'gj')
