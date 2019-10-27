@@ -71,12 +71,12 @@ set noshowmode                        " removes automatic MODE display
 let g:airline_extensions=[]           " airline extensions enabled by default
 let g:airline_theme='gruvbox'
 
-if !exists('g:airline_symbols')
-  let g:airline_symbols={}
-endif
+" if !exists('g:airline_symbols')
+"   let g:airline_symbols={}
+" endif
 
-let g:airline_symbols.linenr = 'L:'
-let g:airline_symbols.maxlinenr = ' C'
+" let g:airline_symbols.linenr = 'L:'
+" let g:airline_symbols.maxlinenr = ' C'
 
 
 " ==========================
@@ -186,8 +186,6 @@ let mapleader = "\<space>"
 nnoremap <leader><space> :nohlsearch<cr>
 nnoremap <leader>ev :split $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
-nnoremap <leader>ef :split /home/jko/coding/notes/aaFollowup.md<cr>
-nnoremap <leader>et :split /home/jko/coding/notes/aaTodo.md<cr>
 nnoremap <leader>l :ls<cr>:b<space>
 
 " LOCAL LEADER MAPPINGS
@@ -206,8 +204,4 @@ augroup markdown_snippets
         \<cr>```<esc><s-o>
   autocmd FileType markdown :inoreabbrev <buffer> hfn ```html
         \<cr>```<esc><s-o>
-  " p-set templates
-  autocmd FileType markdown :inoreabbrev <buffer> ph1 # LS Exercises: []()<left><esc>
-  autocmd FileType markdown :iabbrev <buffer> ph2 ## Problem:<esc>
-  autocmd FileType markdown :iabbrev <buffer> ph3 ### Solution:<esc>
 augroup END
