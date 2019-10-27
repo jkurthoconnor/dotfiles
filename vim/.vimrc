@@ -68,15 +68,19 @@ augroup END
 " airline
 set noshowmode                        " removes automatic MODE display
 
-let g:airline_extensions=[]           " airline extensions enabled by default
+let g:airline_extensions=[]           " default enabled airline extensions
+let g:airline_symbols_ascii=1         " use ascii symbols
 let g:airline_theme='gruvbox'
+let g:airline_section_b='%-0.40{getcwd()}'
 
-" if !exists('g:airline_symbols')
-"   let g:airline_symbols={}
-" endif
+if !exists('g:airline_symbols')
+  let g:airline_symbols={}
+endif
 
-" let g:airline_symbols.linenr = 'L:'
-" let g:airline_symbols.maxlinenr = ' C'
+let g:airline_left_sep=''
+let g:airline_right_sep=''
+let g:airline_symbols.linenr=''
+let g:airline_symbols.maxlinenr=''
 
 
 " ==========================
@@ -86,6 +90,12 @@ let g:airline_theme='gruvbox'
 filetype plugin indent on             " filetype detection, ft indent and plugins
 set directory^=$HOME/.vim/tmp//       " prepends .vim/tmp/ to list of swp file
                                       " locations; prevents cluttering working dir
+
+augroup swap_file_behavior
+  autocmd!
+  autocmd SwapExists * if getftime(expand('<afile>:p')) > getftime(v:swapname) | let v:swapchoice='d' | endif
+augroup END
+
 " COLORS & SYNTAX
 if (has("termguicolors"))
   set termguicolors                   " 24-bit (true-color) mode outside tmux
