@@ -166,7 +166,7 @@ set wildmode=longest:full,full
 
 " MAPPINGS
 " ========
-inoremap jk <esc>
+inoremap jj <esc>
 
 " FZF file search
 nnoremap <C-f> :FZF<CR>
