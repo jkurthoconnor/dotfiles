@@ -137,6 +137,8 @@ stty -ixon
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
+export EDITOR=/usr/local/bin/vim
+
 export GPG_TTY=$(tty)
 
 TASKTIMEWARRIORDIR="$HOME/.twarriors"
