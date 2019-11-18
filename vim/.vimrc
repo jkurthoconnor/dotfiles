@@ -128,6 +128,13 @@ set linebreak                         " visual wrap at breakat chars
 set showbreak=--
 set colorcolumn=80
 
+augroup python_files
+  autocmd!
+  autocmd FileType python setlocal tabstop=8
+  autocmd FileType python setlocal shiftwidth=4
+  autocmd FileType python setlocal softtabstop=4
+augroup END
+
 augroup git_messages
   autocmd!
   autocmd FileType gitcommit setlocal textwidth=72
