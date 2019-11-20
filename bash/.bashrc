@@ -133,18 +133,20 @@ export NO_AT_BRIDGE=1
 # remove <ctl + s> XOFF control sequence
 stty -ixon
 
-# prepends path to rbenv to PATH
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-
 export EDITOR=/usr/local/bin/vim
-
 export GPG_TTY=$(tty)
 
-TASKTIMEWARRIORDIR="$HOME/.twarriors"
-export TIMEWARRIORDB="$TASKTIMEWARRIORDIR/.timewarrior"
-export TASKRC="$TASKTIMEWARRIORDIR/.taskrc"
-export TASKDATA="$TASKTIMEWARRIORDIR/.task"
+if [ -d "$HOME/.rbenv" ]; then
+  export PATH="$HOME/.rbenv/bin:$PATH"
+  eval "$(rbenv init -)"
+fi
+
+if [ -d "$HOME/.twarriors" ]; then
+  TASKTIMEWARRIORDIR="$HOME/.twarriors"
+  export TIMEWARRIORDB="$TASKTIMEWARRIORDIR/.timewarrior"
+  export TASKRC="$TASKTIMEWARRIORDIR/.taskrc"
+  export TASKDATA="$TASKTIMEWARRIORDIR/.task"
+fi
 
 # NVM adds ~400ms to sourcing .bashrc; functions sources only as needed
 function nvm-init {
