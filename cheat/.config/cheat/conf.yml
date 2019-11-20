@@ -31,12 +31,12 @@ cheatpaths:
   # thus be overridden by more local cheatsheets.
   #
   - name: community
-    path: ~/code/notes/cheat/community
+    path: ~/.cheat_data/community
     tags: [ community ]
     readonly: true
 
   - name: work
-    path: ~/code/notes/cheat/personal
+    path: ~/.cheat_data/personal
     tags: [ personal ]
     readonly: false
 
