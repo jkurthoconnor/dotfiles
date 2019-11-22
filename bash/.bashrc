@@ -167,3 +167,6 @@ if [ "$TERM" = "linux" ]; then
       clear ; unset gruvbox
     }
 fi
+
+export JAVA_HOME_COMPILE=$JAVA_HOME
+export JAVA=$JAVA_HOME/bin/java
