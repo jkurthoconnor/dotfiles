@@ -17,9 +17,10 @@ xsetroot -solid "#0f0f0f"
 
 [[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
 
-# if neither an ErgoDox nor Iris is in input list, confirm existence of & source `.Xmodmap`
+# if neither an ErgoDox nor Iris is in input list, confirm existence of & source `._Xmodmap`
+# '_' namespacing is used to prevent the file '.Xmodmap' from being read automatically when i3 is executed by a display manager
 [[ ! $(xinput list | grep 'ErgoDox') ]] && \
 [[ ! $(xinput list | grep 'Keebio Iris') ]] && \
-[[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap
+[[ -f ~/._Xmodmap ]] && xmodmap ~/._Xmodmap
 
 exec i3

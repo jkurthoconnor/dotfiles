@@ -63,6 +63,7 @@
 *cursorforeground: gbcursorforeground
 !
 ! # black, grey, silver, white
+/* *color0: gbcolor0 */
 *color0: gbcolor0
 *color8: gbcolor8
 *color7: gbcolor7
