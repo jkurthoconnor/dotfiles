@@ -168,5 +168,6 @@ if [ "$TERM" = "linux" ]; then
     }
 fi
 
+export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_231
 export JAVA_HOME_COMPILE=$JAVA_HOME
 export JAVA=$JAVA_HOME/bin/java
