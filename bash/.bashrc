@@ -31,6 +31,16 @@ HISTFILESIZE=100000
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
+# disable the default virtualenv prompt change
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+
+function virtualenv_info(){
+    # If in Python Virtual Env
+    if [[ -n "$VIRTUAL_ENV" ]]; then
+      echo " ${VIRTUAL_ENV##*/}"
+    fi
+}
+
 
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
@@ -57,15 +67,10 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 
-# default PS1 assignments commented out; replaced by var to enable use of
-# PROMPT_COMMAND, which is necessary for using git prompt script with color;
-# see ~/.git-prompt.sh comments
 if [ "$color_prompt" = yes ]; then
-    # PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
     ps1_prompt_base='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]'
 else
     ps1_prompt_base='${debian_chroot:+($debian_chroot)}\u@\h:\w'
-    #PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 unset color_prompt force_color_prompt
 
@@ -76,14 +81,14 @@ if [ -f ~/.git-prompt.sh ]; then
     source ~/.git-prompt.sh
     # __git_ps1 function provided by ~/.git-prompt.sh takes 2 string args
     # <pre> and <post> git status
-    PROMPT_COMMAND='__git_ps1 "$ps1_prompt_base" "\\\$ "'
+    PROMPT_COMMAND='__git_ps1 "$ps1_prompt_base" "$(virtualenv_info)\\\$ "'
     GIT_PS1_SHOWDIRTYSTATE=true
     GIT_PS1_SHOWSTASHSTATE=true
     GIT_PS1_SHOWUNTRACKEDFILES=true
     GIT_PS1_SHOWCOLORHINTS=true
     GIT_PS1_HIDE_IF_PWD_IGNORED=true
 else
-    PS1="${ps1_prompt_base}\$ "
+  PS1="${ps1_prompt_base}$(virtualenv_info)\$ "
 fi
 
 # If this is an xterm set the title to user@host:dir
@@ -171,3 +176,7 @@ fi
 export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_231
 export JAVA_HOME_COMPILE=$JAVA_HOME
 export JAVA=$JAVA_HOME/bin/java
+
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/code
+source $HOME/.local/bin/virtualenvwrapper.sh
