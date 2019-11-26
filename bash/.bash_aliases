@@ -13,6 +13,7 @@ alias dirs='dirs -v'
 
 alias ga='git add'
 alias gaa='git add --all'
+alias gb='git branch'
 alias gc='git commit'
 alias gca='git commit -a'
 alias gcv='git commit --verbose'
