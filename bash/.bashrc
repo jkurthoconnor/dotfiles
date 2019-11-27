@@ -34,13 +34,12 @@ HISTFILESIZE=100000
 # disable the default virtualenv prompt change
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
-function virtualenv_info(){
+function virt_env(){
     # If in Python Virtual Env
     if [[ -n "$VIRTUAL_ENV" ]]; then
-      echo " ${VIRTUAL_ENV##*/}"
+      echo " \[\033[01;34m\][${VIRTUAL_ENV##*/}]\[\033[00m\]"
     fi
 }
-
 
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
@@ -66,7 +65,6 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-
 if [ "$color_prompt" = yes ]; then
     ps1_prompt_base='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]'
 else
@@ -79,16 +77,17 @@ unset color_prompt force_color_prompt
 # else create PS1 from value of prompt base local var
 if [ -f ~/.git-prompt.sh ]; then
     source ~/.git-prompt.sh
-    # __git_ps1 function provided by ~/.git-prompt.sh takes 2 string args
+    # __git_ps1 from ~/.git-prompt.sh takes 2 string args
     # <pre> and <post> git status
-    PROMPT_COMMAND='__git_ps1 "$ps1_prompt_base" "$(virtualenv_info)\\\$ "'
+    PROMPT_COMMAND='__git_ps1 "$ps1_prompt_base" "$(virt_env)\[\033[01;32m\]\\\$\[\033[00m\] "'
     GIT_PS1_SHOWDIRTYSTATE=true
     GIT_PS1_SHOWSTASHSTATE=true
     GIT_PS1_SHOWUNTRACKEDFILES=true
     GIT_PS1_SHOWCOLORHINTS=true
     GIT_PS1_HIDE_IF_PWD_IGNORED=true
 else
-  PS1="${ps1_prompt_base}$(virtualenv_info)\$ "
+  ve=$(virt_env)
+  PS1="${ps1_prompt_base}$ve\$ "
 fi
 
 # If this is an xterm set the title to user@host:dir
@@ -100,14 +99,10 @@ xterm*|rxvt*)
     ;;
 esac
 
-# enable color support of ls and also add handy aliases
+# enable color support of ls
 # sets colors via ~/.dircolors if it exists, or uses the default
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
 fi
 
 # colored GCC warnings and errors
@@ -129,9 +124,8 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# to suppress accessibility bus warnings (some apps try to connect even with
-# accessibility options off):
-# 'WARNING **: Couldn't connect to accessibility bus: Failed to connect to socket /tmp/dbus-aQ32zc0s4C: Connection refused'
+# suppress accessibility bus warnings
+# "Couldn't connect to accessibility bus: Failed to connect to socket /tmp/dbus-aQ32zc0s4C: Connection refused'"
 export NO_AT_BRIDGE=1
 
 # remove <ctl + s> XOFF control sequence
