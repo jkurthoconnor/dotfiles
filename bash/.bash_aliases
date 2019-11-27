@@ -1,16 +1,22 @@
 # ---------------
 # ls & dir aliases
 # ----------------
-
+alias ls='ls --color=auto'
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 alias dirs='dirs -v'
 
+# ---------------
+# grep aliases
+# ----------------
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
 # ------------
 # git aliases
 # -------------
-
 alias ga='git add'
 alias gaa='git add --all'
 alias gb='git branch'
