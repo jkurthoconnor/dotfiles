@@ -181,3 +181,8 @@ fi
 export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_231
 export JAVA_HOME_COMPILE=$JAVA_HOME
 export JAVA=$JAVA_HOME/bin/java
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+if [ -d "$HOME/.rvm" ]; then
+  export PATH="$PATH:$HOME/.rvm/bin"
+fi
