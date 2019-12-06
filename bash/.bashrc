@@ -182,7 +182,7 @@ export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_231
 export JAVA_HOME_COMPILE=$JAVA_HOME
 export JAVA=$JAVA_HOME/bin/java
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+# if machine uses .rvm, add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 if [ -d "$HOME/.rvm" ]; then
   export PATH="$PATH:$HOME/.rvm/bin"
   [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
