@@ -302,13 +302,13 @@ client.placeholder       $lt-bg   $lt-bg   $lt-bg   $lt-bg      $lt-bg
 
 
 # start dropbox with icon in tray
-exec_always --no-startup-id /usr/bin/dropbox start -i
+# exec_always --no-startup-id /usr/bin/dropbox start -i
 
 # `feh` image viewer sets bkgrnd; see `man feh`
 # exec_always feh --no-fehbg --bg-scale $background
 
 # pulse audio controls in tray
-exec --no-startup-id pasystray
+# exec --no-startup-id pasystray
 
 
 # NB: xrandr settings  & `xsetroot` color script calls moved to `~/.xinitrc`
