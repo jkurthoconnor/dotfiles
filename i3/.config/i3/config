@@ -133,7 +133,7 @@ bindsym $mod+e layout tabbed
 assign [class="^Slack$"] $workspace8
 
 # assign client to scratchpad
-for_window [class="^keepassxc$"] move scratchpad
+for_window [class="(?i)^keepassxc$"] move scratchpad
 
 # float popups & dialogues
 for_window [window_role="(?i)pop_up"] floating enable
