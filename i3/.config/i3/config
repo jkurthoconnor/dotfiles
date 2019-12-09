@@ -137,6 +137,7 @@ for_window [class="(?i)^keepassxc$"] move scratchpad
 
 # float popups & dialogues
 for_window [window_role="(?i)pop_up"] floating enable
+for_window [window_role="(?i)pop-up"] floating enable
 for_window [window_role="(?i)dialog"] floating enable
 for_window [window_role="(?i)menu"] floating enable
 for_window [window_role="(?i)about"] floating enable
@@ -308,15 +309,14 @@ client.placeholder       $lt-bg   $lt-bg   $lt-bg   $lt-bg      $lt-bg
 ##############################################################################
 
 
+# ********************************
+# comment out for work machines
+
 # start dropbox with icon in tray
 exec_always --no-startup-id /usr/bin/dropbox start -i
-
-# `feh` image viewer sets bkgrnd; see `man feh`
-# exec_always feh --no-fehbg --bg-scale $background
-
 # pulse audio controls in tray
 exec --no-startup-id pasystray
-
+# ********************************
 
 # NB: xrandr settings  & `xsetroot` color script calls moved to `~/.xinitrc`
 # since .xinitrc is bypassed when X is started via a display manager
