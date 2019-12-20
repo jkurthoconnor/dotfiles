@@ -142,6 +142,14 @@ augroup git_messages
   autocmd FileType gitcommit setlocal spell
 augroup END
 
+augroup git_config
+  autocmd!
+  autocmd FileType gitconfig setlocal noexpandtab
+  autocmd FileType gitconfig setlocal tabstop=8
+  autocmd FileType gitconfig setlocal shiftwidth=8
+  autocmd FileType gitconfig setlocal softtabstop=8
+augroup END
+
 augroup markdown_options
   autocmd!
   autocmd FileType markdown setlocal spell
