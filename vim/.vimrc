@@ -111,22 +111,30 @@ augroup filetype_recongnition
   autocmd BufNewFile,BufRead *.git{,modules/**/,worktrees/*/}{COMMIT_EDIT,TAG_EDIT,MERGE_,}MSG set filetype=gitcommit
 augroup END
 
-let g:markdown_fenced_languages = ['html', 'css', 'rb=ruby', 'ruby', 'erb=eruby', 'javascript', 'js=javascript', 'bash=sh', 'sql']
+let g:markdown_fenced_languages = ['html', 'css', 'rb=ruby', 'ruby', 'erb=eruby', 'javascript', 'js=javascript', 'bash=sh', 'sql', 'py=python', 'python', 'yaml', 'json']
 
 " SPACES, TABS, SCREEN TEXT FORMATTING
 set wrap                              " allow visual line wrapping
 set textwidth=0                       " disable auto new line
 set wrapmargin=0                      " disable EOL at wrap
 set expandtab                         " <TAB> insert softtabstop # spaces
-set shiftwidth=2                      " spaces for autoindent, >>, <<, ==
-set softtabstop=2                     " spaces per <TAB>, <BS>
-set tabstop=2                         " spaces per read <TAB>
+set shiftwidth=2                      " columns for autoindent & commands: >>, <<, ==
+set softtabstop=2                     " columns per entered <TAB>, <BS>
+set tabstop=2                         " columns per read <TAB>
 set autoindent                        " new line copies previous line indent
 set list                              " display invisible chars
 set listchars=tab:>-,space:·,eol:¬,trail:+ " whitespace chars
 set linebreak                         " visual wrap at breakat chars
 set showbreak=--
 set colorcolumn=80
+
+augroup makefiles
+  autocmd!
+  autocmd FileType make setlocal noexpandtab
+  autocmd FileType make setlocal tabstop=8
+  autocmd FileType make setlocal softtabstop=8
+  autocmd FileType make setlocal shiftwidth=8
+augroup END
 
 augroup python_files
   autocmd!
@@ -137,6 +145,7 @@ augroup END
 
 augroup git_messages
   autocmd!
+  autocmd FileType gitcommit setlocal tabstop=8
   autocmd FileType gitcommit setlocal textwidth=72
   autocmd FileType gitcommit setlocal colorcolumn=72
   autocmd FileType gitcommit setlocal spell
@@ -146,8 +155,8 @@ augroup git_config
   autocmd!
   autocmd FileType gitconfig setlocal noexpandtab
   autocmd FileType gitconfig setlocal tabstop=8
-  autocmd FileType gitconfig setlocal shiftwidth=8
   autocmd FileType gitconfig setlocal softtabstop=8
+  autocmd FileType gitconfig setlocal shiftwidth=8
 augroup END
 
 augroup markdown_options
