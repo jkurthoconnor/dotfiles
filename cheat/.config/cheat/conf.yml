@@ -8,7 +8,9 @@ colorize: true
 # Which 'chroma' colorscheme should be applied to the output?
 # Options :
 #   https://github.com/alecthomas/chroma/tree/master/styles
-style: monokai
+# style: tango
+# style: borland
+style: pygments
 
 # Which 'chroma' "formatter" should be applied?:   "terminal", "terminal256", "terminal16m"
 formatter: terminal16m
