@@ -34,6 +34,8 @@ packadd gruvbox
 " gruvbox
 let g:gruvbox_italic=1
 let g:gruvbox_italicize_comments=1
+let g:gruvbox_invert_selection=0
+let g:gruvbox_hls_cursor='green'
 
 " emmet
 let g:user_emmet_install_global=0
@@ -176,16 +178,6 @@ augroup cursor_line_toggle
   autocmd!
   autocmd InsertEnter,InsertLeave * set cursorline!
 augroup END
-
-
-" CUSTOM STATUS LINE                  " use when airline is not installed
-" set showcmd                         " show command in bottom bar
-" set statusline=%f                   " path
-" set statusline+=%=                  " switch to right side
-" set statusline+=%l                  " line
-" set statusline+=/                   " separator
-" set statusline+=%L                  " total lines
-
 
 " TEXT SEARCH
 set showmatch                         " highlight matching parens
