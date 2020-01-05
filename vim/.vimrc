@@ -183,6 +183,7 @@ augroup END
 set showmatch                         " highlight matching parens
 set hlsearch
 set incsearch                         " incremental highlight search matches
+highlight Search ctermfg=142 ctermbg=235 guifg=#b8bb26 guibg=#282828
 
 " FILES AND BUFFERS
 set hidden                            " prevent unloading abandoned buffers
