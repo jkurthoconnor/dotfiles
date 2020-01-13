@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# download minimal vimrc for remote servers
+wget https://raw.githubusercontent.com/jkurthoconnor/dotfiles/master/server-dots/.vimrc
+
+# add termite terminal info
+wget https://raw.githubusercontent.com/thestinger/termite/master/termite.terminfo
+tic -x termite.terminfo
+
+
