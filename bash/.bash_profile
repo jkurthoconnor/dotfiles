@@ -2,6 +2,4 @@
 
 [[ -s "$HOME/.profile" ]] && . "$HOME/.profile"
 
-if [ -z "$DISPLAY" -a $XDG_VTNR -eq 1 ]; then
-  startx
-fi
+[[ -z "$DISPLAY" && $XDG_VTNR -eq 1 ]] && startx
