@@ -23,7 +23,7 @@ filter_unmatched_urls = true
 dynamic_title = true
 icon_name = termite
 
-mouse_autohide = false
+mouse_autohide = true
 cursor_blink = system
 cursor_shape = block
 
