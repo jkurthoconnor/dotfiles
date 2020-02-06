@@ -1,11 +1,10 @@
 #!/bin/bash
 
-device=$HOSTNAME
-desktop=sullilly
-laptop=kell
+desktop=^sull
+laptop=^kel
 
-if [ $device = $desktop ]; then
+if [[ $HOSTNAME =~ $desktop ]]; then
   i3-msg "exec --no-startup-id nm-applet"
-elif [ $device = $laptop ]; then
+elif [[ $HOSTNAME =~ $laptop ]]; then
   i3-msg "exec --no-startup-id wicd-client --tray"
 fi
