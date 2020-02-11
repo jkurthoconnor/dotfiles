@@ -142,8 +142,8 @@ for_window [window_role="(?i)dialog"] floating enable
 for_window [window_role="(?i)menu"] floating enable
 for_window [window_role="(?i)about"] floating enable
 for_window [window_role="(?i)preferences"] floating enable
-for_window [title="(?i)preferences" ] floating enable
-for_window [title="(?i)page unresponsive" ] floating enable
+for_window [title="(?i)preferences"] floating enable
+for_window [title="(?i)page unresponsive"] floating enable
 
 # float certain client instances
 for_window [instance="wicd-client.py"] floating enable resize set 400 600 move position center
@@ -231,7 +231,8 @@ bindsym $mod+Shift+0 move container to workspace $workspace0
 ##############################################################################
 
 # Font for window titles & bar unless specified in bar block
-font pango:DejaVu Sans Mono 10
+# font pango:DejaVu Sans Mono 10
+font pango:DejaVu Sans Mono 8
 
 title_align center
 hide_edge_borders smart
