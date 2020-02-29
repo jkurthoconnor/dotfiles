@@ -231,8 +231,8 @@ bindsym $mod+Shift+0 move container to workspace $workspace0
 ##############################################################################
 
 # Font for window titles & bar unless specified in bar block
-# font pango:DejaVu Sans Mono 10
-font pango:DejaVu Sans Mono 8
+font pango:DejaVu Sans Mono 12
+# font pango:DejaVu Sans Mono 8
 
 title_align center
 hide_edge_borders smart
