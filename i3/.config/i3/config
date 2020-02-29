@@ -77,12 +77,12 @@ bindsym  XF86MonBrightnessDown exec sudo /home/jko/.config/i3/scripts/i3_binding
 bindsym $mod+f fullscreen toggle
 
 # toggle tiling / floating mode for focused window
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+Shift+f floating toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 
-# Use Mouse+$mod to drag floating windows
+# Use mouse+$mod to drag floating windows
 floating_modifier $mod
 
 # toggle show/hide scratchpad
@@ -91,22 +91,22 @@ bindsym $mod+Shift+s scratchpad show
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# prevent focus from following mouse
+# does focus follow mouse?
 focus_follows_mouse no
 
 # focus the parent container
-bindsym $mod+a focus parent
+bindsym $mod+p focus parent
 
 # focus the child container
-#bindsym $mod+d focus child
+bindsym $mod+c focus child
 
-# change focus
+# change focus (directional)
 bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 
-# move focused window
+# move focused window (directional)
 bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
