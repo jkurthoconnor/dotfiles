@@ -86,11 +86,6 @@ if [ "$TERM" == "linux" ]; then
     }
 fi
 
-if [ -d "$HOME/.rbenv" ]; then
-  export PATH="$HOME/.rbenv/bin:$PATH"
-  eval "$(rbenv init -)"
-fi
-
 if [ -d "$HOME/.virtualenvs" ]; then
   export WORKON_HOME=$HOME/.virtualenvs
   export PROJECT_HOME=$HOME/code
@@ -100,3 +95,12 @@ fi
 export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_231
 export JAVA_HOME_COMPILE=$JAVA_HOME
 export JAVA=$JAVA_HOME/bin/java
+
+# unnecessary at work
+if [ -d "$HOME/.rbenv" ]; then
+  export PATH="$HOME/.rbenv/bin:$PATH"
+  eval "$(rbenv init -)"
+fi
+
+# unnecessary outside work
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
