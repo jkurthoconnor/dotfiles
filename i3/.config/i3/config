@@ -1,9 +1,8 @@
 #                           I3 CONFIG FILE (V4)                              #
 #              reference: https://i3wm.org/docs/userguide.html               #
+
+
 ##############################################################################
-
-
-
 #                   LAUNCHING, MODES & FUNCTION KEYS                         #
 ##############################################################################
 
@@ -70,7 +69,8 @@ bindsym  XF86MonBrightnessUp exec sudo /home/jko/.config/i3/scripts/i3_bindings_
 bindsym  XF86MonBrightnessDown exec sudo /home/jko/.config/i3/scripts/i3_bindings_intel_screen_brightness.sh -dec
 
 
-#                           WINDOW NAVIGATION and BEHAVIOR                  #
+##############################################################################
+#                           WINDOW NAVIGATION and BEHAVIOR                   #
 ##############################################################################
 
 # toggle fullscreen mode for the focused window
@@ -130,10 +130,10 @@ bindsym $mod+e layout tabbed
 # `_NET_WM_NAME()` ="<title>"
 
 # assign clients to workspaces when app maps the window
-assign [class="^Slack$"] $workspace8
+# assign [class="^Slack$"] $workspace8
 
 # assign client to scratchpad
-for_window [class="(?i)^keepassxc$"] move scratchpad
+for_window [title="(?i)^scratch"] move scratchpad
 
 # float popups & dialogues
 for_window [window_role="(?i)pop_up"] floating enable
@@ -145,7 +145,7 @@ for_window [window_role="(?i)preferences"] floating enable
 for_window [title="(?i)preferences"] floating enable
 for_window [title="(?i)page unresponsive"] floating enable
 
-# float certain client instances
+# float specified client instances
 for_window [instance="wicd-client.py"] floating enable resize set 400 600 move position center
 for_window [instance="^arandr"] floating enable move position center
 for_window [instance="^etcher-electron"] floating enable move position center
@@ -159,11 +159,57 @@ for_window [instance="^teensy"] floating enable resize set 400 600 move position
 for_window [instance="^zoom"] floating enable move position center
 
 
+#############################################################################
 #               OUTPUT / WORKSPACE NAVIGATION and BEHAVIOR                  #
 #############################################################################
 
-# set workspace variables
-# `xrandr --current` for current state; see `man xrandr`
+# set workspace default name variables
+set $workspace0  "0:trm"
+set $workspace1  "1:trm"
+set $workspace2  "2:trm"
+set $workspace3  "3:trm"
+set $workspace4  "4:trm"
+set $workspace5  "5:trm"
+set $workspace6  "6:trm"
+set $workspace7  "7:trm"
+set $workspace8  "8:com"
+set $workspace9  "9:msc"
+
+# change workspace name
+bindsym $mod+n exec i3-input -F 'rename workspace to "%s"' -P 'New name: '
+
+# switch to numbered workspace
+bindsym $mod+0 workspace number $workspace0
+bindsym $mod+1 workspace number $workspace1
+bindsym $mod+2 workspace number $workspace2
+bindsym $mod+3 workspace number $workspace3
+bindsym $mod+4 workspace number $workspace4
+bindsym $mod+5 workspace number $workspace5
+bindsym $mod+6 workspace number $workspace6
+bindsym $mod+7 workspace number $workspace7
+bindsym $mod+8 workspace number $workspace8
+bindsym $mod+9 workspace number $workspace9
+
+# can one switch to prev workspace with '$mod+current-workspace-number'?
+workspace_auto_back_and_forth yes
+
+# move focused workspace to next output / screen (loops back)
+bindsym $mod+Shift+n move workspace to output right
+
+# move focused container to numbered workspace
+bindsym $mod+Shift+0 move container to workspace number $workspace0
+bindsym $mod+Shift+1 move container to workspace number $workspace1
+bindsym $mod+Shift+2 move container to workspace number $workspace2
+bindsym $mod+Shift+3 move container to workspace number $workspace3
+bindsym $mod+Shift+4 move container to workspace number $workspace4
+bindsym $mod+Shift+5 move container to workspace number $workspace5
+bindsym $mod+Shift+6 move container to workspace number $workspace6
+bindsym $mod+Shift+7 move container to workspace number $workspace7
+bindsym $mod+Shift+8 move container to workspace number $workspace8
+bindsym $mod+Shift+9 move container to workspace number $workspace9
+
+# set output variables
+# `xrandr --current` for current state or `--listmonitors`
 set $monitorLeft HDMI-0
 set $monitorRight DP-0
 set $monitorLeftSchr DP-2
@@ -172,19 +218,8 @@ set $laptopScreen eDP-1
 set $nvidiaLaptopScreen eDP-1-1
 set $zenScreen DVI-I-2-1
 
-# set workspace variables
-set $workspace1 "1 trm"
-set $workspace2 "2 msc"
-set $workspace3 "3 trm"
-set $workspace4 "4 cde"
-set $workspace5 "5 srv"
-set $workspace6 "6 dcs"
-set $workspace7 "7 nts"
-set $workspace8 "8 com"
-set $workspace9 "9 trm"
-set $workspace0 "0 etc"
-
-# bind workspaces to monitors (1st output found receives binding)
+# bind workspaces to monitors (1st found takes binding)
+workspace $workspace0 output $monitorLeft $monitorLeftSchr $laptopScreen $nvidiaLaptopScreen
 workspace $workspace1 output $monitorLeft $monitorLeftSchr $laptopScreen $nvidiaLaptopScreen
 workspace $workspace2 output $monitorLeft $monitorLeftSchr $laptopScreen $nvidiaLaptopScreen
 workspace $workspace3 output $monitorLeft $monitorLeftSchr $laptopScreen $nvidiaLaptopScreen
@@ -193,40 +228,10 @@ workspace $workspace5 output $monitorLeft $monitorLeftSchr $laptopScreen $nvidia
 workspace $workspace6 output $monitorRight $monitorRightSchr $laptopScreen $nvidiaLaptopScreen
 workspace $workspace7 output $monitorRight $monitorRightSchr $laptopScreen $nvidiaLaptopScreen
 workspace $workspace8 output $monitorRight $monitorRightSchr $laptopScreen $nvidiaLaptopScreen
-workspace $workspace9 output $monitorRight $monitorRightSchr $laptopScreen $nvidiaLaptopScreen
-workspace $workspace0 output $monitorRight $monitorRightSchr $laptopScreen $zenScreen
-
-# switch to workspace
-bindsym $mod+1 workspace $workspace1
-bindsym $mod+2 workspace $workspace2
-bindsym $mod+3 workspace $workspace3
-bindsym $mod+4 workspace $workspace4
-bindsym $mod+5 workspace $workspace5
-bindsym $mod+6 workspace $workspace6
-bindsym $mod+7 workspace $workspace7
-bindsym $mod+8 workspace $workspace8
-bindsym $mod+9 workspace $workspace9
-bindsym $mod+0 workspace $workspace0
-
-# switch to previous workspace with mod+current-workspace-number
-workspace_auto_back_and_forth yes
-
-# move focused workspace to next output / screen
-bindsym $mod+Shift+n move workspace to output right
-
-# move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace $workspace1
-bindsym $mod+Shift+2 move container to workspace $workspace2
-bindsym $mod+Shift+3 move container to workspace $workspace3
-bindsym $mod+Shift+4 move container to workspace $workspace4
-bindsym $mod+Shift+5 move container to workspace $workspace5
-bindsym $mod+Shift+6 move container to workspace $workspace6
-bindsym $mod+Shift+7 move container to workspace $workspace7
-bindsym $mod+Shift+8 move container to workspace $workspace8
-bindsym $mod+Shift+9 move container to workspace $workspace9
-bindsym $mod+Shift+0 move container to workspace $workspace0
+workspace $workspace9 output $monitorRight $monitorRightSchr $laptopScreen $zenScreen
 
 
+###############################################################################
 #                           AESTHETICS                                       #
 ##############################################################################
 
@@ -305,6 +310,7 @@ client.placeholder       $lt-bg   $lt-bg   $lt-bg   $lt-bg      $lt-bg
 
 
 
+##############################################################################
 #                           STARTUP CALLS                                    #
 ##############################################################################
 
@@ -315,7 +321,7 @@ exec $HOME/.config/i3/scripts/i3_audio.sh
 exec_always $HOME/.config/i3/scripts/i3_cloud_storage.sh
 
 # since .xinitrc is bypassed when X is started via a display manager
-# the relevant X settings are sourced by the following script when necessary
+#+ the relevant X settings are sourced by the following script when necessary
 exec $HOME/.config/i3/scripts/i3_Xsettings_for_dm_boot.sh
 
 # load networking services by hostname 

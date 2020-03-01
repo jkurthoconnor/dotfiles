@@ -1,29 +1,27 @@
 #!/bin/bash
 
-device=$HOSTNAME
-desktop=sullilly
-laptop=kell
+desktop=^sull
+laptop=^kel
+terminal=termite
+browser=firefox
+layout1="/home/jko/.config/i3/layouts/default-terminal-split.json"
 
-if [ $device = $desktop ]; then
-  # load pre-defined layouts
-  i3-msg "workspace 4 cde; append_layout /home/jko/.config/i3/layouts/ws4.json"
-  i3-msg "workspace 0 etc; append_layout /home/jko/.config/i3/layouts/ws0.json"
-  # open client instance assigned to workspace
-  i3-msg "workspace 8 com; exec firefox https://mail.google.com"
-  # open client assigned to scratchpad
-  i3-msg "exec --no-startup-id keepassxc"
-  # open clients initially assigned to pre-defined layouts
-  i3-msg "exec termite"
-  i3-msg "exec termite"
-  i3-msg "exec termite --name=cmus_container --title=cmus -e cmus"
-  i3-msg "exec termite"
-  i3-msg "exec termite"
-elif [ $device = $laptop ]; then
-  # open clients assigned to workspace
-  i3-msg "workspace 0 etc; exec termite --name=cmus_container --title=cmus -e cmus"
-  # load pre-defined layouts
-  i3-msg "workspace 4 cde; append_layout /home/jko/.config/i3/layouts/ws4.json"
-  # open clients initially assigned to pre-defined layout
-  i3-msg "exec termite"
-  i3-msg "exec termite"
+if [[ ! $HOSTNAME =~ desktop && ! $HOSTNAME =~ laptop ]]; then
+  browser=google-chrome
 fi
+
+# load common layouts into numbered workspaces
+for n in 1 2 7; do
+  i3-msg "workspace $n:trm; append_layout ${layout1}"
+done
+
+# open clients to be initially 'captured' by pre-defined layouts
+for n in $(seq 6); do
+  i3-msg "exec ${terminal}"
+done
+
+# open clients to be 'captured' by scratchpad
+i3-msg "exec ${terminal} --title=scratchterm"
+
+# open client instances in specified workspaces
+i3-msg "workspace 8:com; exec ${browser} https://mail.google.com"

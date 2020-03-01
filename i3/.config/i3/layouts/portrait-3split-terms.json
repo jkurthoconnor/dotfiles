@@ -34,13 +34,12 @@
                "x": 0,
                "y": 0
             },
-            "name": "cmus",
+            "name": "termite",
             "percent": 0.5,
             "swallows": [
                {
                 "class": "^Termite$",
-                "instance": "^cmus_container$",
-                "title": "^cmus$"
+                "title": "^termite$"
                }
             ],
             "type": "con"
