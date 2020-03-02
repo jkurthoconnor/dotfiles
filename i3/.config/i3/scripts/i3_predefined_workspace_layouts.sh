@@ -6,7 +6,7 @@ terminal=termite
 browser=firefox
 layout1="/home/jko/.config/i3/layouts/default-terminal-split.json"
 
-if [[ ! $HOSTNAME =~ desktop && ! $HOSTNAME =~ laptop ]]; then
+if [[ ! $HOSTNAME =~ $desktop && ! $HOSTNAME =~ $laptop ]]; then
   browser=google-chrome
 fi
 
