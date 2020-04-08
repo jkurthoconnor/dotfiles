@@ -37,6 +37,14 @@ alias gr='git rm'
 alias gs='git status'
 
 # ------------
+# tmux aliases
+# ------------
+
+alias tl='tmux list-sessions'
+alias tn='tmux new-session -s'
+alias ta='tmux attach -t'
+
+# ------------
 # ------------
 
 alias ch='cheat'
