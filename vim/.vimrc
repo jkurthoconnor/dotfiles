@@ -99,11 +99,8 @@ augroup swap_file_behavior
 augroup END
 
 " COLORS & SYNTAX
-" if (has("termguicolors"))
-"   set termguicolors                   " 24-bit (true-color) mode outside tmux
-" endif
 
-" Enable true color 启用终端24位色
+" Enable true (24-bit) color (see :h xterm-true-color)
 if exists('+termguicolors')
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
