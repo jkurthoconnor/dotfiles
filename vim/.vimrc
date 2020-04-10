@@ -60,7 +60,6 @@ augroup set_prettier_behavior
   autocmd BufWritePre *.js,*.jsx,*.json,*.md,*.yaml,*.html PrettierAsync
 augroup END
 
-
 " css plugins
 augroup help_css_property_highlighting
   autocmd!
@@ -170,7 +169,12 @@ augroup markdown_options
   autocmd FileType markdown setlocal spell
 augroup END
 
-" PASTE
+" REGISTERS
+" use "+ register as default
+if has('unnamedplus')
+  set clipboard=unnamed,unnamedplus
+endif
+
 set pastetoggle=<F2>                  " toggle pasting via terminal clipboard
 
 " UI
