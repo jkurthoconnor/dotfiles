@@ -35,6 +35,7 @@ alias gpl='git pull'
 alias gps='git push'
 alias gr='git rm'
 alias gs='git status'
+alias gsu='git submodule update --init'
 
 # ------------
 # tmux aliases
