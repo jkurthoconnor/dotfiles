@@ -9,7 +9,9 @@
 # set modifier key to OS key
 set $mod Mod4
 
+# NB: toggle workstation preference
 set $TERMINAL "/usr/local/bin/termite"
+# set $TERMINAL "/usr/bin/alacritty"
 
 # open terminal: `i3-sensible-terminal` checks $TERMINAL value
 bindsym $mod+Return exec i3-sensible-terminal
@@ -211,7 +213,7 @@ bindsym $mod+Shift+9 move container to workspace number $workspace9
 # set output variables
 # `xrandr --current` for current state or `--listmonitors`
 set $monitorLeft HDMI-0
-set $monitorRight DP-0
+set $monitorRight DP-1
 set $monitorLeftSchr DP-2
 set $monitorRightSchr DP-0
 set $laptopScreen eDP-1
@@ -279,11 +281,10 @@ bar {
         }
 }
 
-# set $zenScreen DVI-I-2-1
 bar {
         id bar-1
         output DP-0
-        output $zenScreen
+        output DP-1
         status_command i3status --config ~/.config/i3status/small_config
         tray_output none
 

@@ -2,9 +2,13 @@
 
 desktop=^sull
 laptop=^kel
-terminal=termite
 browser=firefox
+terminal=termite
 layout1="/home/jko/.config/i3/layouts/default-terminal-split.json"
+
+if [[ $HOSTNAME =~ $desktop ]]; then
+  terminal=alacritty
+fi
 
 if [[ ! $HOSTNAME =~ $desktop && ! $HOSTNAME =~ $laptop ]]; then
   browser=google-chrome

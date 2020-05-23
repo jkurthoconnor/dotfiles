@@ -4,10 +4,11 @@
 # so this script ensures proper settings for display manager X starts by
 # excluding non-dm boxes
 
-desktop=^sull
+# desktop=^sull
 laptop=^kel
 
-[[ $HOSTNAME =~ $desktop || $HOSTNAME =~ $laptop ]] && exit 0
+# [[ $HOSTNAME =~ $desktop || $HOSTNAME =~ $laptop ]] && exit 0
+[[ $HOSTNAME =~ $laptop ]] && exit 0
 
 [[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
 source $HOME/.xrandr_screen_layout.sh
