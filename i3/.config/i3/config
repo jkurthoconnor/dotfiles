@@ -10,8 +10,8 @@
 set $mod Mod4
 
 # NB: toggle workstation preference
-set $TERMINAL "/usr/local/bin/termite"
-# set $TERMINAL "/usr/bin/alacritty"
+# set $TERMINAL "/usr/local/bin/termite"
+set $TERMINAL "/usr/bin/alacritty"
 
 # open terminal: `i3-sensible-terminal` checks $TERMINAL value
 bindsym $mod+Return exec i3-sensible-terminal
@@ -155,7 +155,7 @@ for_window [instance="^lxappearance"] floating enable
 for_window [instance="^pa(man)|(vumeter)|(vucontrol)"] floating enable
 for_window [instance="pavucontrol"] resize set 400 600 move position center
 for_window [instance="^pcmanfm"] floating enable
-for_window [instance="nautilus"] floating enable
+for_window [instance="(?i)^org.gnome.nautilus"] floating enable
 for_window [instance="^qtconfig-qt4"] floating enable
 for_window [instance="^teensy"] floating enable resize set 400 600 move position center
 for_window [instance="^zoom"] floating enable move position center
