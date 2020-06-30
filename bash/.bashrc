@@ -87,6 +87,7 @@ if [ "$TERM" == "linux" ]; then
 fi
 
 if [ -d "$HOME/.virtualenvs" ]; then
+  [[ $HOSTNAME =~ ^sull ]] && export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
   export WORKON_HOME=$HOME/.virtualenvs
   export PROJECT_HOME=$HOME/code
   source $HOME/.local/bin/virtualenvwrapper.sh
