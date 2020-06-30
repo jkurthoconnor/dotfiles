@@ -114,6 +114,7 @@ augroup filetype_recongnition
   autocmd!
   autocmd BufNewFile,BufFilePre,BufReadPost *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=markdown
   autocmd BufNewFile,BufRead *.git{,modules/**/,worktrees/*/}{COMMIT_EDIT,TAG_EDIT,MERGE_,}MSG set filetype=gitcommit
+  autocmd BufNewFile,BufRead Jenkinsfile set filetype=groovy
 augroup END
 
 let g:markdown_fenced_languages = ['html', 'css', 'rb=ruby', 'ruby', 'erb=eruby', 'javascript', 'js=javascript', 'bash=sh', 'sql', 'py=python', 'python', 'yaml', 'json']
