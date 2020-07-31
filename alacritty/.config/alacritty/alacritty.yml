@@ -1,0 +1,102 @@
+# Alacritty configuration
+#
+# Any items in the `env` entry below will be added as
+# environment variables. Some entries may override variables
+# set by alacritty itself.
+#env:
+  #
+  # This value is used to set the `$TERM` environment variable for
+  # each instance of Alacritty. If it is not present, alacritty will
+  # check the local terminfo database and use `alacritty` if it is
+  # available, otherwise `xterm-256color` is used.
+  #
+  #TERM: alacritty
+
+window:
+  # dimension specified in number of columns/lines; ignored if both 0
+  dimensions:
+    columns: 0
+    lines: 0
+
+  # position specified in number of pixels; if unset, window manager handles
+  #position:
+  #  x: 0
+  #  y: 0
+
+  # padding added around the window in pixels. added at both opposing sides.
+  padding:
+    x: 5
+    y: 5
+  dynamic_padding: true
+  #  decorations: none
+
+scrolling:
+  history: 10000
+
+# The FreeType rasterizer needs to know the device DPI for best results
+# (changes require restart)
+dpi:
+  x: 96.0
+  y: 96.0
+
+font:
+  size: 12.0 
+  
+  # Offset is the extra space around each character. offset.y can be thought of
+  # as modifying the linespacing, and offset.x as modifying the letter spacing.
+  offset:
+    x: 1
+    y: 1
+
+
+  # The normal (roman) font face to use.
+  normal:
+    family: Source Code Pro
+    # Style can be specified to pick a specific face.
+    style: Regular
+
+  # The bold font face
+  bold:
+    family: Source Code Pro Semibold
+    # Style can be specified to pick a specific face.
+  # style: Regular
+
+  # The italic font face
+  italic:
+    family: Source Code Pro Light
+    # Style can be specified to pick a specific face.
+    # style: Italic
+
+# When true, bold text is drawn using the bright variant of colors.
+draw_bold_text_with_bright_colors: true
+#
+## Colors (Gruvbox dark)
+colors:
+  # Default colors
+  primary:
+    # regular contrast '#282828'
+    # soft contrast '#32302f'
+    background: '#1d2021'
+    foreground: '#d5c4a1'
+
+  # Normal colors
+  normal:
+    black:   '#1d2021'
+    red:     '#cc241d'
+    green:   '#98971a'
+    yellow:  '#d79921'
+    blue:    '#458588'
+    magenta: '#b16286'
+    cyan:    '#689d6a'
+    white:   '#bdae93'
+
+  # Bright colors
+  bright:
+    black:   '#665c54'
+    red:     '#fb4934'
+    green:   '#b8bb26'
+    yellow:  '#fabd2f'
+    blue:    '#83a598'
+    magenta: '#d3869b'
+    cyan:    '#8ec07c'
+    white:   '#ebdbb2'
