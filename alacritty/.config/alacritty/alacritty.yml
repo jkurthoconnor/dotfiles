@@ -13,22 +13,24 @@
   #TERM: alacritty
 
 window:
-  # dimension specified in number of columns/lines; ignored if both 0
+  # dimension in columns/lines; ignored if both 0
   dimensions:
     columns: 0
     lines: 0
 
-  # position specified in number of pixels; if unset, window manager handles
+  # position in pixels; if unset, window manager handles
   #position:
   #  x: 0
   #  y: 0
 
-  # padding added around the window in pixels. added at both opposing sides.
+  # window padding in pixels
   padding:
     x: 5
     y: 5
   dynamic_padding: true
-  #  decorations: none
+
+  # values: 'full' or 'none'
+  decorations: none
 
 scrolling:
   history: 10000
@@ -41,45 +43,39 @@ dpi:
 
 font:
   size: 12.0 
-  
-  # Offset is the extra space around each character. offset.y can be thought of
-  # as modifying the linespacing, and offset.x as modifying the letter spacing.
+
+  # extra space around each character.
+  # offset.y: modifies linespacing; offset.x modifies letter spacing.
   offset:
     x: 1
     y: 1
 
+  # locations of glyphs within cells with the default being at the bottom.
+  # Increasing `x` moves the glyph right; increasing `y` moves glyph upward.
+  glyph_offset:
+    x: 0
+    y: 0
 
-  # The normal (roman) font face to use.
   normal:
     family: Source Code Pro
-    # Style can be specified to pick a specific face.
     style: Regular
 
-  # The bold font face
   bold:
     family: Source Code Pro Semibold
-    # Style can be specified to pick a specific face.
   # style: Regular
 
-  # The italic font face
   italic:
     family: Source Code Pro Light
-    # Style can be specified to pick a specific face.
     # style: Italic
 
-# When true, bold text is drawn using the bright variant of colors.
 draw_bold_text_with_bright_colors: true
-#
+
 ## Colors (Gruvbox dark)
 colors:
-  # Default colors
   primary:
-    # regular contrast '#282828'
-    # soft contrast '#32302f'
     background: '#1d2021'
     foreground: '#d5c4a1'
 
-  # Normal colors
   normal:
     black:   '#1d2021'
     red:     '#cc241d'
@@ -90,7 +86,6 @@ colors:
     cyan:    '#689d6a'
     white:   '#bdae93'
 
-  # Bright colors
   bright:
     black:   '#665c54'
     red:     '#fb4934'
@@ -100,3 +95,54 @@ colors:
     magenta: '#d3869b'
     cyan:    '#8ec07c'
     white:   '#ebdbb2'
+
+# if unset, calculated based on `normal` colors.
+  #dim:
+  #  black:   '#000000'
+  #  red:     '#8c3336'
+  #  green:   '#7a8530'
+  #  yellow:  '#97822e'
+  #  blue:    '#506d8f'
+  #  magenta: '#80638e'
+  #  cyan:    '#497e7a'
+  #  white:   '#9a9a9a'
+  #
+  # if unset, cursor color is inverse of the cell color.
+  #cursor:
+  #  text: '#000000'
+  #  cursor: '#ffffff'
+
+  # if unset, selection color is inverse of the cell colors.
+  # If only text is unset cell text color remains the same.
+  # selection:
+  #  text: '#eaeaea'
+  #  background: '#404040'#
+
+cursor:
+  style: Block
+  unfocused_hollow: true
+
+selection:
+  save_to_clipboard: true
+
+shell:
+  program: /usr/bin/bash
+  args:
+    - --login
+
+# if None, shell starts in parent process' directory
+working_directory: None
+
+# send ESC (\x1b) before chars when alt is pressed
+alt_send_esc: true
+
+mouse:
+  double_click: { threshold: 300 }
+  triple_click: { threshold: 300 }
+  hide_when_typing: true
+
+debug:
+  render_timer: false
+  persistent_logging: false
+  log_level: Warn
+  print_events: false
