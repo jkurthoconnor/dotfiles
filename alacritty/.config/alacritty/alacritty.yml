@@ -30,7 +30,7 @@ window:
   dynamic_padding: true
 
   # values: 'full' or 'none'
-  decorations: none
+  #  decorations: none
 
 scrolling:
   history: 10000
@@ -126,7 +126,7 @@ selection:
   save_to_clipboard: true
 
 shell:
-  program: /usr/bin/bash
+  program: bash
   args:
     - --login
 
