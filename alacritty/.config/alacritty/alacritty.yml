@@ -125,10 +125,11 @@ cursor:
 selection:
   save_to_clipboard: true
 
-shell:
-  program: bash
-  args:
-    - --login
+# defaults to bash; no need to execute as login
+# shell:
+#   program: bash
+#   args:
+#     - --login
 
 # if None, shell starts in parent process' directory
 working_directory: None
