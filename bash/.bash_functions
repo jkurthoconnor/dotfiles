@@ -14,19 +14,30 @@ function ruby_prompt() {
   esac
 }
 
+function okta-aws() {
+  case "$1" in
+    "-f"|"--force") rm ~/.aws/credentials
+                    ~/.virtualenvs/okta-awscli-venv/bin/okta-awscli --profile okta-aws
+                    ln ~/.aws/credentials ~/code/bluebird-spinner/bbspinner-dev/data/aws/credentials ;;
+    *)              ~/.virtualenvs/okta-awscli-venv/bin/okta-awscli --profile okta-aws ;;
+  esac
+
+  export AWS_PROFILE=okta-aws
+}
+
 # facilitate ssh-ing
-function dev() {
+function ssh-dev() {
   ssh $1.dev.bb.schrodinger.com
 }
 
-function bb() {
+function ssh-bb() {
   ssh $1.bb.schrodinger.com
 }
 
-function on() {
+function ssh-on() {
   ssh $1.onschrodinger.com
 }
 
-function bsch() {
+function ssh-bast() {
   ssh -J bastille.bb.schrodinger.com $1.onschrodinger.com
 }
