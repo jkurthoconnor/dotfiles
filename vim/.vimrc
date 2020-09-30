@@ -91,6 +91,11 @@ let g:airline_symbols.maxlinenr=''
 filetype plugin indent on             " filetype detection, ft indent and plugins
 set directory^=$HOME/.vim/tmp//       " prepends .vim/tmp/ to list of swp file
                                       " locations; prevents cluttering working dir
+set backupcopy=yes                    " when file is saved and backup is made
+                                      " the file is overwritten & the backup
+                                      " is a proper copy; if the edited file
+                                      " is a link, this preserves the link in
+                                      " the original.
 
 augroup swap_file_behavior
   autocmd!
