@@ -37,6 +37,9 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# enable kubectl completion; sed pipe to facilitate 'k' alias
+source <(kubectl completion bash | sed s/kubectl/k/g)
+
 # suppress accessibility bus warnings
 export NO_AT_BRIDGE=1
 
