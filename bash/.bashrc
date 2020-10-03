@@ -16,16 +16,14 @@ HISTFILESIZE=100000
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
+[ -r ~/.bash_aliases ] && source ~/.bash_aliases
+[ -r ~/.bash_functions ] && source ~/.bash_functions
 [ -r ~/.bash_ps1 ] && source ~/.bash_ps1
 
 # enable color support of ls
 # sets colors via ~/.dircolors if it exists, or uses the default
 if [ -x /usr/bin/dircolors ]; then
   test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-fi
-
-if [ -f ~/.bash_aliases ]; then
-  . ~/.bash_aliases
 fi
 
 # enable programmable completion features (you don't need to enable
@@ -39,6 +37,9 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# enable kubectl completion; sed pipe to facilitate 'k' alias
+source <(kubectl completion bash | sed s/kubectl/k/g)
+
 # suppress accessibility bus warnings
 export NO_AT_BRIDGE=1
 
@@ -48,29 +49,12 @@ stty -ixon
 export EDITOR=vim
 export GPG_TTY=$(tty)
 
-
 if [ -d "$HOME/.twarriors" ]; then
   TASKTIMEWARRIORDIR="$HOME/.twarriors"
   export TIMEWARRIORDB="$TASKTIMEWARRIORDIR/.timewarrior"
   export TASKRC="$TASKTIMEWARRIORDIR/.taskrc"
   export TASKDATA="$TASKTIMEWARRIORDIR/.task"
 fi
-
-# NVM adds ~400ms to sourcing .bashrc; functions sources only as needed
-function nvm-init {
-  export NVM_DIR="$HOME/.nvm"
-  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-}
-
-# function toggles Ruby version in prompt
-function ruby_prompt() {
-    case "$1" in
-      "show") export SHOW_RUBY_PROMPT=yes;;
-      "hide") unset SHOW_RUBY_PROMPT;;
-      *)      echo "options are to 'show' or 'hide'";;
-    esac
-}
 
 if [ "$TERM" == "linux" ]; then
   function set-tty-colors {
@@ -97,11 +81,10 @@ export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_231
 export JAVA_HOME_COMPILE=$JAVA_HOME
 export JAVA=$JAVA_HOME/bin/java
 
-# unnecessary at work
+# rbenv & rvm are mortal enemies, but each alone is needed on different machines
 if [ -d "$HOME/.rbenv" ]; then
   export PATH="$HOME/.rbenv/bin:$PATH"
   eval "$(rbenv init -)"
 fi
 
-# unnecessary outside work
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
