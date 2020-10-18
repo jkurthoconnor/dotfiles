@@ -8,9 +8,9 @@
 
 [options]
 
-# font = SourceCodePro 14
+font = SourceCodePro 16
 # font = SourceCodePro 12
-font = SourceCodePro 11
+# font = SourceCodePro 11
 
 allow_bold = false
 bold_is_bright = false
