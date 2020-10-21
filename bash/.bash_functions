@@ -1,5 +1,14 @@
+# kubectl autocompletion adds ~200ms to sourcing .bashrc enable; source via function instead
+function init-kcomplete {
+  if type kubectl > /dev/null 2>&1; then
+    source <(kubectl completion bash | sed s/kubectl/k/g)
+  else
+    echo 'kubectl is not installed'
+  fi
+}
+
 # NVM adds ~400ms to sourcing .bashrc; init only as needed
-function nvm-init {
+function init-nvm {
   export NVM_DIR="$HOME/.nvm"
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
   [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
