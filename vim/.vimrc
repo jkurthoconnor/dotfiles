@@ -91,6 +91,11 @@ let g:airline_symbols.maxlinenr=''
 filetype plugin indent on             " filetype detection, ft indent and plugins
 set directory^=$HOME/.vim/tmp//       " prepends .vim/tmp/ to list of swp file
                                       " locations; prevents cluttering working dir
+set backupcopy=yes                    " when file is saved and backup is made
+                                      " the file is overwritten & the backup
+                                      " is a proper copy; if the edited file
+                                      " is a link, this preserves the link in
+                                      " the original.
 
 augroup swap_file_behavior
   autocmd!
@@ -114,6 +119,7 @@ augroup filetype_recongnition
   autocmd!
   autocmd BufNewFile,BufFilePre,BufReadPost *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=markdown
   autocmd BufNewFile,BufRead *.git{,modules/**/,worktrees/*/}{COMMIT_EDIT,TAG_EDIT,MERGE_,}MSG set filetype=gitcommit
+  autocmd BufNewFile,BufRead Jenkinsfile set filetype=groovy
 augroup END
 
 let g:markdown_fenced_languages = ['html', 'css', 'rb=ruby', 'ruby', 'erb=eruby', 'javascript', 'js=javascript', 'bash=sh', 'sql', 'py=python', 'python', 'yaml', 'json']

@@ -3,14 +3,11 @@
 desktop=^sull
 laptop=^kel
 browser=firefox
-terminal=termite
-
-if [[ $HOSTNAME =~ $desktop ]]; then
-  terminal=alacritty
-fi
+terminal=alacritty
 
 if [[ ! $HOSTNAME =~ $desktop && ! $HOSTNAME =~ $laptop ]]; then
   browser=google-chrome
+  terminal=termite
 fi
 
 # open client instances in specified workspaces
