@@ -40,15 +40,16 @@ alias gsu='git submodule update --init'
 # ------------
 # tmux aliases
 # ------------
-
 alias tl='tmux list-sessions'
 alias tn='tmux new-session -s'
 alias ta='tmux attach -t'
 alias tk='tmux kill-session -t'
-# ------------
-# ------------
 
+# ------------
+# misc application aliases
+# ------------
 alias ch='cheat'
+alias bat='batcat'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
