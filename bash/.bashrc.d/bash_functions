@@ -25,10 +25,10 @@ function ruby_prompt() {
 
 function okta-aws() {
   case "$1" in
-    "-f"|"--force") rm ~/.aws/credentials
-                    ~/.virtualenvs/okta-awscli-venv/bin/okta-awscli --profile okta-aws
-                    ln ~/.aws/credentials ~/code/bluebird-spinner/bbspinner-dev/data/aws/credentials ;;
-    *)              ~/.virtualenvs/okta-awscli-venv/bin/okta-awscli --profile okta-aws ;;
+    "-f"|"--force") rm $HOME/.aws/credentials
+                    $HOME/.virtualenvs/okta-awscli-venv/bin/okta-awscli --profile okta-aws
+                    ln $HOME/.aws/credentials $HOME/code/bluebird-spinner/bbspinner-dev/data/aws/credentials ;;
+    *)              $HOME/.virtualenvs/okta-awscli-venv/bin/okta-awscli --profile okta-aws ;;
   esac
 
   export AWS_PROFILE=okta-aws

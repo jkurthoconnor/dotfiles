@@ -16,14 +16,21 @@ HISTFILESIZE=100000
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-[ -r ~/.bash_aliases ] && source ~/.bash_aliases
-[ -r ~/.bash_functions ] && source ~/.bash_functions
-[ -r ~/.bash_ps1 ] && source ~/.bash_ps1
+# source additional customizations; this allows per-machine drop-in env files
+if [ -d $HOME/.bashrc.d ]; then
+  for config in $HOME/.bashrc.d/*; do
+    source $config
+  done
+fi
+
+# [ -r ~/.bash_aliases ] && source ~/.bash_aliases
+# [ -r ~/.bash_functions ] && source ~/.bash_functions
+# [ -r ~/.bash_ps1 ] && source ~/.bash_ps1
 
 # enable color support of ls
 # sets colors via ~/.dircolors if it exists, or uses the default
 if [ -x /usr/bin/dircolors ]; then
-  test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+  test -r $HOME/.dircolors && eval "$(dircolors -b $HOME/.dircolors)" || eval "$(dircolors -b)"
 fi
 
 # enable programmable completion features (you don't need to enable
