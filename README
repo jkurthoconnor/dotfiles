@@ -1,0 +1,13 @@
+Directory houses config files in a single place to assist version control. 
+
+Symbolic links have been placed, by using `stow` utility, in the parent of the stow directory,
+  - so, e.g. .vimrc will have a symbolic link in the parent of this directory (i.e. target is: ~/)
+
+To newly stow files for an application inside this folder (i.e. the 'stow' folder), create a directory for the application's dotfiles; have the directory mirror the structure relative to ~/ (where ~/ is analogous to .dotfile/appname/ ) 
+  - run `stow appname` to create symbolic links to these files
+
+To update the links after revisions, from just inside .dotfiles/ :
+    - 1) `stow --delete appname' to delete/unstow the links then 2) `stow appname` to recreate them
+    - or, `stow --restow appname` to unstow and stow again if no files have been added
+    - note: the symbolic links must be removed (see  1) before any new files are added; once the links are removed, new files can be added to the relevant .dotfiles folder and then `stow appname` run again
+
