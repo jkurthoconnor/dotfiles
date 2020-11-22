@@ -1,0 +1,24 @@
+If working on remote systems (via ssh) cause problems with editors, update the remote system's terminfo database with the details for termite.
+
+Option 1 (quick workaround):
+
+  - execute on remote system:
+    - `export TERM=xterm-color`
+
+Option 2 (suggested by termite developers):
+
+  - form remote system, download the source:
+    - `wget https://raw.githubusercontent.com/thestinger/termite/master/termite.terminfo`
+
+  - compile and update database:
+    - `tic -x termite.terminfo`
+
+Option 3:
+
+  - locally dump terminal info into a file:
+    - `infocmp xterm-termite > xterm-termite.terminfo`
+
+  - copy info source to remote system
+
+  - compile and update database on remote system
+    - `tic termite.terminfo`
