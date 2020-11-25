@@ -139,6 +139,7 @@ set linebreak                         " visual wrap at breakat chars
 set showbreak=--
 set colorcolumn=80
 
+" filetype-based overrides
 augroup makefiles
   autocmd!
   autocmd FileType make setlocal noexpandtab
