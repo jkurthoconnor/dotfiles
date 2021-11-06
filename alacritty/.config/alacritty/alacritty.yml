@@ -13,7 +13,7 @@
   #TERM: alacritty
 
 window:
-  # dimension in columns/lines; ignored if both 0
+  # dimension in columns/lines; if both 0, defers to window manager
   dimensions:
     columns: 0
     lines: 0
@@ -27,22 +27,27 @@ window:
   padding:
     x: 5
     y: 5
+  # spread additional padding evenly
   dynamic_padding: true
 
-  # values: 'full' or 'none'
-  #  decorations: none
+  # values: 'full' => boarders & title bar; 'none'
+  decorations: 'full'
 
+  # float: 0.0 transparent; 1.0 opaque
+  opacity: 1.0
+
+# max lines in scrollback buffer
 scrolling:
   history: 10000
 
 # The FreeType rasterizer needs to know the device DPI for best results
 # (changes require restart)
-dpi:
-  x: 96.0
-  y: 96.0
+# dpi:
+#   x: 96.0
+#   y: 96.0
 
 font:
-  size: 12.0 
+  size: 13.0
 
   # extra space around each character.
   # offset.y: modifies linespacing; offset.x modifies letter spacing.
@@ -118,16 +123,21 @@ colors:
   #  text: '#eaeaea'
   #  background: '#404040'#
 
-cursor:
-  style: Block
-  unfocused_hollow: true
-
 selection:
   save_to_clipboard: true
 
+cursor:
+  style:
+    shape: Block
+    blinking: Off
+  vi_mode_style: Underline
+  blink_interval: 750
+  unfocused_hollow: true
+  thickness: 1.0
+
 # defaults to bash; no need to execute as login
 # shell:
-#   program: bash
+#   program: /bin/bash
 #   args:
 #     - --login
 
