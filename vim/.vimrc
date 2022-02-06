@@ -48,17 +48,17 @@ augroup emmet_filetypes               " install emmet only for named filetypes
 augroup END
 
 " prettier
-let g:prettier#config#print_width = 80
-let g:prettier#config#tab_width = 2     " spaces per indentation level
-let g:prettier#config#use_tabs = 'false'
-let g:prettier#config#jsx_bracket_same_line = 'false'
-let g:prettier#autoformat = 0
-let g:prettier#quickfix_auto_focus = 0
+" let g:prettier#config#print_width = 80
+" let g:prettier#config#tab_width = 2     " spaces per indentation level
+" let g:prettier#config#use_tabs = 'false'
+" let g:prettier#config#jsx_bracket_same_line = 'false'
+" let g:prettier#autoformat = 0
+" let g:prettier#quickfix_auto_focus = 0
 
-augroup set_prettier_behavior
-  autocmd!
-  autocmd BufWritePre *.js,*.jsx,*.json,*.md,*.yaml,*.html PrettierAsync
-augroup END
+" augroup set_prettier_behavior
+"   autocmd!
+"   autocmd BufWritePre *.js,*.jsx,*.json,*.md,*.yaml,*.html PrettierAsync
+" augroup END
 
 " css plugins
 augroup help_css_property_highlighting
@@ -216,6 +216,12 @@ nnoremap <C-f> :FZF<CR>
 " MOVEMENT  (real lines if count is given, else visual lines)
 noremap <expr> j (v:count ? 'j' : 'gj')
 noremap <expr> k (v:count ? 'k' : 'gk')
+
+" MOVE LINES with Shifted direction keys
+nnoremap J :m .+1<CR>==
+nnoremap K :m .-2<CR>==
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
 
 " WINDOW NAVIGATION
 nnoremap <C-h> <C-w>h
