@@ -19,8 +19,8 @@ call minpac#add('mxw/vim-jsx')
 call minpac#add('hail2u/vim-css3-syntax')
 call minpac#add('cakebaker/scss-syntax.vim')
 call minpac#add('PotatoesMaster/i3-vim-syntax')
-call minpac#add('prettier/vim-prettier')
-" call minpac#add('chr4/nginx.vim')
+" call minpac#add('prettier/vim-prettier')
+call minpac#add('chr4/nginx.vim')
 
 " aesthetics
 call minpac#add('rakr/vim-one', { 'type': 'opt'})
