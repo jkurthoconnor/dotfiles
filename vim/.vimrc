@@ -20,6 +20,7 @@ call minpac#add('hail2u/vim-css3-syntax')
 call minpac#add('cakebaker/scss-syntax.vim')
 call minpac#add('PotatoesMaster/i3-vim-syntax')
 call minpac#add('prettier/vim-prettier')
+" call minpac#add('chr4/nginx.vim')
 
 " aesthetics
 call minpac#add('rakr/vim-one', { 'type': 'opt'})
@@ -187,6 +188,9 @@ endif
 set pastetoggle=<F2>                  " toggle pasting via terminal clipboard
 
 " UI
+let &t_SI = "\<Esc>[6 q"              " insert mode cursor is a beam (pipe)
+let &t_EI = "\<Esc>[2 q"              " other mode cursors are blocks
+
 set number
 set relativenumber
 set cursorline                        " highlight current line

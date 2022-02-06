@@ -133,7 +133,7 @@ cursor:
   vi_mode_style: Underline
   blink_interval: 750
   unfocused_hollow: true
-  thickness: 1.0
+  thickness: 0.1
 
 # defaults to bash; no need to execute as login
 # shell:
