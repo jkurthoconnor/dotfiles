@@ -137,7 +137,8 @@ set autoindent                        " new line copies previous line indent
 set list                              " display invisible chars
 set listchars=tab:>-,space:·,eol:¬,trail:+ " whitespace chars
 set linebreak                         " visual wrap at breakat chars
-set showbreak=--
+let s:breakvalue = "--"               " set breakvalue to allow toggling
+let &showbreak = s:breakvalue
 set colorcolumn=80
 
 " filetype-based overrides
@@ -235,10 +236,10 @@ nnoremap <F3> :set invrelativenumber<CR>
 nnoremap <F4> :set list!<CR>
 
 function! Showbreak_toggle()
-  if &showbreak == "--"
-    :set showbreak=
+  if &showbreak == s:breakvalue
+    let &showbreak = ''
   else
-    :set showbreak=--
+    let &showbreak = s:breakvalue
   endif
 endfunction
 
