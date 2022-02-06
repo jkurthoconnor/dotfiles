@@ -36,6 +36,7 @@ let g:gruvbox_italic=1
 let g:gruvbox_italicize_comments=1
 let g:gruvbox_invert_selection=0
 let g:gruvbox_hls_cursor='green'
+let g:gruvbox_improved_strings=0
 
 " emmet
 let g:user_emmet_install_global=0
@@ -228,6 +229,20 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+
+" TOGGLE UI METADATA
+nnoremap <F3> :set invrelativenumber<CR>
+nnoremap <F4> :set list!<CR>
+
+function! Showbreak_toggle()
+  if &showbreak == "--"
+    :set showbreak=
+  else
+    :set showbreak=--
+  endif
+endfunction
+
+nnoremap <F5> :call Showbreak_toggle()<CR>
 
 " LEADER MAPPINGS
 let mapleader = "\<space>"
