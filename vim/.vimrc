@@ -224,8 +224,8 @@ noremap <expr> j (v:count ? 'j' : 'gj')
 noremap <expr> k (v:count ? 'k' : 'gk')
 
 " MOVE LINES with Shifted direction keys
-nnoremap J :m .+1<CR>==
-nnoremap K :m .-2<CR>==
+" nnoremap J :m .+1<CR>==
+" nnoremap K :m .-2<CR>==
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
