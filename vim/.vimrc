@@ -21,6 +21,8 @@ call minpac#add('cakebaker/scss-syntax.vim')
 call minpac#add('PotatoesMaster/i3-vim-syntax')
 " call minpac#add('prettier/vim-prettier')
 call minpac#add('chr4/nginx.vim')
+call minpac#add('ekalinin/dockerfile.vim')
+call minpac#add('stephpy/vim-yaml')
 
 " aesthetics
 call minpac#add('rakr/vim-one', { 'type': 'opt'})
