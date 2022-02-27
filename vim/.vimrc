@@ -7,27 +7,29 @@ packadd minpac
 
 call minpac#init()
 call minpac#add('k-takata/minpac', { 'type': 'opt' })
-call minpac#add('tpope/vim-commentary')
-call minpac#add('tpope/vim-surround')
-call minpac#add('tpope/vim-rails')
-call minpac#add('mattn/emmet-vim')
+
 call minpac#add('junegunn/fzf')
+call minpac#add('mattn/emmet-vim')
+call minpac#add('tpope/vim-commentary')
+call minpac#add('tpope/vim-rails')
+call minpac#add('tpope/vim-surround')
 
 " syntax
-call minpac#add('pangloss/vim-javascript')
-call minpac#add('mxw/vim-jsx')
-call minpac#add('hail2u/vim-css3-syntax')
-call minpac#add('cakebaker/scss-syntax.vim')
-call minpac#add('PotatoesMaster/i3-vim-syntax')
 " call minpac#add('prettier/vim-prettier')
+call minpac#add('MTDL9/vim-log-highlighting')
+call minpac#add('PotatoesMaster/i3-vim-syntax')
+call minpac#add('cakebaker/scss-syntax.vim')
 call minpac#add('chr4/nginx.vim')
 call minpac#add('ekalinin/dockerfile.vim')
+call minpac#add('hail2u/vim-css3-syntax')
+call minpac#add('mxw/vim-jsx')
+call minpac#add('pangloss/vim-javascript')
 call minpac#add('stephpy/vim-yaml')
 call minpac#add('towolf/vim-helm')
 
 " aesthetics
-call minpac#add('rakr/vim-one', { 'type': 'opt'})
 call minpac#add('morhetz/gruvbox', { 'type': 'opt'})
+call minpac#add('rakr/vim-one', { 'type': 'opt'})
 call minpac#add('vim-airline/vim-airline')
 call minpac#add('vim-airline/vim-airline-themes')
 
@@ -126,6 +128,9 @@ augroup filetype_recongnition
   autocmd BufNewFile,BufFilePre,BufReadPost *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=markdown
 
   autocmd BufNewFile,BufRead *.git{,modules/**/,worktrees/*/}{COMMIT_EDIT,TAG_EDIT,MERGE_,}MSG set filetype=gitcommit
+
+  autocmd BufNewFile,BufRead */.bashrc.d/* set filetype=bash
+
   autocmd BufNewFile,BufRead requirements*.txt set filetype=python
 
   autocmd BufNewFile,BufRead [Tt]iltfile set filetype=python
@@ -204,8 +209,9 @@ set pastetoggle=<F2>                  " toggle pasting via terminal clipboard
 set number
 set relativenumber
 
-let &t_SI = "\<Esc>[2 q"              " insert mode cursor is a block
-let &t_EI = "\<Esc>[6 q"              " other mode cursors are beams
+let &t_SI = "\<Esc>[6 q"              " insert mode cursor is a beam
+let &t_SR = "\<Esc>[3 q"              " replace mode cursor is blinking underline
+let &t_EI = "\<Esc>[1 q"              " other mode cursors are blocks
 
 set cursorline                        " identify current line
 highlight CursorLine gui=underline cterm=underline guifg=NONE ctermfg=NONE guibg=NONE ctermbg=NONE
@@ -268,7 +274,9 @@ nnoremap <F6> :call Showbreak_toggle()<CR>
 
 " LEADER MAPPINGS
 let mapleader = "\<space>"
-nnoremap <leader><space> :nohlsearch<cr>
+" nnoremap <leader><space> :nohlsearch<cr>
+" remove search highlights by overwriting last search register ('/')
+nnoremap <leader><space> :let @/=''<cr>
 nnoremap <leader>ev :split $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 nnoremap <leader>l :ls<cr>:b<space>
