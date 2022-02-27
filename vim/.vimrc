@@ -23,6 +23,7 @@ call minpac#add('PotatoesMaster/i3-vim-syntax')
 call minpac#add('chr4/nginx.vim')
 call minpac#add('ekalinin/dockerfile.vim')
 call minpac#add('stephpy/vim-yaml')
+call minpac#add('towolf/vim-helm')
 
 " aesthetics
 call minpac#add('rakr/vim-one', { 'type': 'opt'})
@@ -119,11 +120,21 @@ syntax enable
 colorscheme gruvbox
 set background=dark
 
+" set filetypes for difficult cases
 augroup filetype_recongnition
   autocmd!
   autocmd BufNewFile,BufFilePre,BufReadPost *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=markdown
+
   autocmd BufNewFile,BufRead *.git{,modules/**/,worktrees/*/}{COMMIT_EDIT,TAG_EDIT,MERGE_,}MSG set filetype=gitcommit
-  autocmd BufNewFile,BufRead Jenkinsfile set filetype=groovy
+  autocmd BufNewFile,BufRead requirements*.txt set filetype=python
+
+  autocmd BufNewFile,BufRead [Tt]iltfile set filetype=python
+  autocmd BufNewFile,BufRead *[Tt]iltfile setfiletype python
+  autocmd BufNewFile,BufRead [Tt]iltfile* setfiletype python
+
+  autocmd BufNewFile,BufRead [Jj]enkinsfile set filetype=groovy
+  autocmd BufNewFile,BufRead *[Jj]enkinsfile setfiletype groovy
+  autocmd BufNewFile,BufRead [Jj]enkinsfile* setfiletype groovy
 augroup END
 
 let g:markdown_fenced_languages = ['html', 'css', 'rb=ruby', 'ruby', 'erb=eruby', 'javascript', 'js=javascript', 'bash=sh', 'sql', 'py=python', 'python', 'yaml', 'json']
@@ -190,12 +201,14 @@ endif
 set pastetoggle=<F2>                  " toggle pasting via terminal clipboard
 
 " UI
-let &t_SI = "\<Esc>[6 q"              " insert mode cursor is a beam (pipe)
-let &t_EI = "\<Esc>[2 q"              " other mode cursors are blocks
-
 set number
 set relativenumber
-set cursorline                        " highlight current line
+
+let &t_SI = "\<Esc>[2 q"              " insert mode cursor is a block
+let &t_EI = "\<Esc>[6 q"              " other mode cursors are beams
+
+set cursorline                        " identify current line
+highlight CursorLine gui=underline cterm=underline guifg=NONE ctermfg=NONE guibg=NONE ctermbg=NONE
 
 augroup cursor_line_toggle
   autocmd!
@@ -238,9 +251,11 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 " TOGGLE UI METADATA
-nnoremap <F3> :set invrelativenumber<CR>
-nnoremap <F4> :set list!<CR>
+nnoremap <F3> :set number!<CR>
+nnoremap <F4> :set invrelativenumber<CR>
+nnoremap <F5> :set list!<CR>
 
+" toggle linebreak character btwn empty string and default
 function! Showbreak_toggle()
   if &showbreak == s:breakvalue
     let &showbreak = ''
@@ -249,7 +264,7 @@ function! Showbreak_toggle()
   endif
 endfunction
 
-nnoremap <F5> :call Showbreak_toggle()<CR>
+nnoremap <F6> :call Showbreak_toggle()<CR>
 
 " LEADER MAPPINGS
 let mapleader = "\<space>"
