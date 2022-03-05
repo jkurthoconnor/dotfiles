@@ -15,15 +15,16 @@ call minpac#add('tpope/vim-rails')
 call minpac#add('tpope/vim-surround')
 
 " syntax
-" call minpac#add('prettier/vim-prettier')
 call minpac#add('MTDL9/vim-log-highlighting')
 call minpac#add('PotatoesMaster/i3-vim-syntax')
 call minpac#add('cakebaker/scss-syntax.vim')
 call minpac#add('chr4/nginx.vim')
 call minpac#add('ekalinin/dockerfile.vim')
+call minpac#add('godlygeek/tabular')
 call minpac#add('hail2u/vim-css3-syntax')
 call minpac#add('mxw/vim-jsx')
 call minpac#add('pangloss/vim-javascript')
+call minpac#add('preservim/vim-markdown')
 call minpac#add('stephpy/vim-yaml')
 call minpac#add('towolf/vim-helm')
 
@@ -54,18 +55,9 @@ augroup emmet_filetypes               " install emmet only for named filetypes
   autocmd FileType html,eruby,javascript.jsx EmmetInstall
 augroup END
 
-" prettier
-" let g:prettier#config#print_width = 80
-" let g:prettier#config#tab_width = 2     " spaces per indentation level
-" let g:prettier#config#use_tabs = 'false'
-" let g:prettier#config#jsx_bracket_same_line = 'false'
-" let g:prettier#autoformat = 0
-" let g:prettier#quickfix_auto_focus = 0
-
-" augroup set_prettier_behavior
-"   autocmd!
-"   autocmd BufWritePre *.js,*.jsx,*.json,*.md,*.yaml,*.html PrettierAsync
-" augroup END
+" vim-markdown
+let g:vim_markdown_strikethrough = 1
+let g:vim_markdown_fenced_languages = ['html', 'css', 'rb=ruby', 'ruby', 'erb=eruby', 'javascript', 'js=javascript', 'bash=sh', 'sql', 'py=python', 'python', 'yaml', 'json']
 
 " css plugins
 augroup help_css_property_highlighting
@@ -77,6 +69,7 @@ augroup END
 set noshowmode                        " removes automatic MODE display
 
 let g:airline_extensions=[]           " default enabled airline extensions
+let g:airline_highlighting_cache=1
 let g:airline_symbols_ascii=1         " use ascii symbols
 let g:airline_theme='gruvbox'
 let g:airline_section_b='%-0.40{getcwd()}'
@@ -125,8 +118,6 @@ set background=dark
 " set filetypes for difficult cases
 augroup filetype_recongnition
   autocmd!
-  autocmd BufNewFile,BufFilePre,BufReadPost *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=markdown
-
   autocmd BufNewFile,BufRead *.git{,modules/**/,worktrees/*/}{COMMIT_EDIT,TAG_EDIT,MERGE_,}MSG set filetype=gitcommit
 
   autocmd BufNewFile,BufRead */.bashrc.d/* set filetype=bash
@@ -134,15 +125,13 @@ augroup filetype_recongnition
   autocmd BufNewFile,BufRead requirements*.txt set filetype=python
 
   autocmd BufNewFile,BufRead [Tt]iltfile set filetype=python
-  autocmd BufNewFile,BufRead *[Tt]iltfile setfiletype python
-  autocmd BufNewFile,BufRead [Tt]iltfile* setfiletype python
+  autocmd BufNewFile,BufRead *[Tt]iltfile* setfiletype python
 
   autocmd BufNewFile,BufRead [Jj]enkinsfile set filetype=groovy
-  autocmd BufNewFile,BufRead *[Jj]enkinsfile setfiletype groovy
-  autocmd BufNewFile,BufRead [Jj]enkinsfile* setfiletype groovy
-augroup END
+  autocmd BufNewFile,BufRead *[Jj]enkinsfile* setfiletype groovy
 
-let g:markdown_fenced_languages = ['html', 'css', 'rb=ruby', 'ruby', 'erb=eruby', 'javascript', 'js=javascript', 'bash=sh', 'sql', 'py=python', 'python', 'yaml', 'json']
+  autocmd BufNewFile,BufRead *y{,a}ml.example setfiletype yaml
+augroup END
 
 " SPACES, TABS, SCREEN TEXT FORMATTING
 set wrap                              " allow visual line wrapping
