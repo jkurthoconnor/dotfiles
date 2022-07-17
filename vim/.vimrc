@@ -139,6 +139,7 @@ set textwidth=0                       " disable auto new line
 set wrapmargin=0                      " disable EOL at wrap
 set expandtab                         " <TAB> insert softtabstop # spaces
 set shiftwidth=2                      " columns for autoindent & commands: >>, <<, ==
+set shiftround                        " round autoindent to multiple of shiftwidth
 set softtabstop=2                     " columns per entered <TAB>, <BS>
 set tabstop=2                         " columns per read <TAB>
 set autoindent                        " new line copies previous line indent
