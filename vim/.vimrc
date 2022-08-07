@@ -1,6 +1,6 @@
 " PACKAGE MANAGEMENT
 " ================
-" `:call minpac#update()` to update || install packages registered below
+" `:call minpac#update()` to update || install plugins registered below
 " `:call minpac#clean()` to uninstall && remove minpac-managed plugins no
 " longer registered below
 packadd minpac
@@ -57,6 +57,7 @@ augroup END
 
 " vim-markdown
 let g:vim_markdown_strikethrough = 1
+let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_fenced_languages = ['html', 'css', 'rb=ruby', 'ruby', 'erb=eruby', 'javascript', 'js=javascript', 'bash=sh', 'sql', 'py=python', 'python', 'yaml', 'json']
 
 " css plugins
